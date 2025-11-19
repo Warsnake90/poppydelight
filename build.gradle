@@ -3,7 +3,6 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = mod_version
@@ -12,8 +11,6 @@ group = mod_group_id
 base {
     archivesName = mod_id
 }
-
-
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
@@ -21,13 +18,14 @@ minecraft {
 
     mappings channel: mapping_channel, version: mapping_version
 
-
     copyIdeResources = true
 
     runs {
-
         configureEach {
             workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
             property 'forge.logging.console.level', 'debug'
 
             mods {
@@ -38,7 +36,6 @@ minecraft {
         }
 
         client {
-
             property 'forge.enabledGameTestNamespaces', mod_id
         }
 
@@ -54,6 +51,7 @@ minecraft {
         data {
 
             workingDirectory project.file('run-data')
+
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
@@ -64,14 +62,11 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
 
-
-dependencies {
-
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-
-
 }
 
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+}
 
 tasks.named('processResources', ProcessResources).configure {
     var replaceProperties = [
@@ -88,13 +83,12 @@ tasks.named('processResources', ProcessResources).configure {
     }
 }
 
-
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
                 'Specification-Title'     : mod_id,
                 'Specification-Vendor'    : mod_authors,
-                'Specification-Version'   : '1', // We are version 1 of ourselves
+                'Specification-Version'   : '1',
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.jar.archiveVersion,
                 'Implementation-Vendor'   : mod_authors,
@@ -102,10 +96,8 @@ tasks.named('jar', Jar).configure {
         ])
     }
 
-
     finalizedBy 'reobfJar'
 }
-
 
 publishing {
     publications {
@@ -121,5 +113,5 @@ publishing {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    options.encoding = 'UTF-8'
 }
