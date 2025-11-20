@@ -3,6 +3,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = mod_version
@@ -61,11 +62,21 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-
+    maven {
+        url "https://cursemaven.com"
+    }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    // required dependencies
+    implementation fg.deobf("curse.maven:farmers-delight-398521:6917255")
+    implementation fg.deobf("curse.maven:brewin-and-chewin-637808:6237884")
+
+    // testing
+    implementation fg.deobf("curse.maven:jei-238222:7229087")
 }
 
 tasks.named('processResources', ProcessResources).configure {
