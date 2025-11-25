@@ -74,9 +74,12 @@ dependencies {
     // required dependencies
     implementation fg.deobf("curse.maven:farmers-delight-398521:6917255")
     implementation fg.deobf("curse.maven:brewin-and-chewin-637808:6237884")
+    implementation fg.deobf("curse.maven:crabbers-delight-892827:7084858")
 
     // testing
     implementation fg.deobf("curse.maven:jei-238222:7229087")
+    implementation fg.deobf("curse.maven:item-nbt-viewer-514135:4578522")
+    implementation fg.deobf("curse.maven:corpse-316582:7018272")
 }
 
 tasks.named('processResources', ProcessResources).configure {

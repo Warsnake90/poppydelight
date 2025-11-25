@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    {
+      "item": "poppydelight:tdxagent"
+    },
+    {
+      "item": "poppydelight:tdxagent"
+    },
+    {
+      "item": "minecraft:potion"
+    }
+  ],
+  "result": {
+    "item": "poppydelight:tdxvial",
+    "count": 1
+  }
+}

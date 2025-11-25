@@ -1,32 +1,46 @@
 package net.warsnake.poppydelight.items;
 
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
+import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-import net.warsnake.poppydelight.PoppyDelight;
 
-public class ModItems  {
-    public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, PoppyDelight.MODID);
+public class ModItems {
 
-    // debug items go here
+    public static final Item DEBUGITEM = new Item(new Item.Properties().stacksTo(1));
+    public static final Item TDXVIAL = new TdxItem(new Item.Properties());
+    public static final Item TDXGLAND = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item TDXAGENT = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item POPPYSEED = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item WETPOPPYSEED = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item CRUSHEDPOPPYSEED = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item DRIEDPOPPYSEED = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item RAWOPIOD = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item LOWQUALITY = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item OPIUM = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item HIGHQUALITY = new TdxItem(new Item.Properties().stacksTo(1));
 
-    public static final RegistryObject<Item> debug = ITEMS.register("debug",
-            () -> new Item(new Item.Properties()));
+    public static void register(BiConsumer<String, Item> helper) {
 
-    // poppy processing items
+        helper.accept("debugitem", DEBUGITEM);
 
-    // poison
+        helper.accept("tdxvial", TDXVIAL);
+        helper.accept("tdxgland", TDXGLAND);
+        helper.accept("tdxagent", TDXAGENT);
 
-    // random crafting junk
-
-    // misc
-
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
+        helper.accept("standardquality", OPIUM);
+        helper.accept("poppyseed", POPPYSEED);
+        helper.accept("wetseed", WETPOPPYSEED);
+        helper.accept("crushedseed", CRUSHEDPOPPYSEED);
+        helper.accept("driedseed", DRIEDPOPPYSEED);
+        helper.accept("rawopium", RAWOPIOD);
+        helper.accept("lowquality", LOWQUALITY);
+        helper.accept("highquality", HIGHQUALITY);
     }
 
 }
