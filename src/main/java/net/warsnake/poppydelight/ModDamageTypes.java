@@ -9,4 +9,11 @@ public class ModDamageTypes {
     public static final ResourceKey<DamageType> TOXIC_FOOD =
             ResourceKey.create(Registries.DAMAGE_TYPE,
                     new net.minecraft.resources.ResourceLocation("poppydelight", "toxic_food"));
+
+
+    public static final ResourceKey<DamageType> OVERDOSE =
+            ResourceKey.create(Registries.DAMAGE_TYPE,
+                    new net.minecraft.resources.ResourceLocation("poppydelight", "toxic_food"));
+
 }
+

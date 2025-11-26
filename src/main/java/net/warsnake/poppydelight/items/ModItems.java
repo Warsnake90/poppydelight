@@ -16,14 +16,14 @@ public class ModItems {
     public static final Item TDXVIAL = new TdxItem(new Item.Properties());
     public static final Item TDXGLAND = new TdxItem(new Item.Properties().stacksTo(1));
     public static final Item TDXAGENT = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item POPPYSEED = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item WETPOPPYSEED = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item CRUSHEDPOPPYSEED = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item DRIEDPOPPYSEED = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item POPPYSEED = new Item(new Item.Properties().stacksTo(1));
+    public static final Item WETPOPPYSEED = new Item(new Item.Properties().stacksTo(1));
+    public static final Item CRUSHEDPOPPYSEED = new Item(new Item.Properties().stacksTo(1));
+    public static final Item DRIEDPOPPYSEED = new Item(new Item.Properties().stacksTo(1));
     public static final Item RAWOPIOD = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item LOWQUALITY = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item OPIUM = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item HIGHQUALITY = new TdxItem(new Item.Properties().stacksTo(1));
+    public static final Item LOWQUALITY = new LowOpiumItem(new Item.Properties().stacksTo(1));
+    public static final Item OPIUM = new MedOpiumItem(new Item.Properties().stacksTo(1));
+    public static final Item HIGHQUALITY = new HighOpiumItem(new Item.Properties().stacksTo(1));
 
     public static void register(BiConsumer<String, Item> helper) {
 

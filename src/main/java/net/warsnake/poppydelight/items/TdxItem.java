@@ -38,7 +38,7 @@ public class TdxItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.literal("You probably shouldn't taste test it...")
-                .withStyle(style -> style.withColor(TextColor.fromRgb(0x006400)))); // Dark green
+                .withStyle(style -> style.withColor(TextColor.fromRgb(0x006400))));
         applyToxicTag(stack);
     }
 

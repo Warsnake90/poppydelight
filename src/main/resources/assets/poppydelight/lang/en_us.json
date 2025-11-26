@@ -6,6 +6,7 @@
   "item.poppydelight.tdxgland": "Poison Gland",
   "itemGroup.poppydelight.main": "Poppy Delight",
   "death.attack.toxic_food": "%1$s had their nervous system shut down by Maritox.",
+  "death.attack.overdose": "%1$s Overdosed on opium.",
   "death.attack.toxic_food.player": "%1$s If you get this death message, make an issue report with how, please."
 
 }

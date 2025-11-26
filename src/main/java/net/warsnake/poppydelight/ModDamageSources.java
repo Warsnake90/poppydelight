@@ -13,4 +13,12 @@ public class ModDamageSources {
                         .getHolderOrThrow(ModDamageTypes.TOXIC_FOOD)
         );
     }
+
+    public static DamageSource overdose(ServerLevel level) {
+        return new DamageSource(
+                level.registryAccess()
+                        .registryOrThrow(Registries.DAMAGE_TYPE)
+                        .getHolderOrThrow(ModDamageTypes.OVERDOSE)
+        );
+    }
 }
