@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "poppydelight:crushedseed"
+  },
+  "result": "poppydelight:driedseed",
+  "experience": 0.5,
+  "cookingTime": 200
+}

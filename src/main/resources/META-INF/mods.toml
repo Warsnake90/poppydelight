@@ -33,4 +33,18 @@ versionRange="*"
 ordering="NONE"
 side="BOTH"
 
+[[dependencies.${mod_id}]]
+modId="farmersdelight"
+mandatory=true
+versionRange="*"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="crabbersdelight"
+mandatory=true
+versionRange="*"
+ordering="NONE"
+side="BOTH"
+
 

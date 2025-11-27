@@ -16,10 +16,10 @@ public class ModItems {
     public static final Item TDXVIAL = new TdxItem(new Item.Properties());
     public static final Item TDXGLAND = new TdxItem(new Item.Properties().stacksTo(1));
     public static final Item TDXAGENT = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item POPPYSEED = new Item(new Item.Properties().stacksTo(1));
-    public static final Item WETPOPPYSEED = new Item(new Item.Properties().stacksTo(1));
-    public static final Item CRUSHEDPOPPYSEED = new Item(new Item.Properties().stacksTo(1));
-    public static final Item DRIEDPOPPYSEED = new Item(new Item.Properties().stacksTo(1));
+    public static final Item POPPYSEED = new Item(new Item.Properties());
+    public static final Item WETPOPPYSEED = new Item(new Item.Properties());
+    public static final Item CRUSHEDPOPPYSEED = new Item(new Item.Properties());
+    public static final Item DRIEDPOPPYSEED = new Item(new Item.Properties());
     public static final Item RAWOPIOD = new TdxItem(new Item.Properties().stacksTo(1));
     public static final Item LOWQUALITY = new LowOpiumItem(new Item.Properties().stacksTo(1));
     public static final Item OPIUM = new MedOpiumItem(new Item.Properties().stacksTo(1));
@@ -33,7 +33,7 @@ public class ModItems {
         helper.accept("tdxgland", TDXGLAND);
         helper.accept("tdxagent", TDXAGENT);
 
-        helper.accept("standardquality", OPIUM);
+        helper.accept("opium", OPIUM);
         helper.accept("poppyseed", POPPYSEED);
         helper.accept("wetseed", WETPOPPYSEED);
         helper.accept("crushedseed", CRUSHEDPOPPYSEED);

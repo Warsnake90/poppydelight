@@ -30,8 +30,8 @@ public class ToxicFoodEvent {
 
     @SubscribeEvent
     public static void onFoodEaten(LivingEntityUseItemEvent.Finish event) {
-        if (!(event.getEntity() instanceof Player player))
-            return;
+        if (!(event.getEntity() instanceof Player player)) return;
+        if (player.level().isClientSide) return;
 
         ItemStack stack = event.getItem();
 

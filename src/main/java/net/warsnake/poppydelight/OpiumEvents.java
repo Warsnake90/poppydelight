@@ -13,12 +13,8 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
 import net.warsnake.poppydelight.OverdoseEvent;
-
 import umpaz.brewinandchewin.common.registry.BnCEffects;
-import umpaz.brewinandchewin.common.registry.BnCItems;
-import umpaz.brewinandchewin.common.utility.BnCTextUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,13 +27,12 @@ public class OpiumEvents {
     private static final Map<UUID, Integer> opiumLevel = new HashMap<>();
     private static final Map<UUID, Long> lastDecreaseTime = new HashMap<>();
     private static final Random rand = new Random();
-
     private static final long REAL_TIME_15_MINUTES = 15 * 1200;
 
     @SubscribeEvent
     public static void onFoodEaten(LivingEntityUseItemEvent.Finish event) {
-        if (!(event.getEntity() instanceof Player player))
-            return;
+        if (!(event.getEntity() instanceof Player player)) return;
+        if (player.level().isClientSide) return;
 
         ItemStack stack = event.getItem();
         UUID uuid = player.getUUID();
@@ -140,7 +135,7 @@ public class OpiumEvents {
         int potency = 2;
 
         player.sendSystemMessage(Component.literal("§eMan you feel good..."));
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, potency));
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 0));
         player.addEffect(new MobEffectInstance(MobEffects.HUNGER, duration, 1));
         player.addEffect(new MobEffectInstance(
                 (MobEffect) BnCEffects.TIPSY.get(),
@@ -203,9 +198,13 @@ public class OpiumEvents {
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, duration, 3));
         player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, duration, 1));
 
-
-        // OD process goes here
         OverdoseEvent.startOverdoseForPlayer(player);
+
+        if (player.level().getGameTime() % 20 == 0) {
+            player.playSound(
+                    SoundEvents.WARDEN_HEARTBEAT, 1.0F, 1.0F
+            );
+        }
 
     }
 
@@ -218,3 +217,5 @@ public class OpiumEvents {
         lastDecreaseTime.remove(id);
     }
 }
+
+

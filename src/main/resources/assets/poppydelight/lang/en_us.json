@@ -4,9 +4,16 @@
   "item.poppydelight.tdxvial": "Maritox Vial",
   "item.poppydelight.tdxagent": "Maritox Agent",
   "item.poppydelight.tdxgland": "Poison Gland",
+  "item.poppydelight.poppyseed": "Poppy Seed",
+  "item.poppydelight.wetseed": "Wet Poppy Seeds",
+  "item.poppydelight.crushedseed": "Crushed Poppy Seed",
+  "item.poppydelight.driedseed": "Dried Poppy Seed",
+  "item.poppydelight.rawopium": "Raw Opium",
+  "item.poppydelight.lowquality": "Low Quality Opium",
+  "item.poppydelight.opium": "Opium",
+  "item.poppydelight.highquality": "High Quality Opium",
   "itemGroup.poppydelight.main": "Poppy Delight",
   "death.attack.toxic_food": "%1$s had their nervous system shut down by Maritox.",
   "death.attack.overdose": "%1$s Overdosed on opium.",
-  "death.attack.toxic_food.player": "%1$s If you get this death message, make an issue report with how, please."
-
+  "death.attack.toxic_food.player": "%1$s how tf did you get this death message"
 }

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "poppydelight:wetseed"
+    },{
+      "item": "poppydelight:wetseed"
+    },{
+      "item": "poppydelight:wetseed"
+    },{
+      "item": "poppydelight:wetseed"
+    },{
+      "item": "poppydelight:wetseed"
+    },{
+      "item": "poppydelight:wetseed"
+    },{
+      "item": "poppydelight:wetseed"
+    },{
+      "item": "poppydelight:wetseed"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "result": {
+    "item": "poppydelight:wetseed",
+    "count": 1
+  }
+}

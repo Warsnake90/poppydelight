@@ -50,7 +50,6 @@ public class ModCreativeTabs {
             helper.accept(ModItems.HIGHQUALITY);
             helper.accept(ModItems.RAWOPIOD);
 
-
         }
     }
 
