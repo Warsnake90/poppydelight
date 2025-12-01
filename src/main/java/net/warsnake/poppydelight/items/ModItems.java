@@ -2,6 +2,7 @@ package net.warsnake.poppydelight.items;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -63,5 +64,5 @@ public class ModItems {
 
     public static final RegistryObject<Item> POPPYSEED =
             ITEMS.register("poppyseed",
-                    () -> new BlockItem(ModBlocks.POPPY_CROP.get(), new Item.Properties()));
+                    () -> new ItemNameBlockItem(ModBlocks.POPPY_CROP.get(), new Item.Properties()));
 }

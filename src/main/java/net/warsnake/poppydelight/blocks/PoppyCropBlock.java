@@ -3,6 +3,7 @@ package net.warsnake.poppydelight.blocks;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -17,7 +18,8 @@ import java.util.Random;
 
 public class PoppyCropBlock extends CropBlock {
 
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
+    public static final int max_age = 3;
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
 
     public PoppyCropBlock(Properties properties) {
         super(properties);

@@ -1,62 +1,69 @@
 {
   "type": "minecraft:block",
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
   "pools": [
     {
-      "name": "poppies",
-      "rolls": 1,
+      "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "minecraft:poppy",
-          "functions": [
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "function": "minecraft:set_count",
-              "count": 3
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "poppydelight:poppy_crop",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "age": "3"
+                  }
+                }
+              ],
+              "name": "minecraft:poppy"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "tutorialmod:strawberry_seeds"
             }
           ]
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "poppydelight:poppy_crop",
-          "properties": { "age": "3" }
-        }
-      ]
+      "rolls": 1.0
     },
     {
-      "name": "extra_poppy",
-      "rolls": 1,
-      "entries": [
-        { "type": "minecraft:item", "name": "minecraft:poppy" }
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "poppydelight:poppy_crop",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3"
+          }
+        }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "poppydelight:poppy_crop",
-          "properties": { "age": "3" }
-        },
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.5
-        }
-      ]
-    },
-    {
-      "name": "seeds",
-      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "poppydelight:poppyseed",
           "functions": [
             {
-              "function": "minecraft:set_count",
-              "count": 3
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
+              "function": "minecraft:apply_bonus",
+              "parameters": {
+                "extra": 3,
+                "probability": 0.5714286
+              }
             }
-          ]
+          ],
+          "name": "poppydelight:poppyseed"
         }
-      ]
+      ],
+      "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "poppydelight:blocks/poppy_crop"
 }

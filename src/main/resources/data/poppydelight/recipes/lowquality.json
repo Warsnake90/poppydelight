@@ -7,18 +7,6 @@
       "item": "poppydelight:rawopium"
     }, {
       "item": "poppydelight:rawopium"
-    }, {
-      "item": "poppydelight:rawopium"
-    }, {
-      "item": "poppydelight:rawopium"
-    }, {
-      "item": "poppydelight:rawopium"
-    }, {
-      "item": "poppydelight:rawopium"
-    }, {
-      "item": "poppydelight:rawopium"
-    }, {
-      "item": "poppydelight:rawopium"
     },
     {
       "amount": 250,
@@ -33,7 +21,7 @@
       "chance": 0.45
     },
     {
-      "count": 8,
+      "count": 2,
       "item": "poppydelight:dust"
     }
   ]
