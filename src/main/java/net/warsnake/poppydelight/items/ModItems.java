@@ -1,46 +1,67 @@
 package net.warsnake.poppydelight.items;
 
-import java.util.List;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-
-import net.minecraft.Util;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+import net.warsnake.poppydelight.PoppyDelight;
+import net.warsnake.poppydelight.blocks.ModBlocks;
 
 public class ModItems {
 
-    public static final Item DEBUGITEM = new Item(new Item.Properties().stacksTo(1));
-    public static final Item TDXVIAL = new TdxItem(new Item.Properties());
-    public static final Item TDXGLAND = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item TDXAGENT = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item POPPYSEED = new Item(new Item.Properties());
-    public static final Item WETPOPPYSEED = new Item(new Item.Properties());
-    public static final Item CRUSHEDPOPPYSEED = new Item(new Item.Properties());
-    public static final Item DRIEDPOPPYSEED = new Item(new Item.Properties());
-    public static final Item RAWOPIOD = new TdxItem(new Item.Properties().stacksTo(1));
-    public static final Item LOWQUALITY = new LowOpiumItem(new Item.Properties().stacksTo(1));
-    public static final Item OPIUM = new MedOpiumItem(new Item.Properties().stacksTo(1));
-    public static final Item HIGHQUALITY = new HighOpiumItem(new Item.Properties().stacksTo(1));
+    public static final DeferredRegister<Item> ITEMS =
+            DeferredRegister.create(ForgeRegistries.ITEMS, PoppyDelight.MODID);
 
-    public static void register(BiConsumer<String, Item> helper) {
+    public static final RegistryObject<Item> DEBUGITEM =
+            ITEMS.register("debugitem",
+                    () -> new Item(new Item.Properties().stacksTo(1)));
 
-        helper.accept("debugitem", DEBUGITEM);
+    public static final RegistryObject<Item> TDXVIAL =
+            ITEMS.register("tdxvial",
+                    () -> new TdxItem(new Item.Properties()));
 
-        helper.accept("tdxvial", TDXVIAL);
-        helper.accept("tdxgland", TDXGLAND);
-        helper.accept("tdxagent", TDXAGENT);
+    public static final RegistryObject<Item> TDXGLAND =
+            ITEMS.register("tdxgland",
+                    () -> new TdxItem(new Item.Properties().stacksTo(1)));
 
-        helper.accept("opium", OPIUM);
-        helper.accept("poppyseed", POPPYSEED);
-        helper.accept("wetseed", WETPOPPYSEED);
-        helper.accept("crushedseed", CRUSHEDPOPPYSEED);
-        helper.accept("driedseed", DRIEDPOPPYSEED);
-        helper.accept("rawopium", RAWOPIOD);
-        helper.accept("lowquality", LOWQUALITY);
-        helper.accept("highquality", HIGHQUALITY);
-    }
+    public static final RegistryObject<Item> TDXAGENT =
+            ITEMS.register("tdxagent",
+                    () -> new TdxItem(new Item.Properties().stacksTo(1)));
 
+    public static final RegistryObject<Item> DUST =
+            ITEMS.register("dust",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> WETPOPPYSEED =
+            ITEMS.register("wetseed",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> CRUSHEDPOPPYSEED =
+            ITEMS.register("crushedseed",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> DRIEDPOPPYSEED =
+            ITEMS.register("driedseed",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> RAWOPIUM =
+            ITEMS.register("rawopium",
+                    () -> new Item(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> LOWQUALITY =
+            ITEMS.register("lowquality",
+                    () -> new LowOpiumItem(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> OPIUM =
+            ITEMS.register("opium",
+                    () -> new MedOpiumItem(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> HIGHQUALITY =
+            ITEMS.register("highquality",
+                    () -> new HighOpiumItem(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> POPPYSEED =
+            ITEMS.register("poppyseed",
+                    () -> new BlockItem(ModBlocks.POPPY_CROP.get(), new Item.Properties()));
 }

@@ -5,54 +5,49 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+import net.warsnake.poppydelight.PoppyDelight;
 
 public class ModCreativeTabs {
 
+    // Deferred register for creative tabs
+    public static final DeferredRegister<CreativeModeTab> TABS =
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, PoppyDelight.MODID);
+
+    // Key for the tab
     public static final ResourceKey<CreativeModeTab> POPPYDELIGHT_TAB =
             ResourceKey.create(
                     Registries.CREATIVE_MODE_TAB,
-                    new ResourceLocation("poppydelight", "main")
+                    new ResourceLocation(PoppyDelight.MODID, "main")
             );
 
-    public static CreativeModeTab TAB_INSTANCE;
+    // The actual tab
+    public static final RegistryObject<CreativeModeTab> MAIN_TAB =
+            TABS.register("main", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("creativetab.poppydelight.main"))
+                    .icon(() -> new ItemStack(Items.POPPY))
+                    .displayItems((params, output) -> {
 
-    public static void register(BiConsumer<ResourceKey<CreativeModeTab>, CreativeModeTab> helper) {
+                        // Add all items using DeferredRegister references
+                        output.accept(ModItems.DEBUGITEM.get());
+                        output.accept(ModItems.POPPYSEED.get());
+                        output.accept(ModItems.WETPOPPYSEED.get());
+                        output.accept(ModItems.CRUSHEDPOPPYSEED.get());
+                        output.accept(ModItems.DRIEDPOPPYSEED.get());
+                        output.accept(ModItems.RAWOPIUM.get());
+                        output.accept(ModItems.LOWQUALITY.get());
+                        output.accept(ModItems.OPIUM.get());
+                        output.accept(ModItems.HIGHQUALITY.get());
+                        output.accept(ModItems.TDXGLAND.get());
+                        output.accept(ModItems.TDXAGENT.get());
+                        output.accept(ModItems.TDXVIAL.get());
+                        output.accept(ModItems.DUST.get());
 
-        TAB_INSTANCE = CreativeModeTab.builder()
-                .title(Component.translatable("creativetab.poppydelight.main"))
-                .icon(() -> new ItemStack(Items.POPPY))
-                .displayItems((params, output) -> {
-                    output.accept(ModItems.DEBUGITEM);
-                })
-                .build();
-
-        helper.accept(POPPYDELIGHT_TAB, TAB_INSTANCE);
-    }
-
-    public static void addToCreativeTab(ResourceKey<CreativeModeTab> tab, Consumer<Item> helper) {
-        if (tab == POPPYDELIGHT_TAB) {
-            helper.accept(ModItems.DEBUGITEM);
-            helper.accept(ModItems.TDXVIAL);
-            helper.accept(ModItems.TDXGLAND);
-            helper.accept(ModItems.TDXAGENT);
-            helper.accept(ModItems.OPIUM);
-            helper.accept(ModItems.POPPYSEED);
-            helper.accept(ModItems.CRUSHEDPOPPYSEED);
-            helper.accept(ModItems.DRIEDPOPPYSEED);
-            helper.accept(ModItems.WETPOPPYSEED);
-            helper.accept(ModItems.LOWQUALITY);
-            helper.accept(ModItems.HIGHQUALITY);
-            helper.accept(ModItems.RAWOPIOD);
-
-        }
-    }
-
-
-
+                    })
+                    .build()
+            );
 }

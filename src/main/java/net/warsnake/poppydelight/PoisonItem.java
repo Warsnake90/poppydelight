@@ -35,7 +35,7 @@ public class PoisonItem {
         ItemStack main = player.getMainHandItem();
         ItemStack offhand = player.getOffhandItem();
 
-        if (!offhand.is(ModItems.TDXVIAL)) return;
+        if (!offhand.is(ModItems.TDXVIAL.get())) return;
 
         if (!main.is(FOODS_TAG)) return;
 

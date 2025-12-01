@@ -21,12 +21,13 @@ public class MedOpiumItem extends Item {
                 .food(new FoodProperties.Builder().alwaysEat().build()));
         new Item.Properties().stacksTo(1);
     }
-
+/*
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.DRINK;
     }
 
+ */
     private void applyOpiumTag(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         if (!tag.getBoolean("medopium")) {

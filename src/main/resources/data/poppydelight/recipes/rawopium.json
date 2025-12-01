@@ -1,15 +1,19 @@
 {
-  "type": "create:milling",
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "poppydelight:wetseed"
+      "item": "poppydelight:driedseed"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "create:cinder_flour"
     }
   ],
-  "processingTime": 50,
-  "results": [
-    {
-      "count": 2,
-      "item": "poppydelight:rawopium"
-    }
-  ]
+
+  "result": {
+    "count": 1,
+    "item": "poppydelight:rawopium"
+  }
 }

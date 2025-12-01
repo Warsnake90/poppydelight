@@ -39,11 +39,11 @@ public class SpikeItem {
 
         opiumItem.getOrCreateTag().putBoolean("opium", true);
 
-        if (offhand.is(ModItems.OPIUM)) {
+        if (offhand.is(ModItems.OPIUM.get())) {
             opiumItem.getOrCreateTag().putBoolean("medopium", true);
-        } else if (offhand.is(ModItems.LOWQUALITY)) {
+        } else if (offhand.is(ModItems.LOWQUALITY.get())) {
             opiumItem.getOrCreateTag().putBoolean("lowopium", true);
-        } else if (offhand.is(ModItems.HIGHQUALITY)) {
+        } else if (offhand.is(ModItems.HIGHQUALITY.get())) {
             opiumItem.getOrCreateTag().putBoolean("highopium", true);
         }
 

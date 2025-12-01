@@ -1,0 +1,40 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "poppydelight:rawopium"
+    }, {
+      "item": "poppydelight:rawopium"
+    }, {
+      "item": "poppydelight:rawopium"
+    }, {
+      "item": "poppydelight:rawopium"
+    }, {
+      "item": "poppydelight:rawopium"
+    }, {
+      "item": "poppydelight:rawopium"
+    }, {
+      "item": "poppydelight:rawopium"
+    }, {
+      "item": "poppydelight:rawopium"
+    }, {
+      "item": "poppydelight:rawopium"
+    },
+    {
+      "amount": 250,
+      "fluid": "minecraft:water",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "item": "poppydelight:lowquality",
+      "chance": 0.45
+    },
+    {
+      "count": 8,
+      "item": "poppydelight:dust"
+    }
+  ]
+}

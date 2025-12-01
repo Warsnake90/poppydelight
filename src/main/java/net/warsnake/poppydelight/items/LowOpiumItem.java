@@ -22,11 +22,12 @@ public class LowOpiumItem extends Item {
         new Item.Properties().stacksTo(1);
     }
 
+    /*
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.DRINK;
     }
-
+     */
     private void applygeneralTag(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         if (!tag.getBoolean("opium")) {

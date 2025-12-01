@@ -16,6 +16,15 @@ import net.minecraftforge.fml.common.Mod;
 import net.warsnake.poppydelight.OverdoseEvent;
 import umpaz.brewinandchewin.common.registry.BnCEffects;
 
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -73,7 +82,6 @@ public class OpiumEvents {
         applyStageEffects(player, current);
 
     }
-
 
     // ughhhhhh ts is so overly complex
     @SubscribeEvent
@@ -205,7 +213,6 @@ public class OpiumEvents {
                     SoundEvents.WARDEN_HEARTBEAT, 1.0F, 1.0F
             );
         }
-
     }
 
     @SubscribeEvent
@@ -216,6 +223,39 @@ public class OpiumEvents {
         opiumLevel.remove(id);
         lastDecreaseTime.remove(id);
     }
+
+    public static void sendOpiumLevelToPlayer(Player player) {
+        if (player.level().isClientSide) return;
+
+        UUID uuid = player.getUUID();
+        int level = opiumLevel.getOrDefault(uuid, 0);
+
+        player.sendSystemMessage(
+                Component.literal("§eYour current opium level is: §6" + level)
+        );
+    }
+
+    @Mod.EventBusSubscriber
+    public class OpiumCommand {
+
+        @SubscribeEvent
+        public static void onRegisterCommands(RegisterCommandsEvent event) {
+
+            event.getDispatcher().register(
+                    LiteralArgumentBuilder.<CommandSourceStack>literal("opium")
+                            .requires(source -> source.hasPermission(1))
+                            .then(Commands.argument("player", EntityArgument.player())
+                                    .executes(ctx -> {
+                                        ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
+                                        OpiumEvents.sendOpiumLevelToPlayer(target);
+                                        ctx.getSource().sendSuccess(() -> net.minecraft.network.chat.Component.literal("Poppydelight: Opium level checked for " + target.getName().getString()), false
+                                        );
+                                        return 1;
+                                    }))
+            );
+        }
+    }
+
 }
 
 
