@@ -65,4 +65,8 @@ public class ModItems {
     public static final RegistryObject<Item> POPPYSEED =
             ITEMS.register("poppyseed",
                     () -> new ItemNameBlockItem(ModBlocks.POPPY_CROP.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYINGPOD =
+            ITEMS.register("cryingpod",
+                    () -> new Item(new Item.Properties()));
 }

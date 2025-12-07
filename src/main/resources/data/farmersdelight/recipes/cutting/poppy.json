@@ -12,6 +12,10 @@
     {
       "item": "poppydelight:poppyseed",
       "count": 1
+    },
+    {
+      "item": "minecraft:red_dye",
+      "count": 2
     }
   ]
 }

@@ -37,7 +37,7 @@ side="BOTH"
 modId="farmersdelight"
 mandatory=true
 versionRange="*"
-ordering="NONE"
+ordering="AFTER"
 side="BOTH"
 
 [[dependencies.${mod_id}]]

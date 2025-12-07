@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "poppydelight:poppyseed"
+    "item": "poppydelight:cryingpod"
   },
-  "result": "poppydelight:driedseed",
+  "result": "poppydelight:rawopium",
   "experience": 0.5,
   "cookingTime": 200
 }

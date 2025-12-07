@@ -51,12 +51,8 @@ public class OpiumEvents {
 
         int amount = 0;
 
-        if (stack.getTag().getBoolean("rawopium")) {
+        if (stack.getTag().getBoolean("lowopium")) {
             amount = 1 + (rand.nextFloat() < 0.5f ? 1 : 0);
-        }
-
-        else if (stack.getTag().getBoolean("lowopium")) {
-            amount = 2 + (rand.nextFloat() < 0.5f ? 1 : 0);
         }
 
         else if (stack.getTag().getBoolean("medopium")) {
@@ -68,9 +64,9 @@ public class OpiumEvents {
 
         else if (stack.getTag().getBoolean("highopium")) {
             float r = rand.nextFloat();
-            if (r < 0.25f) amount = 6;
-            else if (r < 0.75f) amount = 5;
-            else amount = 4;
+            if (r < 0.25f) amount = 7;
+            else if (r < 0.75f) amount = 6;
+            else amount = 5;
         }
 
         int current = opiumLevel.getOrDefault(uuid, 0);
