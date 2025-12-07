@@ -1,5 +1,4 @@
-Seperate Secondary Branch of PoppyDelight Mainly for a antiquity roleplay server. Use the Version on Master Branch, This version is not intended for public use
-and will include changes and additions specific to the server. 
+Seperate Secondary Branch of PoppyDelight Mainly for a antiquity roleplay server. Use the Version on Master Branch, This version is not intended for public use and will include changes and additions specific to the server. thus, If you wish to use this version, you must build it yourself.
 
 **TLDR: USE MASTER BRANCH VERSION, I WILL NOT BE OFFERING HELP FOR THIS VERSION**
 
