@@ -1,0 +1,14 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "minecraft:wither_skeleton_skull"
+    }
+  ],
+  "processingTime": 250,
+  "results": [
+    {
+      "item": "poppydelight:wither_dust"
+    }
+  ]
+}

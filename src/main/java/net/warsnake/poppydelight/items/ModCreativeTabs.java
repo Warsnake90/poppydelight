@@ -43,6 +43,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.TDXAGENT.get());
                         output.accept(ModItems.TDXVIAL.get());
                         output.accept(ModItems.DUST.get());
+                        output.accept(ModItems.WITHERDUST.get());
 
                     })
                     .build()

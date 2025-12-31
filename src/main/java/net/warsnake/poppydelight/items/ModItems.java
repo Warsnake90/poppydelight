@@ -66,6 +66,10 @@ public class ModItems {
             ITEMS.register("poppyseed",
                     () -> new ItemNameBlockItem(ModBlocks.POPPY_CROP.get(), new Item.Properties()));
 
+    public static final RegistryObject<Item> WITHERDUST =
+            ITEMS.register("wither_dust",
+                    () -> new WitherItem(new Item.Properties().stacksTo(64)));
+
     public static final RegistryObject<Item> CRYINGPOD =
             ITEMS.register("cryingpod",
                     () -> new Item(new Item.Properties()));

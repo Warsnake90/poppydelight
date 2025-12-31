@@ -1,21 +1,23 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
   "ingredients": [
     {
-      "item": "minecraft:fermented_spider_eye"
-    },
-    {
       "item": "poppydelight:tdxagent"
     },
     {
       "item": "poppydelight:tdxagent"
     },
     {
-      "item": "minecraft:potion"
+      "item": "poppydelight:tdxagent"
+    },
+    {
+      "item": "poppydelight:wither_dust"
     }
   ],
+  "recipe_book_tab": "meals",
   "result": {
-    "item": "poppydelight:tdxvial",
-    "count": 1
+    "item": "poppydelight:tdxvial"
   }
 }
