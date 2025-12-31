@@ -34,10 +34,12 @@ public class ModItems {
             ITEMS.register("dust",
                     () -> new Item(new Item.Properties()));
 
+    // NOT USED ANYMORE
     public static final RegistryObject<Item> WETPOPPYSEED =
             ITEMS.register("wetseed",
                     () -> new Item(new Item.Properties()));
 
+    // NOT USED ANYMORE
     public static final RegistryObject<Item> CRUSHEDPOPPYSEED =
             ITEMS.register("crushedseed",
                     () -> new Item(new Item.Properties()));

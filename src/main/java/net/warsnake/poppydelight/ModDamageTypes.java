@@ -6,6 +6,8 @@ import net.minecraft.world.damagesource.DamageType;
 
 public class ModDamageTypes {
 
+    // is there a way to do all this damage registration easier? where I just have to define it once, check later
+
     public static final ResourceKey<DamageType> TOXIC_FOOD =
             ResourceKey.create(Registries.DAMAGE_TYPE,
                     new net.minecraft.resources.ResourceLocation("poppydelight", "toxic_food"));

@@ -24,6 +24,7 @@ public class DataGenerators {
 
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
 
+        // none of this dumbass datagen makes any sense but it finially got a problem to fix...
 
     }
 }

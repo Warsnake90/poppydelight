@@ -23,6 +23,9 @@ public class PoisonItem {
 
     @SubscribeEvent
     public static void onRightClick(PlayerInteractEvent.RightClickItem event) {
+
+        // there got to be a better way than checking everything like 15 times
+
         var player = event.getEntity();
         Level level = player.level();
 

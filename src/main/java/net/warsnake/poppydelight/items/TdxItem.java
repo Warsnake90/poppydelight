@@ -20,11 +20,15 @@ public class TdxItem extends Item {
     public TdxItem(Properties properties) {
         super(new Item.Properties()
                 .food(new FoodProperties.Builder().alwaysEat().build()));
-        new Item.Properties().stacksTo(1);
+
+        // what the fuck was the purpose of this... it did NOTHING
+       // new Item.Properties().stacksTo(1);
     }
 
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
+
+        // probably should let this change based on the item but im too lazy to add that... note to add it later
         return UseAnim.DRINK;
     }
 
@@ -42,6 +46,7 @@ public class TdxItem extends Item {
         applyToxicTag(stack);
     }
 
+    // there is probably a better way to do this
     @Override
     public void onCraftedBy(ItemStack stack, Level world, Player player) {
         applyToxicTag(stack);

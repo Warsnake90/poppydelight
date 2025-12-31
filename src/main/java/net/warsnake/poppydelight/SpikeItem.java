@@ -32,6 +32,7 @@ public class SpikeItem {
 
         if (!main.is(FOODS_TAG)) return;
 
+        // avoid checking three or four tags every time anything eats... too bad the rest of this shitty code negates this save
         if (main.hasTag() && main.getOrCreateTag().getBoolean("opium")) return;
 
         ItemStack opiumItem = main.copy();

@@ -18,6 +18,8 @@ import org.slf4j.Logger;
 @Mod(PoppyDelight.MODID)
 public class PoppyDelight {
 
+    // please do not judge ts, i was prob high when I wrote half this code, aswell ive deleted and added like 15 diff dependencies in and out lol
+
     public static final String MODID = "poppydelight";
     private static final Logger LOGGER = LogUtils.getLogger();
 
@@ -54,4 +56,7 @@ public class PoppyDelight {
 
         }
     }
+
+    // delete all this useless junk - UPD: Deleted... or was it ever here to begin with?
+
 }

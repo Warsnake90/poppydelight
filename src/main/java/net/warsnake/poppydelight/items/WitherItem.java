@@ -16,15 +16,15 @@ import java.util.List;
 
 public class WitherItem extends Item {
 
-    public WitherItem(Properties properties) {
-        super(new Properties()
-                .food(new FoodProperties.Builder().alwaysEat().build()));
-        new Properties().stacksTo(1);
+    public WitherItem(Properties p_41383_) {
+        super(p_41383_);
     }
 
+
+    // make sure to verify that reagent is correct term for this
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.literal("Catalyst for Making Maritox")
+        tooltip.add(Component.literal("A rare reagent used for strengthening Maritox.")
                 .withStyle(style -> style.withColor(TextColor.fromRgb(0x909090))));
     }
 

@@ -36,7 +36,9 @@ public class OpiumEvents {
     private static final Map<UUID, Integer> opiumLevel = new HashMap<>();
     private static final Map<UUID, Long> lastDecreaseTime = new HashMap<>();
     private static final Random rand = new Random();
-    private static final long REAL_TIME_15_MINUTES = 15 * 1200;
+
+    // define time scopes
+    private static final long fifteentimer = 15 * 1200;
 
     @SubscribeEvent
     public static void onFoodEaten(LivingEntityUseItemEvent.Finish event) {
@@ -91,7 +93,7 @@ public class OpiumEvents {
         long last = lastDecreaseTime.getOrDefault(uuid, 0L);
         long now = player.level().getGameTime();
 
-        if (now - last >= REAL_TIME_15_MINUTES) {
+        if (now - last >= fifteentimer) {
             int lvl = opiumLevel.get(uuid);
 
             if (lvl > 0) {

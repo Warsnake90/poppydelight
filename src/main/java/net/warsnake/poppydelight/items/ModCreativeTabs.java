@@ -29,6 +29,8 @@ public class ModCreativeTabs {
                     .icon(() -> new ItemStack(Items.POPPY))
                     .displayItems((params, output) -> {
 
+                        // I should just delete not used items huh...
+
                       //  output.accept(ModItems.DEBUGITEM.get());
                         output.accept(ModItems.POPPYSEED.get());
                        // output.accept(ModItems.WETPOPPYSEED.get());
