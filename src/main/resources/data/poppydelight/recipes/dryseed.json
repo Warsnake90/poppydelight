@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "poppydelight:poppyseed"
-  },
-  "result": "poppydelight:driedseed",
-  "experience": 0.5,
-  "cookingTime": 200
-}

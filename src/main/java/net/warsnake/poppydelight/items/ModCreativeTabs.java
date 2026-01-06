@@ -32,10 +32,10 @@ public class ModCreativeTabs {
                         // I should just delete not used items huh...
 
                       //  output.accept(ModItems.DEBUGITEM.get());
-                        output.accept(ModItems.POPPYSEED.get());
                        // output.accept(ModItems.WETPOPPYSEED.get());
                         // output.accept(ModItems.CRUSHEDPOPPYSEED.get());
-                        output.accept(ModItems.DRIEDPOPPYSEED.get());
+                       // output.accept(ModItems.DRIEDPOPPYSEED.get());
+                        output.accept(ModItems.POPPYSEED.get());
                         output.accept(ModItems.CRYINGPOD.get());
                         output.accept(ModItems.RAWOPIUM.get());
                         output.accept(ModItems.LOWQUALITY.get());
@@ -46,6 +46,9 @@ public class ModCreativeTabs {
                         output.accept(ModItems.TDXVIAL.get());
                         output.accept(ModItems.DUST.get());
                         output.accept(ModItems.WITHERDUST.get());
+                        output.accept(ModItems.LOWPACKAGE.get());
+                        output.accept(ModItems.PACKAGE.get());
+                        output.accept(ModItems.HIGHPACKAGE.get());
 
                     })
                     .build()

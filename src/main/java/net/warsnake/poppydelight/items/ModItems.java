@@ -35,18 +35,22 @@ public class ModItems {
                     () -> new Item(new Item.Properties()));
 
     // NOT USED ANYMORE
+    @Deprecated(forRemoval = true)
     public static final RegistryObject<Item> WETPOPPYSEED =
             ITEMS.register("wetseed",
-                    () -> new Item(new Item.Properties()));
+                    () -> new RemovedItem(new Item.Properties()));
 
     // NOT USED ANYMORE
+    @Deprecated(forRemoval = true)
     public static final RegistryObject<Item> CRUSHEDPOPPYSEED =
             ITEMS.register("crushedseed",
-                    () -> new Item(new Item.Properties()));
+                    () -> new RemovedItem(new Item.Properties()));
 
+    // To be removed
+    @Deprecated(forRemoval = true)
     public static final RegistryObject<Item> DRIEDPOPPYSEED =
             ITEMS.register("driedseed",
-                    () -> new Item(new Item.Properties()));
+                    () -> new RemovedItem(new Item.Properties()));
 
     public static final RegistryObject<Item> RAWOPIUM =
             ITEMS.register("rawopium",
@@ -74,5 +78,17 @@ public class ModItems {
 
     public static final RegistryObject<Item> CRYINGPOD =
             ITEMS.register("cryingpod",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> HIGHPACKAGE =
+            ITEMS.register("highpackage",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> PACKAGE =
+            ITEMS.register("package",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> LOWPACKAGE =
+            ITEMS.register("lowpackage",
                     () -> new Item(new Item.Properties()));
 }

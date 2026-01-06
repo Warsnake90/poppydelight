@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "OOO",
+    "PPP"
+  ],
+  "key": {
+    "P": { "item": "minecraft:paper" },
+    "O": { "item": "poppydelight:lowquality" }
+  },
+  "result": {
+    "item": "poppydelight:lowpackage",
+    "count": 1
+  }
+}

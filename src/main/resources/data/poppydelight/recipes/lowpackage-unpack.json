@@ -2,7 +2,7 @@
   "type": "farmersdelight:cutting",
   "ingredients": [
     {
-      "item": "poppydelight:poppyseed"
+      "item": "poppydelight:lowpackage"
     }
   ],
   "tool": {
@@ -10,8 +10,8 @@
   },
   "result": [
     {
-      "item": "poppydelight:cryingpod",
-      "count": 1
+      "item": "poppydelight:lowquality",
+      "count": 3
     }
   ]
 }
