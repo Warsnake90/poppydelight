@@ -22,4 +22,14 @@ public class ModBlocks {
                             .sound(SoundType.CROP)
             )
     );
+
+    public static final RegistryObject<Block> HEMP_CROP = BLOCKS.register("hemp_crop", () ->
+            new HempCropBlock(
+                    Block.Properties.copy(Blocks.WHEAT)
+                            .noCollission()
+                            .randomTicks()
+                            .instabreak()
+                            .sound(SoundType.CROP)
+            )
+    );
 }

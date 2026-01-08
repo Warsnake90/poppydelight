@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "POP",
+    "OOO",
+    "POP"
+  ],
+  "key": {
+    "P": { "item": "minecraft:paper" },
+    "O": { "item": "poppydelight:hempleaf" }
+  },
+  "result": {
+    "item": "poppydelight:hemppackage",
+    "count": 1
+  }
+}

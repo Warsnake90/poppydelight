@@ -49,6 +49,14 @@ public class ModCreativeTabs {
                         output.accept(ModItems.LOWPACKAGE.get());
                         output.accept(ModItems.PACKAGE.get());
                         output.accept(ModItems.HIGHPACKAGE.get());
+                        output.accept(ModItems.HEMPPACKAGE.get());
+                        output.accept(ModItems.WORMWOODLEAF.get());
+                        output.accept(ModItems.ABSINTHE.get());
+                        output.accept(ModItems.HEMPSEED.get());
+                        output.accept(ModItems.HEMPLEAF.get());
+                        output.accept(ModItems.WETROLLINGPAPER.get());
+                        output.accept(ModItems.ROLLINGPAPER.get());
+                        output.accept(ModItems.JOINT.get());
 
                     })
                     .build()

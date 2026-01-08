@@ -20,12 +20,11 @@ public class WitherItem extends Item {
         super(p_41383_);
     }
 
-
     // make sure to verify that reagent is correct term for this
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.literal("A rare reagent used for strengthening Maritox.")
-                .withStyle(style -> style.withColor(TextColor.fromRgb(0x909090))));
+                .withStyle(style -> style.withColor(TextColor.fromRgb(0x656565))));
     }
 
 }

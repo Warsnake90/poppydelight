@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "OOO",
+    " P "
+  ],
+  "key": {
+    "P": { "item": "poppydelight:rollingpaper" },
+    "O": { "item": "poppydelight:hempleaf" }
+  },
+  "result": {
+    "item": "poppydelight:joint",
+    "count": 1
+  }
+}

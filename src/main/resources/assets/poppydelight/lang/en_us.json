@@ -5,6 +5,7 @@
   "item.poppydelight.tdxagent": "Maritox Agent",
   "item.poppydelight.tdxgland": "Poison Gland",
   "item.poppydelight.poppyseed": "Poppy Pod",
+  "item.poppydelight.hempseed": "Hemp Seed",
   "item.poppydelight.wetseed": "Wet Poppy Seeds",
   "item.poppydelight.dust": "Dust",
   "item.poppydelight.wither_dust": "Wither Dust",
@@ -18,7 +19,17 @@
   "item.poppydelight.highpackage": "Opium Package",
   "item.poppydelight.package": "Opium Package",
   "item.poppydelight.lowpackage": "Opium Package",
+  "item.poppydelight.hemppackage": "Cannabis Package",
+  "item.poppydelight.hempleaf": "Hemp Leaf",
+  "item.poppydelight.joint": "Joint",
+  "item.poppydelight.absinthe": "Absinthe",
+  "item.poppydelight.wormwoodleaf": "Wormwood Leaves",
+  "item.poppydelight.rollingpaper": "Rolling Paper",
+  "item.poppydelight.wetrollingpaper": "Rolling Paper",
   "itemGroup.poppydelight.main": "Poppy Delight",
+
+
+
   "death.attack.toxic_food": "%1$s had their nervous system shut down by Maritox.",
   "death.attack.overdose": "%1$s Overdosed on opium.",
   "death.attack.toxic_food.player": "%1$s how tf did you get this death message"

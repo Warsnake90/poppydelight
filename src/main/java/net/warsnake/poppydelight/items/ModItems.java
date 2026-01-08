@@ -91,4 +91,38 @@ public class ModItems {
     public static final RegistryObject<Item> LOWPACKAGE =
             ITEMS.register("lowpackage",
                     () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> ABSINTHE =
+            ITEMS.register("absinthe",
+                    () -> new AbsintheDrinkItem());
+
+    public static final RegistryObject<Item> WORMWOODLEAF =
+            ITEMS.register("wormwoodleaf",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> HEMPLEAF =
+            ITEMS.register("hempleaf",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> JOINT =
+            ITEMS.register("joint",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> HEMPPACKAGE =
+            ITEMS.register("hemppackage",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> HEMPSEED =
+            ITEMS.register("hempseed",
+                    () -> new ItemNameBlockItem(ModBlocks.HEMP_CROP.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> ROLLINGPAPER =
+            ITEMS.register("rollingpaper",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> WETROLLINGPAPER =
+            ITEMS.register("wetrollingpaper",
+                    () -> new Item(new Item.Properties()));
+
+
 }

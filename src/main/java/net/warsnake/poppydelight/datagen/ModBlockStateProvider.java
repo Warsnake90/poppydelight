@@ -1,6 +1,7 @@
 package net.warsnake.poppydelight.datagen;
 
 import net.warsnake.poppydelight.PoppyDelight;
+import net.warsnake.poppydelight.blocks.HempCropBlock;
 import net.warsnake.poppydelight.blocks.ModBlocks;
 import net.warsnake.poppydelight.blocks.PoppyCropBlock;
 import net.minecraft.data.PackOutput;
@@ -23,6 +24,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
         makePoppyCrop((CropBlock) ModBlocks.POPPY_CROP.get(), "poppy_crop_stage", "poppy_crop_stage");
+        makeHempCrop((CropBlock) ModBlocks.HEMP_CROP.get(), "hemp_crop_stage", "hemp_crop_stage");
     }
 
 
@@ -36,6 +38,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((PoppyCropBlock) block).getAgeProperty()),
                 new ResourceLocation(PoppyDelight.MODID, "block/" + textureName + state.getValue(((PoppyCropBlock) block).getAgeProperty()))).renderType("cutout"));
+
+        return models;
+    }
+
+    public void makeHempCrop(CropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> hempStates(state, block, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
+    }
+
+    private ConfiguredModel[] hempStates(BlockState state, CropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((HempCropBlock) block).getAgeProperty()),
+                new ResourceLocation(PoppyDelight.MODID, "block/" + textureName + state.getValue(((HempCropBlock) block).getAgeProperty()))).renderType("cutout"));
 
         return models;
     }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OPO",
+    "P P",
+    "PPP"
+  ],
+  "key": {
+    "P": { "item": "minecraft:leather" },
+    "O": { "item": "minecraft:string" }
+  },
+  "result": {
+    "item": "minecraft:bundle",
+    "count": 1
+  }
+}
