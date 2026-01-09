@@ -6,7 +6,7 @@
     " P "
   ],
   "key": {
-    "P": { "item": "poppydelight:rollingpaper" },
+    "P": { "tag": "poppydelight:rollingpaper" },
     "O": { "item": "poppydelight:hempleaf" }
   },
   "result": {

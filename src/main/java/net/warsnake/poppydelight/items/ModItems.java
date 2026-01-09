@@ -106,7 +106,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> JOINT =
             ITEMS.register("joint",
-                    () -> new Item(new Item.Properties()));
+                    () -> new JointItem(new Item.Properties()));
 
     public static final RegistryObject<Item> HEMPPACKAGE =
             ITEMS.register("hemppackage",
@@ -123,6 +123,10 @@ public class ModItems {
     public static final RegistryObject<Item> WETROLLINGPAPER =
             ITEMS.register("wetrollingpaper",
                     () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> LITERALPOT =
+            ITEMS.register("literalpot",
+                    () -> new LiteralPotItem(new Item.Properties()));
 
 
 }

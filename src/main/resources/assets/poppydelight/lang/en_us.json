@@ -25,12 +25,10 @@
   "item.poppydelight.absinthe": "Absinthe",
   "item.poppydelight.wormwoodleaf": "Wormwood Leaves",
   "item.poppydelight.rollingpaper": "Rolling Paper",
-  "item.poppydelight.wetrollingpaper": "Rolling Paper",
+  "item.poppydelight.wetrollingpaper": "Wet Rolling Paper",
+  "item.poppydelight.literalpot": "Pot",
   "itemGroup.poppydelight.main": "Poppy Delight",
 
-
-
   "death.attack.toxic_food": "%1$s had their nervous system shut down by Maritox.",
-  "death.attack.overdose": "%1$s Overdosed on opium.",
-  "death.attack.toxic_food.player": "%1$s how tf did you get this death message"
+  "death.attack.overdose": "%1$s Overdosed on opium."
 }

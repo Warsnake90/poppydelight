@@ -49,12 +49,13 @@ public class SpikeItem {
         }
 
         main.shrink(1);
+        offhand.shrink(1);
 
         if (!player.addItem(opiumItem)) {
             player.drop(opiumItem, false);
         }
 
-        player.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
+       // player.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
         event.setCanceled(true);
         event.setCancellationResult(net.minecraft.world.InteractionResult.SUCCESS);
     }

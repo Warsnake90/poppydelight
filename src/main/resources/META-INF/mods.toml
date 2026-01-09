@@ -1,7 +1,7 @@
 
 modLoader="javafml" #mandatory
 
-loaderVersion="${loader_version_range}" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+loaderVersion="${loader_version_range}"
 
 license="${mod_license}"
 
@@ -31,6 +31,13 @@ modId="brewinandchewin"
 mandatory=true
 versionRange="*"
 ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="tobacconistmod"
+mandatory=false
+versionRange="*"
+ordering="AFTER"
 side="BOTH"
 
 [[dependencies.${mod_id}]]

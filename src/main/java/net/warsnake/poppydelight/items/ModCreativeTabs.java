@@ -57,6 +57,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.WETROLLINGPAPER.get());
                         output.accept(ModItems.ROLLINGPAPER.get());
                         output.accept(ModItems.JOINT.get());
+                        output.accept(ModItems.LITERALPOT.get());
 
                     })
                     .build()

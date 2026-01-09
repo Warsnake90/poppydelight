@@ -83,6 +83,7 @@ dependencies {
     implementation fg.deobf("curse.maven:jei-238222:7229087")
     implementation fg.deobf("curse.maven:item-nbt-viewer-514135:4578522")
     implementation fg.deobf("curse.maven:corpse-316582:7018272")
+    implementation fg.deobf("curse.maven:tobacconist-896915:5527063")
 }
 
 tasks.named('processResources', ProcessResources).configure {

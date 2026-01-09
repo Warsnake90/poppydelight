@@ -29,6 +29,7 @@ public class PoppyDelight {
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModCreativeTabs.TABS.register(modEventBus);
+        ModFluids.FLUIDS.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
        // modEventBus.addListener(this::addCreative);
