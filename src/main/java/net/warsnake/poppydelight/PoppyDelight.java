@@ -1,9 +1,11 @@
 package net.warsnake.poppydelight;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,6 +13,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.warsnake.poppydelight.blocks.ModBlocks;
+import net.warsnake.poppydelight.client.render.OpiumRenderer;
+import net.warsnake.poppydelight.client.render.ShroomsRenderer;
+import net.warsnake.poppydelight.effect.ModEffects;
 import net.warsnake.poppydelight.items.ModCreativeTabs;
 import net.warsnake.poppydelight.items.ModItems;
 import org.slf4j.Logger;
@@ -22,6 +27,8 @@ public class PoppyDelight {
 
     public static final String MODID = "poppydelight";
     private static final Logger LOGGER = LogUtils.getLogger();
+    public static final OpiumRenderer OPIUM_EFFECT_RENDERER = new OpiumRenderer();
+    public static final ShroomsRenderer SHROOM_EFFECT_RENDERER = new ShroomsRenderer();
 
     public PoppyDelight(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
@@ -30,6 +37,7 @@ public class PoppyDelight {
         ModItems.ITEMS.register(modEventBus);
         ModCreativeTabs.TABS.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);
+        ModEffects.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
        // modEventBus.addListener(this::addCreative);
@@ -56,8 +64,7 @@ public class PoppyDelight {
         public static void onClientSetup(FMLClientSetupEvent event) {
 
         }
-    }
 
-    // delete all this useless junk - UPD: Deleted... or was it ever here to begin with?
+    }
 
 }

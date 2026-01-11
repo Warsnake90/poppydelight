@@ -17,6 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.warsnake.poppydelight.OverdoseEvent;
+import net.warsnake.poppydelight.effect.ModEffects;
 import net.warsnake.poppydelight.items.ModItems;
 import umpaz.brewinandchewin.common.registry.BnCEffects;
 
@@ -37,8 +38,11 @@ import java.util.Random;
 @Mod.EventBusSubscriber
 public class OpiumEvents {
 
+
     private static final Map<UUID, Integer> opiumLevel = new HashMap<>();
     private static final Map<UUID, Long> lastDecreaseTime = new HashMap<>();
+    private static final Map<UUID, Boolean> hadShaderLastTick = new HashMap<>();
+
     private static final Random rand = new Random();
 
     // define time scopes in minutes
@@ -47,10 +51,6 @@ public class OpiumEvents {
     @SubscribeEvent
     public static void onFoodEaten(LivingEntityUseItemEvent.Finish event) {
         if (!(event.getEntity() instanceof Player player)) return;
-
-        if (player.level().isClientSide) {
-        //applyshader();
-        }
 
         if (player.level().isClientSide) return;
 
@@ -92,7 +92,7 @@ public class OpiumEvents {
 
     // ughhhhhh ts is so overly complex
     @SubscribeEvent
-    public static void onWorldTick(TickEvent.PlayerTickEvent event) {
+    public static void onWorldTick( TickEvent.PlayerTickEvent event) {
         Player player = event.player;
         UUID uuid = player.getUUID();
 
@@ -109,27 +109,10 @@ public class OpiumEvents {
                 lvl--;
                 opiumLevel.put(uuid, lvl);
                 applyStageEffects(player, lvl);
+            }else {
+              //  new ControlDelay().clearDelay(uuid);
             }
             lastDecreaseTime.put(uuid, now);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onMilkDrink(LivingEntityUseItemEvent.Finish event) {
-        if (!(event.getEntity() instanceof Player player))
-            return;
-
-        ItemStack item = event.getItem();
-        if (item.getItem() == Items.MILK_BUCKET || item.getItem() == ModItems.ABSINTHE.get()) {
-            UUID uuid = player.getUUID();
-
-            if (opiumLevel.getOrDefault(uuid, 0) > 1) {
-
-            int currentOpiumLevel = opiumLevel.getOrDefault(uuid, 0);
-            applyStageEffects(player, currentOpiumLevel);
-            player.sendSystemMessage(Component.literal("§cBut Nothing Happened."));
-
-            }
         }
     }
 
@@ -149,32 +132,22 @@ public class OpiumEvents {
         }
     }
 
-    private static void applyshader() {
-
-        System.out.println("applyShader was actually called @**");
-
-        Minecraft mc = Minecraft.getInstance();
-
-        if (mc.gameRenderer.currentEffect() == null) {
-            mc.gameRenderer.loadEffect(
-                    new ResourceLocation("poppydelight", "shaders/post/opium_effect.json")
-            );
-            System.out.println("loadEffect was called @**");
-        }
-    }
-
     private static void apply1Effects(Player player) {
         int duration = 12000;
         int potency = 2;
 
         player.sendSystemMessage(Component.literal("§eMan you feel good..."));
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 0));
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 1));
         player.addEffect(new MobEffectInstance(MobEffects.HUNGER, duration, 1));
         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, duration, 1));
         player.addEffect(new MobEffectInstance(
                 (MobEffect) BnCEffects.TIPSY.get(),
                 duration, potency, false, true, true));
 
+        player.addEffect(new MobEffectInstance(ModEffects.OPIUMHIGH.get(), duration *2, 0));
+
+        UUID id = player.getUUID();
+       // new ControlDelay().setTargetPlayer(id);
 
 
     }
@@ -254,13 +227,12 @@ public class OpiumEvents {
         // steal ts from pufferfish
         if (!(event.getEntity() instanceof Player player)) return;
         UUID id = player.getUUID();
+       // new ControlDelay().clearDelay(id);
         opiumLevel.remove(id);
 
         lastDecreaseTime.remove(id);
 
-        if (player.level().isClientSide) {
-            Minecraft.getInstance().gameRenderer.shutdownEffect();
-        }
+
     }
 
     public static void sendOpiumLevelToPlayer(Player player) {
