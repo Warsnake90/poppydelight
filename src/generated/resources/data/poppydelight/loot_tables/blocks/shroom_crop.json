@@ -1,0 +1,80 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "poppydelight:shroom_crop",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "7"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.1,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "name": "poppydelight:void_psilocybe"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.25,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "poppydelight:brown_psilocybe"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "poppydelight:shroom_crop",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "7"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 3.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:brown_mushroom"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "poppydelight:blocks/shroom_crop"
+}

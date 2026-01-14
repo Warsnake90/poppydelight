@@ -18,14 +18,17 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
+          "name": "poppydelight:hempseed"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
             {
-              "add": false,
-              "count": 4.0,
-              "function": "minecraft:set_count"
+              "chance": 0.5,
+              "condition": "minecraft:random_chance"
             }
           ],
-          "name": "poppydelight:hempleaf"
+          "name": "poppydelight:hempseed"
         }
       ],
       "rolls": 1.0
@@ -47,11 +50,14 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
+          "name": "poppydelight:hempseed"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
             {
-              "add": false,
-              "count": 1.0,
-              "function": "minecraft:set_count"
+              "chance": 0.5,
+              "condition": "minecraft:random_chance"
             }
           ],
           "name": "poppydelight:hempseed"
@@ -65,10 +71,10 @@
         {
           "condition": "minecraft:inverted",
           "term": {
-            "block": "poppydelight:poppy_crop",
+            "block": "poppydelight:hemp_crop",
             "condition": "minecraft:block_state_property",
             "properties": {
-              "age": "3"
+              "age": "7"
             }
           }
         },

@@ -34,35 +34,6 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "poppydelight:poppy_crop",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "age": "3"
-          }
-        },
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 1.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "poppydelight:poppyseed"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "conditions": [
-        {
           "condition": "minecraft:inverted",
           "term": {
             "block": "poppydelight:poppy_crop",

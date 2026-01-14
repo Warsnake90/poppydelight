@@ -1,11 +1,9 @@
 package net.warsnake.poppydelight;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -13,6 +11,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.warsnake.poppydelight.blocks.ModBlocks;
+import net.warsnake.poppydelight.client.render.BadTripRenderer;
+import net.warsnake.poppydelight.client.render.CannabisRenderer;
 import net.warsnake.poppydelight.client.render.OpiumRenderer;
 import net.warsnake.poppydelight.client.render.ShroomsRenderer;
 import net.warsnake.poppydelight.effect.ModEffects;
@@ -29,6 +29,8 @@ public class PoppyDelight {
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final OpiumRenderer OPIUM_EFFECT_RENDERER = new OpiumRenderer();
     public static final ShroomsRenderer SHROOM_EFFECT_RENDERER = new ShroomsRenderer();
+    public static final BadTripRenderer BAD_SHROOM_EFFECT_RENDERER = new BadTripRenderer();
+    public static final CannabisRenderer POT_EFFECT_RENDERER = new CannabisRenderer();
 
     public PoppyDelight(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();

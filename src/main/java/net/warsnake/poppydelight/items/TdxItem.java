@@ -42,11 +42,10 @@ public class TdxItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.literal("You probably shouldn't taste test it...")
-                .withStyle(style -> style.withColor(TextColor.fromRgb(0x006400))));
+                .withStyle(style -> style.withColor(TextColor.fromRgb(0x600400))));
         applyToxicTag(stack);
     }
 
-    // there is probably a better way to do this
     @Override
     public void onCraftedBy(ItemStack stack, Level world, Player player) {
         applyToxicTag(stack);

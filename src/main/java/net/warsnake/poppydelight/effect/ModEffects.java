@@ -11,6 +11,8 @@ public class ModEffects {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS;
     public static final RegistryObject<MobEffect> OPIUMHIGH;
     public static final RegistryObject<MobEffect> SHROOMHIGH;
+    public static final RegistryObject<MobEffect> BADSHROOMHIGH;
+    public static final RegistryObject<MobEffect> POTHIGH;
 
 
     public static void register(IEventBus eventBus) {
@@ -24,6 +26,14 @@ public class ModEffects {
         });
 
         SHROOMHIGH = MOB_EFFECTS.register("shrooms", () -> {
+            return new ShroomsEffect(MobEffectCategory.NEUTRAL, 0x00000000);
+        });
+
+        BADSHROOMHIGH = MOB_EFFECTS.register("badshrooms", () -> {
+            return new ShroomsEffect(MobEffectCategory.NEUTRAL, 0x00000000);
+        });
+
+        POTHIGH = MOB_EFFECTS.register("pot", () -> {
             return new ShroomsEffect(MobEffectCategory.NEUTRAL, 0x00000000);
         });
     }

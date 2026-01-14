@@ -1,6 +1,9 @@
 package net.warsnake.poppydelight;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -149,6 +152,17 @@ public class ToxicFoodEvent {
                     1.0F
             );
         }
+
+        ResourceLocation SHROOM_SHADER =
+                new ResourceLocation("poppydelight", "shaders/post/shrooms.json");
+
+        if ((player.level().isClientSide)) {
+
+            Minecraft minecraft = Minecraft.getInstance();
+            GameRenderer renderer = minecraft.gameRenderer;
+            renderer.loadEffect(SHROOM_SHADER);
+        }
+
     }
 
     private static void apply20MinuteEffects(Player player) {

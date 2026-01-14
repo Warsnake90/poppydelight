@@ -12,6 +12,7 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
+import net.warsnake.poppydelight.blocks.ShroomCropBlock;
 
 import java.util.function.Function;
 
@@ -23,40 +24,51 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        makePoppyCrop((CropBlock) ModBlocks.POPPY_CROP.get(), "poppy_crop_stage", "poppy_crop_stage");
-        makeHempCrop((CropBlock) ModBlocks.HEMP_CROP.get(), "hemp_crop_stage", "hemp_crop_stage");
+        makePoppyCrop(ModBlocks.POPPY_CROP.get(), "poppy_crop_stage", "poppy_crop_stage");
+        makeHempCrop(ModBlocks.HEMP_CROP.get(), "hemp_crop_stage", "hemp_crop_stage");
+        makeShroomCrop(ModBlocks.SHROOM_CROP.get(), "shroom_crop_stage", "shroom_crop_stage");
     }
 
-
-    public void makePoppyCrop(CropBlock block, String modelName, String textureName) {
+    public void makePoppyCrop(PoppyCropBlock block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function = state -> poppyStates(state, block, modelName, textureName);
 
         getVariantBuilder(block).forAllStates(function);
     }
 
-    private ConfiguredModel[] poppyStates(BlockState state, CropBlock block, String modelName, String textureName) {
+    private ConfiguredModel[] poppyStates(BlockState state, PoppyCropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
-        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((PoppyCropBlock) block).getAgeProperty()),
-                new ResourceLocation(PoppyDelight.MODID, "block/" + textureName + state.getValue(((PoppyCropBlock) block).getAgeProperty()))).renderType("cutout"));
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(block.getAgeProperty()),
+                new ResourceLocation(PoppyDelight.MODID, "block/" + textureName + state.getValue(block.getAgeProperty()))).renderType("cutout"));
 
         return models;
     }
 
-    public void makeHempCrop(CropBlock block, String modelName, String textureName) {
+    public void makeHempCrop(HempCropBlock block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function = state -> hempStates(state, block, modelName, textureName);
 
         getVariantBuilder(block).forAllStates(function);
     }
 
-    private ConfiguredModel[] hempStates(BlockState state, CropBlock block, String modelName, String textureName) {
+    private ConfiguredModel[] hempStates(BlockState state, HempCropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
-        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((HempCropBlock) block).getAgeProperty()),
-                new ResourceLocation(PoppyDelight.MODID, "block/" + textureName + state.getValue(((HempCropBlock) block).getAgeProperty()))).renderType("cutout"));
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(block.getAgeProperty()),
+                new ResourceLocation(PoppyDelight.MODID, "block/" + textureName + state.getValue(block.getAgeProperty()))).renderType("cutout"));
 
         return models;
     }
 
-    private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
-        simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+    public void makeShroomCrop(ShroomCropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> ShroomStates(state, block, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
     }
+
+    private ConfiguredModel[] ShroomStates(BlockState state, ShroomCropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(block.getAgeProperty()),
+                new ResourceLocation(PoppyDelight.MODID, "block/" + textureName + state.getValue(block.getAgeProperty()))).renderType("cutout"));
+
+        return models;
+    }
+
 }

@@ -21,7 +21,7 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class ShroomsRenderer {
+public class BadTripRenderer {
 
     private static final ResourceLocation SHROOM_SHADER =
             new ResourceLocation("poppydelight", "shaders/post/shrooms.json");
@@ -31,10 +31,13 @@ public class ShroomsRenderer {
     private static final Random random = new Random();
     private int tickCounter = 0;
     private int x = random.nextInt(5) + 1;
-    private int y = random.nextInt(5) + 1;
-  // private int y = 5;
+    private int y = random.nextInt(6) + 1;
     private int w = 1;
     private int timer;
+    ResourceLocation textureY;
+    ResourceLocation textureX;
+
+    private boolean invertColors = false;
 
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event) {
@@ -44,41 +47,30 @@ public class ShroomsRenderer {
             onEffectTick(event);
 
             timer++;
+
+            if (tickCounter % 20 == 0) {
+                invertColors = random.nextInt(20) == 0;
+            }
         }
     }
 
     public void renderOverlay(PoseStack poseStack) {
 
-        if (tickCounter >= 4000) {
+        if (tickCounter >= 400) {
             x = random.nextInt(5) + 1;
-           y = random.nextInt(5) + 1;
+            y = random.nextInt(6) + 1;
             tickCounter = 0;
         }
 
-        ResourceLocation textureX = new ResourceLocation("poppydelight", "textures/overlay/colour" + x + ".png");
+        textureX = new ResourceLocation("poppydelight", "textures/overlay/colour" + x + ".png");
 
-        ResourceLocation textureY = null;
         ResourceLocation textureW = null;
 
-
-        switch(y) {
-
-            // keep this a switch so i can add more animated stuff later
-            case 3 -> {animatedEffect(); textureY = new ResourceLocation("poppydelight", "textures/overlay/shrooms3/shrooms" + w + ".png");}
-            case 5 -> {animatedEffect(); textureY = new ResourceLocation("poppydelight", "textures/overlay/shrooms5/shrooms" + w + ".png");
-                textureW = new ResourceLocation("poppydelight", "textures/overlay/shrooms" + y + ".png");
-            }
-
-            default -> {textureY = new ResourceLocation("poppydelight", "textures/overlay/shrooms" + y + ".png");}
-        }
+        textureY = new ResourceLocation("poppydelight", "textures/overlay/badtrip/shroomsbad" + y + ".png");
 
         poseStack.pushPose();
 
         renderTextureWithEffect(textureX, poseStack);
-
-        if (y == 5) {
-            renderTextureWithEffect(textureW, poseStack);
-        }
 
         renderTextureWithEffect(textureY, poseStack);
 
@@ -90,9 +82,9 @@ public class ShroomsRenderer {
         if ((w >= 11)) {w = 1;}
 
         if ((tickCounter >= 5) && ((y == 3) || (y == 5))) {
-                w++;
+            w++;
 
-                if (w >= 11) { w = 1;}
+            if (w >= 11) { w = 1;}
         }
     }
 
@@ -105,13 +97,13 @@ public class ShroomsRenderer {
 
                 forgebs = 1;
 
-            }, 50, TimeUnit.MILLISECONDS);
+            }, 5, TimeUnit.MILLISECONDS);
         }
     }
 
     public void fuckforgearbitraryrules(PlayerTickEvent event) {
 
-        MobEffectInstance effect = event.player.getEffect(ModEffects.SHROOMHIGH.get());
+        MobEffectInstance effect = event.player.getEffect(ModEffects.BADSHROOMHIGH.get());
         int duration = effect == null ? 0 : effect.getDuration();
         if ((event.player.level().isClientSide) && (duration > 0)) {
 
@@ -125,7 +117,7 @@ public class ShroomsRenderer {
         Minecraft minecraft = Minecraft.getInstance();
         Window window = minecraft.getWindow();
 
-        MobEffectInstance effect = minecraft.player.getEffect(ModEffects.SHROOMHIGH.get());
+        MobEffectInstance effect = minecraft.player.getEffect(ModEffects.BADSHROOMHIGH.get());
 
         if (effect != null && effect.getDuration() > 1 && !effectActiveLastTick) {
             effectActiveLastTick = true;
@@ -140,24 +132,30 @@ public class ShroomsRenderer {
         float w = window.getWidth();
         float h = window.getHeight();
 
-        float fadeProgress = (timer % 100) / 100.0F;
+        float intensity = Math.min(1.0F, effect.getDuration() / 200.0F);
+        float intensity1 = Math.min(1.0F, effect.getDuration() / 200.0F);
 
-        float minAlpha = 0.75F;
-        float maxAlpha = 1.0F;
-        float fadeFactor =
-                minAlpha + (maxAlpha - minAlpha)
-                        * (0.5F * (float) Math.sin(Math.PI * fadeProgress) + 0.5F);
+        float fadeProgress = (timer % 50) / 50.0F;
+        float fadeFactor = (0.5F * (float) Math.sin(Math.PI * fadeProgress) + 0.5F) * intensity;
 
-        float redOffset   = (float) Math.sin(tickCounter * 0.1F) * 0.04F;
-        float greenOffset = (float) Math.sin(tickCounter * 0.1F + Math.PI / 2) * 0.04F;
-        float blueOffset  = (float) Math.sin(tickCounter * 0.1F + Math.PI) * 0.04F;
+        float redOffset   = (float) Math.sin(tickCounter * 0.10F) * 0.06F * intensity;
+        float greenOffset = (float) Math.sin(tickCounter * 0.10F + Math.PI / 2) * 0.06F * intensity;
+        float blueOffset  = (float) Math.sin(tickCounter * 0.10F + Math.PI) * 0.06F * intensity;
+
+        if (invertColors) {
+            redOffset = -redOffset;
+            greenOffset = -greenOffset;
+            blueOffset = -blueOffset;
+        }
+
+        float flicker = (minecraft.level.random.nextFloat() - 0.5F) * 0.15F * intensity;
 
         float x0 = 0.0F;
         float y0 = 0.0F;
         float x1 = w;
         float y1 = h;
 
-        float wave = (float) Math.sin(tickCounter * 0.05F) * 0.025F;
+        float wave = (float) Math.sin(tickCounter * 0.05F) * 0.03F * intensity;
 
         RenderSystem.setShaderTexture(0, texture);
         RenderSystem.enableBlend();
@@ -172,16 +170,16 @@ public class ShroomsRenderer {
         poseStack.pushPose();
 
         poseStack.translate(w / 2.0F, h / 2.0F, 0);
-        poseStack.mulPose(Axis.ZP.rotation(tickCounter * 0.0015F));
+        poseStack.mulPose(Axis.ZP.rotation(tickCounter * 0.002F * intensity));
         poseStack.translate(-w / 2.0F, -h / 2.0F, 0);
 
         Tesselator tesselator = Tesselator.getInstance();
         BufferBuilder buffer = tesselator.getBuilder();
 
         RenderSystem.setShaderColor(
-                0.95F + redOffset,
-                0.95F + greenOffset,
-                0.95F + blueOffset,
+                .5F + redOffset + flicker,
+                .5F + greenOffset + flicker,
+                .5F + blueOffset + flicker,
                 fadeFactor
         );
 
@@ -192,8 +190,40 @@ public class ShroomsRenderer {
         buffer.vertex(x0, y0, -90).uv(0 - wave, 0).endVertex();
         tesselator.end();
 
+        RenderSystem.setShaderColor(1, 1, 1, fadeFactor * 0.35F);
 
-        RenderSystem.setShaderColor(0, 0, 0, 0.35F);
+        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        buffer.vertex(x0 + 8, y1 + 4, -90).uv(0, 1).endVertex();
+        buffer.vertex(x1 + 8, y1 + 4, -90).uv(1, 1).endVertex();
+        buffer.vertex(x1 + 8, y0 + 4, -90).uv(1, 0).endVertex();
+        buffer.vertex(x0 + 8, y0 + 4, -90).uv(0, 0).endVertex();
+        tesselator.end();
+
+        float chroma = 4.0F * intensity;
+
+        RenderSystem.setShaderColor(1.2F, 0.8F, 0.8F, 0.25F);
+        drawOffsetQuad(buffer, tesselator, x0 + chroma, y0, x1 + chroma, y1);
+
+        RenderSystem.setShaderColor(0.8F, 1.2F, 0.8F, 0.25F);
+        drawOffsetQuad(buffer, tesselator, x0 - chroma, y0, x1 - chroma, y1);
+
+        RenderSystem.setShaderColor(0.8F, 0.8F, 1.2F, 0.25F);
+        drawOffsetQuad(buffer, tesselator, x0, y0 + chroma, x1, y1 + chroma);
+
+        for (int i = 0; i < 6; i++) {
+            float sliceY = minecraft.level.random.nextFloat() * h;
+            float sliceH = 6 + minecraft.level.random.nextFloat() * 10;
+            float offset = (minecraft.level.random.nextFloat() - 0.5F) * 40 * intensity;
+
+            buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+            buffer.vertex(offset, sliceY + sliceH, -89).uv(0, 1).endVertex();
+            buffer.vertex(w + offset, sliceY + sliceH, -89).uv(1, 1).endVertex();
+            buffer.vertex(w + offset, sliceY, -89).uv(1, 0).endVertex();
+            buffer.vertex(offset, sliceY, -89).uv(0, 0).endVertex();
+            tesselator.end();
+        }
+
+        RenderSystem.setShaderColor(0, 0, 0, 0.35F * intensity);
 
         float inset = 40;
         buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
@@ -210,6 +240,16 @@ public class ShroomsRenderer {
         RenderSystem.disableBlend();
     }
 
+    private void drawOffsetQuad(BufferBuilder buffer, Tesselator tesselator,
+                                float x0, float y0, float x1, float y1) {
+        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        buffer.vertex(x0, y1, -90).uv(0, 1).endVertex();
+        buffer.vertex(x1, y1, -90).uv(1, 1).endVertex();
+        buffer.vertex(x1, y0, -90).uv(1, 0).endVertex();
+        buffer.vertex(x0, y0, -90).uv(0, 0).endVertex();
+        tesselator.end();
+    }
+
     public void onEffectTick(PlayerTickEvent event) {
 
         if (forgebs == 1){
@@ -217,7 +257,7 @@ public class ShroomsRenderer {
             forgebs = 0;
         }
 
-        MobEffectInstance effect = event.player.getEffect(ModEffects.SHROOMHIGH.get());
+        MobEffectInstance effect = event.player.getEffect(ModEffects.BADSHROOMHIGH.get());
         int duration = effect == null ? 0 : effect.getDuration();
 
         if (duration > 1) {
@@ -238,6 +278,4 @@ public class ShroomsRenderer {
             });
         }
     }
-
-
 }

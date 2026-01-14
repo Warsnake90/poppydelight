@@ -58,6 +58,9 @@ public class ModCreativeTabs {
                         output.accept(ModItems.ROLLINGPAPER.get());
                         output.accept(ModItems.JOINT.get());
                         output.accept(ModItems.LITERALPOT.get());
+                        output.accept(ModItems.SHROOMS1.get());
+                        output.accept(ModItems.SHROOMS2.get());
+                        output.accept(ModItems.PSILOCYBE_SPAWN.get());
 
                     })
                     .build()

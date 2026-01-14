@@ -1,5 +1,6 @@
 package net.warsnake.poppydelight.client.render;
 
+import net.minecraftforge.client.event.InputEvent;
 import net.warsnake.poppydelight.effect.ModEffects;
 import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
 import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
@@ -18,9 +19,12 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.warsnake.poppydelight.items.ModItems;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class OpiumRenderer {
 
@@ -79,7 +83,37 @@ public class OpiumRenderer {
         RenderSystem.disableBlend();
     }
 
+    private static int forgebs = 0;
+
+    @SubscribeEvent
+    public void onKeyPress(InputEvent.Key event) {
+        if (event.getKey() == GLFW.GLFW_KEY_F5 || event.getKey() == GLFW.GLFW_KEY_F11) {
+            Executors.newSingleThreadScheduledExecutor().schedule(() -> {
+
+                forgebs = 1;
+
+            }, 50, TimeUnit.MILLISECONDS);
+        }
+    }
+
+    public void fuckforgearbitraryrules(PlayerTickEvent event) {
+
+        MobEffectInstance effect = event.player.getEffect(ModEffects.OPIUMHIGH.get());
+        int duration = effect == null ? 0 : effect.getDuration();
+        if ((event.player.level().isClientSide) && (duration > 0)) {
+
+            Minecraft minecraft = Minecraft.getInstance();
+            GameRenderer renderer = minecraft.gameRenderer;
+            renderer.loadEffect(OPIUM_SHADER);
+        }
+    }
+
     public void onEffectTick(PlayerTickEvent event) {
+
+        if (forgebs == 1){
+            fuckforgearbitraryrules(event);
+            forgebs = 0;
+        }
 
         MobEffectInstance effect;
             effect = event.player.getEffect((MobEffect) ModEffects.OPIUMHIGH.get());
