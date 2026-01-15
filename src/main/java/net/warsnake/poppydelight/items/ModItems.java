@@ -106,7 +106,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> JOINT =
             ITEMS.register("joint",
-                    () -> new JointItem(new Item.Properties()));
+                    () -> new JointItem(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> HEMPPACKAGE =
             ITEMS.register("hemppackage",

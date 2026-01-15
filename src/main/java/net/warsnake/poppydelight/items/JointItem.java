@@ -29,7 +29,9 @@ public class JointItem extends Item {
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player player) {
             spawnMouthSmoke(player, level);
+            applyJointTag(stack);
         }
+
         return super.finishUsingItem(stack, level, entity);
     }
 
@@ -73,6 +75,16 @@ public class JointItem extends Item {
         if (!tag.getBoolean("pot")) {
             tag.putBoolean("pot", true);
         }
+    }
+
+    @Override
+    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
+        if (!level.isClientSide) {
+            stack.getOrCreateTag().putBoolean("pot", true);
+            applyJointTag(stack);
+        }
+
+        super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
     }
 
     @Override

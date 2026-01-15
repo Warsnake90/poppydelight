@@ -48,8 +48,20 @@ public class ShroomItem extends Item {
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (!level.isClientSide) {
             stack.getOrCreateTag().putBoolean("Shroom", true);
+            applyShroomTag(stack);
         }
+
         return super.finishUsingItem(stack, level, entity);
+
     }
 
+    @Override
+    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
+        if (!level.isClientSide) {
+            stack.getOrCreateTag().putBoolean("Shroom", true);
+            applyShroomTag(stack);
+        }
+
+        super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
+    }
 }

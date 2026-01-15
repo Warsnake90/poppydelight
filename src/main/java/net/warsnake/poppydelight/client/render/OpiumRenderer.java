@@ -41,9 +41,8 @@ public class OpiumRenderer {
         if (event.player.level().isClientSide
                 && event.player == Minecraft.getInstance().player) {
 
-            if (ModItems.OPIUM.isPresent()) {
                 onEffectTick(event);
-            }
+
         }
     }
 

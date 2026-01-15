@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:dusts"
+    },{
+      "tag": "forge:dusts"
+    },{
+      "item": "minecraft:mycelium"
+    },{
+      "item": "minecraft:brown_mushroom"
+    }
+  ],
+  "result": {
+    "item": "poppydelight:psilocybe_spawn",
+    "count": 1
+  }
+}

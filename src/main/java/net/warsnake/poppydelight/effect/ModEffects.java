@@ -34,7 +34,7 @@ public class ModEffects {
         });
 
         POTHIGH = MOB_EFFECTS.register("pot", () -> {
-            return new ShroomsEffect(MobEffectCategory.NEUTRAL, 0x00000000);
+            return new PotEffect(MobEffectCategory.NEUTRAL, 0x00000000);
         });
     }
 }

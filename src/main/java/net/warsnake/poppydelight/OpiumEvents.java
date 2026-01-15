@@ -45,7 +45,6 @@ public class OpiumEvents {
 
     private static final Random rand = new Random();
 
-    // define time scopes in minutes
     private static final long fifteentimer = 5 * 1200;
 
     @SubscribeEvent
