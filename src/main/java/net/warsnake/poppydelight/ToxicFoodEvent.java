@@ -105,7 +105,7 @@ public class ToxicFoodEvent {
             apply5MinuteEffects(player);
         }
     }
-// I really should just define all this stuff once and call it and edit values instead of repeating this all but its already done so who cares
+
     private static void apply5MinuteEffects(Player player) {
         if (player.level().getGameTime() % 60 == 0) {
             if (player.getRandom().nextInt(20) == 0) {

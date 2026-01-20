@@ -1,0 +1,16 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "poppydelight:poppyseed"
+    }
+  ],
+  "processingTime": 30,
+  "results": [
+    {
+      "chance": 0.90,
+      "count": 1,
+      "item": "poppydelight:cryingpod"
+    }
+  ]
+}

@@ -1,2 +1,7 @@
-Shader + Overlay stuff
+- Removed some old useless code
+- New faster "cryingpod" recipe
+- New faster "poppyseed" recipe
+- buffed High quality chance
+- Fixed some datagen stuff
+- ReadMe Update
 

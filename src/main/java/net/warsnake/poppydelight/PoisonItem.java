@@ -18,9 +18,6 @@ public class PoisonItem {
     private static final TagKey<Item> FOODS_TAG =
             TagKey.create(Registries.ITEM, new ResourceLocation("poppydelight", "foods"));
 
-    private static final ResourceLocation TDX_VIAL_ID =
-            new ResourceLocation("poppydelight", "tdxvial");
-
     @SubscribeEvent
     public static void onRightClick(PlayerInteractEvent.RightClickItem event) {
 
@@ -52,8 +49,6 @@ public class PoisonItem {
         if (!player.addItem(toxicItem)) {
             player.drop(toxicItem, false);
         }
-
-       // player.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 
         event.setCanceled(true);
         event.setCancellationResult(net.minecraft.world.InteractionResult.SUCCESS);

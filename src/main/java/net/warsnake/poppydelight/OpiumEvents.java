@@ -223,10 +223,8 @@ public class OpiumEvents {
 
     @SubscribeEvent
     public static void onPlayerDeath(LivingDeathEvent event) {
-        // steal ts from pufferfish
         if (!(event.getEntity() instanceof Player player)) return;
         UUID id = player.getUUID();
-       // new ControlDelay().clearDelay(id);
         opiumLevel.remove(id);
 
         lastDecreaseTime.remove(id);
