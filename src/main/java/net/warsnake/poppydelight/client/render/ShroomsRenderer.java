@@ -32,7 +32,6 @@ public class ShroomsRenderer {
     private int tickCounter = 0;
     private int x = random.nextInt(5) + 1;
     private int y = random.nextInt(5) + 1;
-  // private int y = 5;
     private int w = 1;
     private int timer;
 
@@ -137,8 +136,8 @@ public class ShroomsRenderer {
 
         if (effect == null) return;
 
-        float w = window.getWidth();
-        float h = window.getHeight();
+        float w = window.getGuiScaledWidth();
+        float h = window.getGuiScaledHeight();
 
         float fadeProgress = (timer % 100) / 100.0F;
 

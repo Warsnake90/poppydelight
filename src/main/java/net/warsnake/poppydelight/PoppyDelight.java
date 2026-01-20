@@ -18,6 +18,7 @@ import net.warsnake.poppydelight.client.render.ShroomsRenderer;
 import net.warsnake.poppydelight.effect.ModEffects;
 import net.warsnake.poppydelight.items.ModCreativeTabs;
 import net.warsnake.poppydelight.items.ModItems;
+import net.warsnake.poppydelight.sounds.ModSounds;
 import org.slf4j.Logger;
 
 @Mod(PoppyDelight.MODID)
@@ -40,6 +41,7 @@ public class PoppyDelight {
         ModCreativeTabs.TABS.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);
         ModEffects.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
        // modEventBus.addListener(this::addCreative);

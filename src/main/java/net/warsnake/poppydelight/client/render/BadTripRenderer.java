@@ -129,8 +129,8 @@ public class BadTripRenderer {
 
         if (effect == null) return;
 
-        float w = window.getWidth();
-        float h = window.getHeight();
+        float w = window.getGuiScaledWidth();
+        float h = window.getGuiScaledHeight();
 
         float intensity = Math.min(1.0F, effect.getDuration() / 200.0F);
         float intensity1 = Math.min(1.0F, effect.getDuration() / 200.0F);

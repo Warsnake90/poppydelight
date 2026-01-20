@@ -68,9 +68,9 @@ public class OpiumRenderer {
         BufferBuilder buffer = tesselator.getBuilder();
 
         buffer.begin(Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        buffer.vertex(0.0D, window.getHeight(), -90.0D).uv(0.0F, 1.0F).endVertex();
-        buffer.vertex(window.getWidth(), window.getHeight(), -90.0D).uv(1.0F, 1.0F).endVertex();
-        buffer.vertex(window.getWidth(), 0.0D, -90.0D).uv(1.0F, 0.0F).endVertex();
+        buffer.vertex(0.0D, window.getGuiScaledHeight(), -90.0D).uv(0.0F, 1.0F).endVertex();
+        buffer.vertex(window.getGuiScaledWidth(), window.getGuiScaledHeight(), -90.0D).uv(1.0F, 1.0F).endVertex();
+        buffer.vertex(window.getGuiScaledWidth(), 0.0D, -90.0D).uv(1.0F, 0.0F).endVertex();
         buffer.vertex(0.0D, 0.0D, -90.0D).uv(0.0F, 0.0F).endVertex();
 
         tesselator.end();

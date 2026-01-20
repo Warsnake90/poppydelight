@@ -6,8 +6,6 @@ Forge 1.20.1 Mod that adds narcotics, and lacing of foods, and visual effects fo
 
 - IMPORTANT DISCLAIMERS -------------
 
-For effects to render correctly your GUI scale has to be at 1, atm I will try to fix this but i'm kinda a dumbass
-
 This mod was made for a specific server, do not expect requests to be met or updates to newer versions. If you ask I will ignore you.
 
 This mod is about drugs and has OD mechanics, so if you're a baby don't use it.
@@ -41,9 +39,6 @@ A: Cannabis, absinthe, Opium, and psychedelic Mushrooms.
 
 Q: Why is my screen black when I take something?!
 A: Either 1. I accidentally uploaded a broken version. (TELL ME PLEASE!) 2. Your hardware isn't compatible. (Mac may or may not be broken, I don't own a mac to test sorry)
-
-Q: Why do I only see the upper left corner of effects?
-A: TURN YOUR GUI SCALE TO ONE OR IT WON'T RENDER PROPERLY!
 
 Q: Do Optifine/sodium ports break this mod?
 A: They are compatible.

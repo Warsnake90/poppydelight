@@ -15,9 +15,9 @@ import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
-public class TdxItem extends Item {
+public class FinalTdxItem extends Item {
 
-    public TdxItem(Properties properties) {
+    public FinalTdxItem(Properties properties) {
         super(new Item.Properties()
                 .food(new FoodProperties.Builder().alwaysEat().build()));
 
@@ -26,7 +26,6 @@ public class TdxItem extends Item {
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
 
-        // probably should let this change based on the item but im too lazy to add that... note to add it later
         return UseAnim.DRINK;
     }
 
@@ -39,8 +38,8 @@ public class TdxItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.literal("Probably shouldn't taste test it")
-                .withStyle(style -> style.withColor(TextColor.fromRgb(0x600400))));
+        tooltip.add(Component.literal("Stevia not included.")
+                .withStyle(style -> style.withColor(TextColor.fromRgb(0xB57EDC))));
         applyToxicTag(stack);
     }
 

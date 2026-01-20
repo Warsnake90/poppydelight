@@ -3,11 +3,13 @@ package net.warsnake.poppydelight.items;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.RecordItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.warsnake.poppydelight.PoppyDelight;
 import net.warsnake.poppydelight.blocks.ModBlocks;
+import net.warsnake.poppydelight.sounds.ModSounds;
 
 public class ModItems {
 
@@ -20,7 +22,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> TDXVIAL =
             ITEMS.register("tdxvial",
-                    () -> new TdxItem(new Item.Properties()));
+                    () -> new FinalTdxItem(new Item.Properties()));
 
     public static final RegistryObject<Item> TDXGLAND =
             ITEMS.register("tdxgland",
@@ -140,5 +142,7 @@ public class ModItems {
             ITEMS.register("psilocybe_spawn",
                     () -> new ItemNameBlockItem(ModBlocks.SHROOM_CROP.get() ,new Item.Properties()));
 
-
+    public static final RegistryObject<Item> WALTUH =
+            ITEMS.register("waltuh_musicdisc",
+                    () -> new RecordItem(1, ModSounds.WALTUH,new Item.Properties().stacksTo(1), 1500 ));
 }

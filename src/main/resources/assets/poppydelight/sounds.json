@@ -1,0 +1,10 @@
+{
+  "waltuh": {
+    "sounds": [
+      {
+        "name": "poppydelight:waltuh",
+        "stream": true
+      }
+    ]
+  }
+}

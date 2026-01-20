@@ -61,6 +61,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.SHROOMS1.get());
                         output.accept(ModItems.SHROOMS2.get());
                         output.accept(ModItems.PSILOCYBE_SPAWN.get());
+                        output.accept(ModItems.WALTUH.get());
 
                     })
                     .build()
