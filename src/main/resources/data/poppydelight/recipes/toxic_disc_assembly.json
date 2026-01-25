@@ -1,0 +1,63 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "tag": "forge:plates/iron"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "chance": 100,
+      "item": "poppydelight:toxic_music_disc"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc3"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc3"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc3"
+        },
+        {
+          "item": "poppydelight:tdxagent"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc3"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc3"
+        },
+        {
+          "item": "poppydelight:tdxagent"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc3"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "poppydelight:unfinished_disc3"
+  }
+}

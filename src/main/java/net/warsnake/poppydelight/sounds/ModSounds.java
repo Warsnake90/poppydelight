@@ -14,6 +14,10 @@ public class ModSounds {
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, PoppyDelight.MODID);
 
     public static final RegistryObject<SoundEvent> WALTUH = registerSoundEvents("waltuh");
+    public static final RegistryObject<SoundEvent> WAR = registerSoundEvents("war");
+    public static final RegistryObject<SoundEvent> TOXIC = registerSoundEvents("toxic");
+    public static final RegistryObject<SoundEvent> LIGHT = registerSoundEvents("light");
+    public static final RegistryObject<SoundEvent> STICKERBRUSH = registerSoundEvents("stickerbrush");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {

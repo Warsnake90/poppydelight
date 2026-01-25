@@ -1,0 +1,63 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "tag": "forge:plates/copper"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "chance": 100,
+      "item": "poppydelight:stickerbrush_music_disc"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc5"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc5"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc5"
+        },
+        {
+          "item": "minecraft:dead_bush"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc5"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc5"
+        },
+        {
+          "item": "minecraft:rose_bush"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc5"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "poppydelight:unfinished_disc5"
+  }
+}

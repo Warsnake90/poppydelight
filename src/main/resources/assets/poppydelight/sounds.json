@@ -6,5 +6,37 @@
         "stream": true
       }
     ]
+  },
+  "light": {
+    "sounds": [
+      {
+        "name": "poppydelight:light",
+        "stream": true
+      }
+    ]
+  },
+  "war": {
+    "sounds": [
+      {
+        "name": "poppydelight:war",
+        "stream": true
+      }
+    ]
+  },
+  "toxic": {
+    "sounds": [
+      {
+        "name": "poppydelight:toxic",
+        "stream": true
+      }
+    ]
+  },
+  "stickerbrush": {
+    "sounds": [
+      {
+        "name": "poppydelight:stickerbrush",
+        "stream": true
+      }
+    ]
   }
 }

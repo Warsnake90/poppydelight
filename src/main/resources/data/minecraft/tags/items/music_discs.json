@@ -1,7 +1,11 @@
 {
   "replace": false,
   "values": [
-    "poppydelight:waltuh_musicdisc"
+    "poppydelight:waltuh_musicdisc",
+    "poppydelight:light_music_disc",
+    "poppydelight:war_music_disc",
+    "poppydelight:toxic_music_disc",
+    "poppydelight:stickerbrush_music_disc"
 
   ]
 }

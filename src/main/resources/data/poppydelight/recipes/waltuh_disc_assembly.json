@@ -1,0 +1,63 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "tag": "forge:plates/brass"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "chance": 100,
+      "item": "poppydelight:waltuh_musicdisc"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc"
+        },
+        {
+          "item": "poppydelight:opium"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc"
+        },
+        {
+          "item": "poppydelight:opium"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "poppydelight:unfinished_disc"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "tag": "forge:plates/obsidian"
+  },
+  "loops": 2,
+  "results": [
+    {
+      "chance": 100,
+      "item": "poppydelight:war_music_disc"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc2"
+        }
+      ],
+      "results": [
+        {
+          "item": "minecraft:tnt"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc2"
+        },
+        {
+          "item": "minecraft:tnt"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc2"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc2"
+        },
+        {
+          "item": "minecraft:tnt"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc2"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "poppydelight:unfinished_disc2"
+  }
+}

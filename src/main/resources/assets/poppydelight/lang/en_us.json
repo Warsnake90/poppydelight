@@ -36,7 +36,15 @@
   "effect.poppydelight.pot": "Cannabis High",
 
   "item.poppydelight.waltuh_musicdisc": "Half-Measures",
-  "item.poppydelight.waltuh_musicdisc.desc": "Say my name.",
+  "item.poppydelight.waltuh_musicdisc.desc": "Dave Porter - Breaking Bad Theme song",
+  "item.poppydelight.war_music_disc": "War Without Reason.",
+  "item.poppydelight.war_music_disc.desc": "Hakita - War without Reason",
+  "item.poppydelight.toxic_music_disc": "Krook's March",
+  "item.poppydelight.toxic_music_disc.desc": "DKC2 - Krook's March",
+  "item.poppydelight.light_music_disc": "He Is The Light In My Darkness",
+  "item.poppydelight.light_music_disc.desc": "Hakita - He is the light in my darkness",
+  "item.poppydelight.stickerbrush_music_disc": "Stickerbrush Symphony",
+  "item.poppydelight.stickerbrush_music_disc.desc": "DKC2 - Stickerbrush Symphony",
 
   "itemGroup.poppydelight.main": "Poppy Delight",
 

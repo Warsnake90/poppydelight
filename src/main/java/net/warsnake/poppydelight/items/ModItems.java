@@ -145,4 +145,40 @@ public class ModItems {
     public static final RegistryObject<Item> WALTUH =
             ITEMS.register("waltuh_musicdisc",
                     () -> new RecordItem(1, ModSounds.WALTUH,new Item.Properties().stacksTo(1), 1500 ));
+
+    public static final RegistryObject<Item> WAR =
+            ITEMS.register("war_music_disc",
+                    () -> new RecordItem(1, ModSounds.WAR,new Item.Properties().stacksTo(1), 8160 ));
+
+    public static final RegistryObject<Item> LIGHT =
+            ITEMS.register("light_music_disc",
+                    () -> new RecordItem(1, ModSounds.LIGHT,new Item.Properties().stacksTo(1), 3600 ));
+
+    public static final RegistryObject<Item> TOXIC =
+            ITEMS.register("toxic_music_disc",
+                    () -> new RecordItem(1, ModSounds.TOXIC,new Item.Properties().stacksTo(1), 2160 ));
+
+    public static final RegistryObject<Item> STICKERBRUSH =
+            ITEMS.register("stickerbrush_music_disc",
+                    () -> new RecordItem(1, ModSounds.STICKERBRUSH,new Item.Properties().stacksTo(1), 5360 ));
+
+    public static final RegistryObject<Item> DISC =
+            ITEMS.register("unfinished_disc",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> DISC2 =
+            ITEMS.register("unfinished_disc2",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> DISC3 =
+            ITEMS.register("unfinished_disc3",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> DISC4 =
+            ITEMS.register("unfinished_disc4",
+                    () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> DISC5 =
+            ITEMS.register("unfinished_disc5",
+                    () -> new Item(new Item.Properties()));
 }

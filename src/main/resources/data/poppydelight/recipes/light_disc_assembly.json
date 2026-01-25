@@ -1,0 +1,63 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "tag": "forge:plates/gold"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "chance": 100,
+      "item": "poppydelight:light_music_disc"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc4"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc4"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc4"
+        },
+        {
+          "item": "minecraft:shroomlight"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc4"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "poppydelight:unfinished_disc4"
+        },
+        {
+          "item": "minecraft:shroomlight"
+        }
+      ],
+      "results": [
+        {
+          "item": "poppydelight:unfinished_disc4"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "poppydelight:unfinished_disc4"
+  }
+}
