@@ -35,7 +35,7 @@ Q: How do I get hemp, shroom or poppy seeds?
 A: Wandering traders and Farmer villagers sell Hemp seeds, you get poppy seeds from poppies, and you get shroom spores from mycelium and some other stuff.
 
 Q: What substances are currently added?
-A: Cannabis, absinthe, Opium, and psychedelic Mushrooms.
+A: Cannabis, absinthe, Opium, psychedelic Mushrooms, and a TDX poison.
 
 Q: Why is my screen black when I take something?!
 A: Either 1. I accidentally uploaded a broken version. (TELL ME PLEASE!) 2. Your hardware isn't compatible. (Mac may or may not be broken, I don't own a mac to test sorry)
@@ -48,6 +48,14 @@ A: Probably missing a dependency or its some conflict I don't know about, make a
 
 Q: Can I use this in a modpack/fork this?
 A: Go wild, just credit the GitHub page if you fork.
+
+<details>
+  <summary>Spoiler warning for an effect of TDX</summary>
+
+  Q: "It tastes awfully bitter" when eating food?
+  A: You have been poisoned... There is no antidote... You have 20 minutes for a revenge arc...
+
+</details>
 
  - Dependencies -------------
 

@@ -5,7 +5,9 @@
     "poppydelight:light_music_disc",
     "poppydelight:war_music_disc",
     "poppydelight:toxic_music_disc",
-    "poppydelight:stickerbrush_music_disc"
+    "poppydelight:stickerbrush_music_disc",
+    "poppydelight:ends_music_disc",
+    "poppydelight:stars_music_disc"
 
   ]
 }

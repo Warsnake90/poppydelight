@@ -36,24 +36,6 @@ public class ModItems {
             ITEMS.register("dust",
                     () -> new Item(new Item.Properties()));
 
-    // NOT USED ANYMORE
-    @Deprecated(forRemoval = true)
-    public static final RegistryObject<Item> WETPOPPYSEED =
-            ITEMS.register("wetseed",
-                    () -> new RemovedItem(new Item.Properties()));
-
-    // NOT USED ANYMORE
-    @Deprecated(forRemoval = true)
-    public static final RegistryObject<Item> CRUSHEDPOPPYSEED =
-            ITEMS.register("crushedseed",
-                    () -> new RemovedItem(new Item.Properties()));
-
-    // To be removed
-    @Deprecated(forRemoval = true)
-    public static final RegistryObject<Item> DRIEDPOPPYSEED =
-            ITEMS.register("driedseed",
-                    () -> new RemovedItem(new Item.Properties()));
-
     public static final RegistryObject<Item> RAWOPIUM =
             ITEMS.register("rawopium",
                     () -> new Item(new Item.Properties().stacksTo(64)));
@@ -106,6 +88,10 @@ public class ModItems {
             ITEMS.register("hempleaf",
                     () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> DRYHEMPLEAF =
+            ITEMS.register("dryhempleaf",
+                    () -> new Item(new Item.Properties()));
+
     public static final RegistryObject<Item> JOINT =
             ITEMS.register("joint",
                     () -> new JointItem(new Item.Properties().stacksTo(1)));
@@ -142,43 +128,32 @@ public class ModItems {
             ITEMS.register("psilocybe_spawn",
                     () -> new ItemNameBlockItem(ModBlocks.SHROOM_CROP.get() ,new Item.Properties()));
 
-    public static final RegistryObject<Item> WALTUH =
-            ITEMS.register("waltuh_musicdisc",
+    public static final RegistryObject<Item> WALTUH = ITEMS.register("waltuh_musicdisc",
                     () -> new RecordItem(1, ModSounds.WALTUH,new Item.Properties().stacksTo(1), 1500 ));
-
-    public static final RegistryObject<Item> WAR =
-            ITEMS.register("war_music_disc",
+    public static final RegistryObject<Item> WAR = ITEMS.register("war_music_disc",
                     () -> new RecordItem(1, ModSounds.WAR,new Item.Properties().stacksTo(1), 8160 ));
-
-    public static final RegistryObject<Item> LIGHT =
-            ITEMS.register("light_music_disc",
+    public static final RegistryObject<Item> LIGHT = ITEMS.register("light_music_disc",
                     () -> new RecordItem(1, ModSounds.LIGHT,new Item.Properties().stacksTo(1), 3600 ));
-
-    public static final RegistryObject<Item> TOXIC =
-            ITEMS.register("toxic_music_disc",
+    public static final RegistryObject<Item> TOXIC = ITEMS.register("toxic_music_disc",
                     () -> new RecordItem(1, ModSounds.TOXIC,new Item.Properties().stacksTo(1), 2160 ));
-
-    public static final RegistryObject<Item> STICKERBRUSH =
-            ITEMS.register("stickerbrush_music_disc",
+    public static final RegistryObject<Item> STICKERBRUSH = ITEMS.register("stickerbrush_music_disc",
                     () -> new RecordItem(1, ModSounds.STICKERBRUSH,new Item.Properties().stacksTo(1), 5360 ));
+    public static final RegistryObject<Item> ENDS = ITEMS.register("ends_music_disc",
+                    () -> new RecordItem(1, ModSounds.ENDS,new Item.Properties().stacksTo(1), 2980 ));
+    public static final RegistryObject<Item> STARS = ITEMS.register("stars_music_disc",
+                    () -> new RecordItem(1, ModSounds.STARS,new Item.Properties().stacksTo(1), 1460 ));
 
-    public static final RegistryObject<Item> DISC =
-            ITEMS.register("unfinished_disc",
-                    () -> new Item(new Item.Properties()));
+    // disc crafting
+    public static final RegistryObject<Item> DISC0 = ITEMS.register("unfinished_disc", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DISC1 = ITEMS.register("unfinished_disc2", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DISC2 = ITEMS.register("unfinished_disc3", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DISC3 = ITEMS.register("unfinished_disc4", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DISC4 = ITEMS.register("unfinished_disc5", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DISC5 = ITEMS.register("unfinished_disc6", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DISC6 = ITEMS.register("unfinished_disc7", () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> DISC2 =
-            ITEMS.register("unfinished_disc2",
-                    () -> new Item(new Item.Properties()));
-
-    public static final RegistryObject<Item> DISC3 =
-            ITEMS.register("unfinished_disc3",
-                    () -> new Item(new Item.Properties()));
-
-    public static final RegistryObject<Item> DISC4 =
-            ITEMS.register("unfinished_disc4",
-                    () -> new Item(new Item.Properties()));
-
-    public static final RegistryObject<Item> DISC5 =
-            ITEMS.register("unfinished_disc5",
-                    () -> new Item(new Item.Properties()));
+    // NOT USED ANYMORE
+    @Deprecated(forRemoval = true) public static final RegistryObject<Item> WETPOPPYSEED = ITEMS.register("wetseed", () -> new RemovedItem(new Item.Properties()));
+    @Deprecated(forRemoval = true) public static final RegistryObject<Item> CRUSHEDPOPPYSEED = ITEMS.register("crushedseed", () -> new RemovedItem(new Item.Properties()));
+    @Deprecated(forRemoval = true) public static final RegistryObject<Item> DRIEDPOPPYSEED = ITEMS.register("driedseed", () -> new RemovedItem(new Item.Properties()));
 }

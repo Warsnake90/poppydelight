@@ -6,11 +6,8 @@
   "item.poppydelight.tdxgland": "Poison Gland",
   "item.poppydelight.poppyseed": "Poppy Pod",
   "item.poppydelight.hempseed": "Hemp Seed",
-  "item.poppydelight.wetseed": "Wet Poppy Seeds",
   "item.poppydelight.dust": "Dust",
   "item.poppydelight.wither_dust": "Wither Dust",
-  "item.poppydelight.crushedseed": "Crushed Poppy Seed",
-  "item.poppydelight.driedseed": "Dried Poppy Pod",
   "item.poppydelight.cryingpod": "Crying Poppy Pod",
   "item.poppydelight.rawopium": "Raw Opium",
   "item.poppydelight.lowquality": "Low Quality Opium",
@@ -45,6 +42,10 @@
   "item.poppydelight.light_music_disc.desc": "Hakita - He is the light in my darkness",
   "item.poppydelight.stickerbrush_music_disc": "Stickerbrush Symphony",
   "item.poppydelight.stickerbrush_music_disc.desc": "DKC2 - Stickerbrush Symphony",
+  "item.poppydelight.ends_music_disc": "At Ends",
+  "item.poppydelight.ends_music_disc.desc": "Marzuku - At Ends",
+  "item.poppydelight.stars_music_disc": "Colliding Stars ",
+  "item.poppydelight.stars_music_disc.desc": "Marzuku - Colliding stars",
 
   "itemGroup.poppydelight.main": "Poppy Delight",
 

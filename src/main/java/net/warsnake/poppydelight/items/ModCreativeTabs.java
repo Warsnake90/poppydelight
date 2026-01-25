@@ -29,43 +29,69 @@ public class ModCreativeTabs {
                     .icon(() -> new ItemStack(Items.POPPY))
                     .displayItems((params, output) -> {
 
-                        // I should just delete not used items huh...
+                        // deprecated items
 
-                      //  output.accept(ModItems.DEBUGITEM.get());
                        // output.accept(ModItems.WETPOPPYSEED.get());
                         // output.accept(ModItems.CRUSHEDPOPPYSEED.get());
                        // output.accept(ModItems.DRIEDPOPPYSEED.get());
+
+                        // poppy stuff
+
                         output.accept(ModItems.POPPYSEED.get());
                         output.accept(ModItems.CRYINGPOD.get());
                         output.accept(ModItems.RAWOPIUM.get());
                         output.accept(ModItems.LOWQUALITY.get());
                         output.accept(ModItems.OPIUM.get());
                         output.accept(ModItems.HIGHQUALITY.get());
+
+                        // tdx
+
                         output.accept(ModItems.TDXGLAND.get());
                         output.accept(ModItems.TDXAGENT.get());
                         output.accept(ModItems.TDXVIAL.get());
-                        output.accept(ModItems.DUST.get());
-                        output.accept(ModItems.WITHERDUST.get());
+
+                        // packages
+
                         output.accept(ModItems.LOWPACKAGE.get());
                         output.accept(ModItems.PACKAGE.get());
                         output.accept(ModItems.HIGHPACKAGE.get());
                         output.accept(ModItems.HEMPPACKAGE.get());
+
+                        // absinthe
+
                         output.accept(ModItems.WORMWOODLEAF.get());
                         output.accept(ModItems.ABSINTHE.get());
+
+                        // hemp
+
                         output.accept(ModItems.HEMPSEED.get());
                         output.accept(ModItems.HEMPLEAF.get());
                         output.accept(ModItems.WETROLLINGPAPER.get());
                         output.accept(ModItems.ROLLINGPAPER.get());
                         output.accept(ModItems.JOINT.get());
-                        output.accept(ModItems.LITERALPOT.get());
+
+                        // shrooms
+
                         output.accept(ModItems.SHROOMS1.get());
                         output.accept(ModItems.SHROOMS2.get());
                         output.accept(ModItems.PSILOCYBE_SPAWN.get());
+
+
+                        // misc
+
+                        output.accept(ModItems.DUST.get());
+                        output.accept(ModItems.WITHERDUST.get());
+                        output.accept(ModItems.LITERALPOT.get());
+
+                        // secret items
+
                        // output.accept(ModItems.WALTUH.get());
                       //output.accept(ModItems.WAR.get());
                       //output.accept(ModItems.TOXIC.get());
                         //output.accept(ModItems.LIGHT.get());
                         //output.accept(ModItems.STICKERBRUSH.get());
+                       // output.accept(ModItems.STARS.get());
+                        //output.accept(ModItems.ENDS.get());
 
                     })
                     .build()

@@ -18,6 +18,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> TOXIC = registerSoundEvents("toxic");
     public static final RegistryObject<SoundEvent> LIGHT = registerSoundEvents("light");
     public static final RegistryObject<SoundEvent> STICKERBRUSH = registerSoundEvents("stickerbrush");
+    public static final RegistryObject<SoundEvent> ENDS = registerSoundEvents("ends");
+    public static final RegistryObject<SoundEvent> STARS = registerSoundEvents("stars");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
