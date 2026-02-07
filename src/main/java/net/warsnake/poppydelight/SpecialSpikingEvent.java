@@ -30,6 +30,7 @@ public class SpecialSpikingEvent {
         ItemStack main = player.getMainHandItem();
         ItemStack offhand = player.getOffhandItem();
 
+        if (!offhand.is(ModItems.HEMPLEAF.get())) return;
         if (!main.is(FOODS_TAG)) return;
 
         ItemStack PotItem = main.copy();
@@ -49,7 +50,6 @@ public class SpecialSpikingEvent {
             player.drop(PotItem, false);
         }
 
-       // player.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
         event.setCanceled(true);
         event.setCancellationResult(net.minecraft.world.InteractionResult.SUCCESS);
     }

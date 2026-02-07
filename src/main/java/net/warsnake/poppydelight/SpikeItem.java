@@ -18,6 +18,9 @@ public class SpikeItem {
     private static final TagKey<Item> FOODS_TAG =
             TagKey.create(Registries.ITEM, new ResourceLocation("poppydelight", "foods"));
 
+    private static final TagKey<Item> OPIUM_TAG =
+            TagKey.create(Registries.ITEM, new ResourceLocation("poppydelight", "opium"));
+
     @SubscribeEvent
     public static void onRightClick(PlayerInteractEvent.RightClickItem event) {
         var player = event.getEntity();
@@ -31,32 +34,31 @@ public class SpikeItem {
         ItemStack offhand = player.getOffhandItem();
 
         if (!main.is(FOODS_TAG)) return;
+        if (!offhand.is(OPIUM_TAG)) return;
 
-        // avoid checking three or four tags every time anything eats... too bad the rest of this shitty code negates this save
         if (main.hasTag() && main.getOrCreateTag().getBoolean("opium")) return;
 
         ItemStack opiumItem = main.copy();
-        opiumItem.setCount(1);
+            opiumItem.setCount(1);
 
-        opiumItem.getOrCreateTag().putBoolean("opium", true);
+            opiumItem.getOrCreateTag().putBoolean("opium", true);
 
-        if (offhand.is(ModItems.OPIUM.get())) {
-            opiumItem.getOrCreateTag().putBoolean("medopium", true);
-        } else if (offhand.is(ModItems.LOWQUALITY.get())) {
-            opiumItem.getOrCreateTag().putBoolean("lowopium", true);
-        } else if (offhand.is(ModItems.HIGHQUALITY.get())) {
-            opiumItem.getOrCreateTag().putBoolean("highopium", true);
-        }
+            if (offhand.is(ModItems.OPIUM.get())) {
+                opiumItem.getOrCreateTag().putBoolean("medopium", true);
+            } else if (offhand.is(ModItems.LOWQUALITY.get())) {
+                opiumItem.getOrCreateTag().putBoolean("lowopium", true);
+            } else if (offhand.is(ModItems.HIGHQUALITY.get())) {
+                opiumItem.getOrCreateTag().putBoolean("highopium", true);
+            }
 
-        main.shrink(1);
-        offhand.shrink(1);
+            main.shrink(1);
+            offhand.shrink(1);
 
-        if (!player.addItem(opiumItem)) {
-            player.drop(opiumItem, false);
-        }
+            if (!player.addItem(opiumItem)) {
+                player.drop(opiumItem, false);
+            }
 
-       // player.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
-        event.setCanceled(true);
-        event.setCancellationResult(net.minecraft.world.InteractionResult.SUCCESS);
+            event.setCanceled(true);
+            event.setCancellationResult(net.minecraft.world.InteractionResult.SUCCESS);
     }
 }

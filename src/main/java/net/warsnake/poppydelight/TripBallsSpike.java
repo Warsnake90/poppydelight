@@ -17,6 +17,8 @@ public class TripBallsSpike {
 
     private static final TagKey<Item> FOODS_TAG =
             TagKey.create(Registries.ITEM, new ResourceLocation("poppydelight", "foods"));
+    private static final TagKey<Item> SHROOM_TAG =
+            TagKey.create(Registries.ITEM, new ResourceLocation("poppydelight", "shroom"));
 
     @SubscribeEvent
     public static void onRightClick(PlayerInteractEvent.RightClickItem event) {
@@ -25,17 +27,14 @@ public class TripBallsSpike {
         Level level = player.level();
 
         if (level.isClientSide) return;
-
         if (!player.isShiftKeyDown()) return;
-
         if (event.getHand() != InteractionHand.MAIN_HAND) return;
 
         ItemStack main = player.getMainHandItem();
         ItemStack offhand = player.getOffhandItem();
 
-        if (!offhand.is(ModItems.SHROOMS1.get())) return;
-
         if (!main.is(FOODS_TAG)) return;
+        if (!offhand.is(SHROOM_TAG)) return;
 
         if (main.hasTag() && main.getOrCreateTag().getBoolean("Shroom")) return;
 
