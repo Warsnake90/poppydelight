@@ -39,7 +39,7 @@
       }
     ]
   },
-  "Ends": {
+  "ends": {
     "sounds": [
       {
         "name": "poppydelight:ends",
