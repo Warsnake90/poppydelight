@@ -7,7 +7,7 @@
   ],
   "key": {
     "P": { "tag": "poppydelight:rollingpaper" },
-    "O": { "item": "poppydelight:hempleaf" }
+    "O": { "item": "poppydelight:dryhempleaf" }
   },
   "result": {
     "item": "poppydelight:joint",

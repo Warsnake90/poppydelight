@@ -257,6 +257,10 @@ public class BadTripRenderer {
             forgebs = 0;
         }
 
+        if (!ModEffects.BADSHROOMHIGH.isPresent()) {
+            return;
+        }
+
         MobEffectInstance effect = event.player.getEffect(ModEffects.BADSHROOMHIGH.get());
         int duration = effect == null ? 0 : effect.getDuration();
 

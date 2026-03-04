@@ -216,6 +216,10 @@ public class ShroomsRenderer {
             forgebs = 0;
         }
 
+        if (!ModEffects.SHROOMHIGH.isPresent()) {
+            return;
+        }
+
         MobEffectInstance effect = event.player.getEffect(ModEffects.SHROOMHIGH.get());
         int duration = effect == null ? 0 : effect.getDuration();
 

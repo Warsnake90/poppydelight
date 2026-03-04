@@ -114,6 +114,10 @@ public class CannabisRenderer {
             forgebs = 0;
         }
 
+        if (!ModEffects.POTHIGH.isPresent()) {
+            return;
+        }
+
         MobEffectInstance effect;
         effect = event.player.getEffect((MobEffect) ModEffects.POTHIGH.get());
 

@@ -114,6 +114,10 @@ public class OpiumRenderer {
             forgebs = 0;
         }
 
+        if (!ModEffects.OPIUMHIGH.isPresent()) {
+            return;
+        }
+
         MobEffectInstance effect;
             effect = event.player.getEffect((MobEffect) ModEffects.OPIUMHIGH.get());
 
