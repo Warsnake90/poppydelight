@@ -8,7 +8,7 @@
   "fermentingtime": 4800,
   "ingredients": [
     {
-      "item": "poppydelight:wormwood_leaf"
+      "item": "poppydelight:wormwoodleaf"
     },
     {
       "item": "minecraft:sugar"

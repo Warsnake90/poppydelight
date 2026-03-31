@@ -3,6 +3,7 @@
   "amount": 250,
   "filling": true,
   "fluid": "poppydelight:absinthe",
+  "container": "minecraft:glass_bottle",
   "output": {
     "item": "poppydelight:absinthe"
   },

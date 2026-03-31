@@ -88,7 +88,7 @@ public class ShroomsRenderer {
         if ((w == 0)) {w = 1;}
         if ((w >= 11)) {w = 1;}
 
-        if ((tickCounter >= 5) && ((y == 3) || (y == 5))) {
+        if ((tickCounter >= 10) && ((y == 3) || (y == 5))) {
                 w++;
 
                 if (w >= 11) { w = 1;}
