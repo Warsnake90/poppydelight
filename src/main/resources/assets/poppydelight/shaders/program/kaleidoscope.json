@@ -1,0 +1,13 @@
+{
+  "blend": { "func": "add", "srcrgb": "one", "dstrgb": "zero" },
+  "vertex": "poppydelight:post/kaleidoscope",
+  "fragment": "poppydelight:post/kaleidoscope",
+  "attributes": [ "Position" ],
+  "samplers": [
+    { "name": "InSampler" }
+  ],
+  "uniforms": [
+    { "name": "Time",     "type": "float", "count": 1, "values": [ 0.0 ] },
+    { "name": "Segments", "type": "float", "count": 1, "values": [ 6.0 ] }
+  ]
+}

@@ -27,7 +27,7 @@ public class PoppyDelight {
     // please do not judge ts, i was prob high when I wrote half this code, aswell ive deleted and added like 15 diff dependencies in and out lol
 
     public static final String MODID = "poppydelight";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public static final OpiumRenderer OPIUM_EFFECT_RENDERER = new OpiumRenderer();
     public static final ShroomsRenderer SHROOM_EFFECT_RENDERER = new ShroomsRenderer();
     public static final BadTripRenderer BAD_SHROOM_EFFECT_RENDERER = new BadTripRenderer();

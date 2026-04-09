@@ -1,0 +1,13 @@
+{
+  "blend": { "func": "add", "srcrgb": "one", "dstrgb": "zero" },
+  "vertex": "poppydelight:post/psychedelic",
+  "fragment": "poppydelight:post/psychedelic",
+  "attributes": [ "Position" ],
+  "samplers": [
+    { "name": "InSampler" }
+  ],
+  "uniforms": [
+    { "name": "Time",      "type": "float", "count": 1, "values": [ 0.0 ] },
+    { "name": "Intensity", "type": "float", "count": 1, "values": [ 1.0 ] }
+  ]
+}

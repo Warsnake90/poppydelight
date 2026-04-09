@@ -1,0 +1,31 @@
+{
+  "targets": [
+    "swap"
+  ],
+  "passes": [
+    {
+      "name": "poppydelight:spiral_warp",
+      "intarget": "minecraft:main",
+      "outtarget": "swap",
+      "auxtargets": []
+    },
+    {
+      "name": "poppydelight:kaleidoscope",
+      "intarget": "swap",
+      "outtarget": "minecraft:main",
+      "auxtargets": []
+    },
+    {
+      "name": "poppydelight:psychedelic",
+      "intarget": "minecraft:main",
+      "outtarget": "swap",
+      "auxtargets": []
+    },
+    {
+      "name": "minecraft:blit",
+      "intarget": "swap",
+      "outtarget": "minecraft:main",
+      "auxtargets": []
+    }
+  ]
+}

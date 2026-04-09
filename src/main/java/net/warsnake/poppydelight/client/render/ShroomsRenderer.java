@@ -1,8 +1,13 @@
 package net.warsnake.poppydelight.client.render;
 
+import com.mojang.blaze3d.shaders.Uniform;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
+import net.minecraft.client.renderer.EffectInstance;
+import net.minecraft.client.renderer.PostChain;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.event.TickEvent;
+import net.warsnake.poppydelight.PsychedelicShaderHandler;
 import net.warsnake.poppydelight.effect.ModEffects;
 import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
 import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
@@ -17,6 +22,7 @@ import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.glfw.GLFW;
 
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +32,8 @@ public class ShroomsRenderer {
     private static final ResourceLocation SHROOM_SHADER =
             new ResourceLocation("poppydelight", "shaders/post/shrooms.json");
 
+
+
     public boolean effectActiveLastTick = false;
 
     private static final Random random = new Random();
@@ -34,6 +42,7 @@ public class ShroomsRenderer {
     private int y = random.nextInt(5) + 1;
     private int w = 1;
     private int timer;
+
 
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event) {
@@ -46,7 +55,11 @@ public class ShroomsRenderer {
         }
     }
 
+    private static boolean HUD_EFFECTS_ENABLED = true;
+
     public void renderOverlay(PoseStack poseStack) {
+
+        if (!HUD_EFFECTS_ENABLED) return;
 
         if (tickCounter >= 4000) {
             x = random.nextInt(5) + 1;
@@ -117,6 +130,8 @@ public class ShroomsRenderer {
             Minecraft minecraft = Minecraft.getInstance();
             GameRenderer renderer = minecraft.gameRenderer;
             renderer.loadEffect(SHROOM_SHADER);
+
+            //PsychedelicShaderHandler.enable();
         }
     }
 
@@ -129,9 +144,11 @@ public class ShroomsRenderer {
         if (effect != null && effect.getDuration() > 1 && !effectActiveLastTick) {
             effectActiveLastTick = true;
             minecraft.execute(() -> minecraft.gameRenderer.loadEffect(SHROOM_SHADER));
+           // PsychedelicShaderHandler.enable();
         } else if ((effect == null || effect.getDuration() <= 1) && effectActiveLastTick) {
             effectActiveLastTick = false;
             minecraft.execute(() -> minecraft.gameRenderer.shutdownEffect());
+            //PsychedelicShaderHandler.disable();
         }
 
         if (effect == null) return;
@@ -230,6 +247,7 @@ public class ShroomsRenderer {
                 Minecraft.getInstance().execute(() -> {
                     GameRenderer renderer = Minecraft.getInstance().gameRenderer;
                     renderer.loadEffect(SHROOM_SHADER);
+                    //PsychedelicShaderHandler.enable();
                 });
             }
         } else if (effectActiveLastTick) {
@@ -238,6 +256,7 @@ public class ShroomsRenderer {
             Minecraft.getInstance().execute(() -> {
                 GameRenderer renderer = Minecraft.getInstance().gameRenderer;
                 renderer.shutdownEffect();
+                //PsychedelicShaderHandler.disable();
             });
         }
     }

@@ -1,0 +1,17 @@
+{
+  "blend": {
+    "func": "add",
+    "srcrgb": "one",
+    "dstrgb": "zero"
+  },
+  "vertex": "poppydelight:post/spiral_warp",
+  "fragment": "poppydelight:post/spiral_warp",
+  "attributes": [ "Position" ],
+  "samplers": [
+    { "name": "InSampler" }
+  ],
+  "uniforms": [
+    { "name": "Time",     "type": "float", "count": 1, "values": [ 0.0 ] },
+    { "name": "Strength", "type": "float", "count": 1, "values": [ 1.5 ] }
+  ]
+}
