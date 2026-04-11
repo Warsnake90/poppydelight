@@ -77,3 +77,15 @@ Required - [Brewin' & chewin'](https://github.com/Umpaz/BrewinAndChewin)
 Required - [Crabber's delight](https://github.com/AlabasterLeking/Crabbers-Delight)
 
 ~~Required - [Create mod (Probably won't crash but some items will not be craftable)](https://github.com/Creators-of-Create/Create)~~ **CREATE NO LONGER REQUIRED, RECIPES HAVE BEEN ADDED FOR NON-CREATE**
+
+ - Credits -----------------------------------------------------------------------------------
+
+Mojang - duh
+
+SnowierPuppet - Did alot of textures and assets
+
+diggydwarff - Helped me figure out GLSL shaders (check out his mod its much better than mine, https://www.curseforge.com/minecraft/mc-mods/herbalist)
+
+HBM - I used some minor assets (tell me if you want them removed, https://github.com/HbmMods/Hbm-s-Nuclear-Tech-GIT)
+
+me - I did most of the coding for this

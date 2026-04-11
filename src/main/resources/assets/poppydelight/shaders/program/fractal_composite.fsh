@@ -27,7 +27,6 @@ vec3 hueRotate(vec3 c, float a) {
     return clamp(m * c, 0.0, 1.0);
 }
 
-// more obvious kaleidoscope fold
 vec2 kaleido(vec2 p, float blades) {
     float ang = atan(p.y, p.x);
     float rad = length(p);
@@ -36,7 +35,6 @@ vec2 kaleido(vec2 p, float blades) {
     return vec2(cos(ang), sin(ang)) * rad;
 }
 
-// fast “fractal-ish” field
 float field(vec2 p, float t, float k) {
     vec2 z = p * (1.4 + 1.0*k);
     float a = 0.0;
@@ -55,7 +53,6 @@ void main() {
     vec2 uv = texCoord;
     vec2 p = (uv - vec2(0.5)) * vec2(16.0/9.0, 1.0);
 
-    // keep the world participating, but not the main show
     float breathe = 0.55 + 0.45*sin(t*0.20);
     float w = WarpStrength * (0.55 + 0.85*k) * breathe;
 
@@ -67,29 +64,25 @@ void main() {
 
     vec3 scene = texture(DiffuseSampler, clamp(uv, 0.0, 1.0)).rgb;
 
-    // big, obvious kaleidoscope geometry
     float blades = 10.0 + 22.0 * k;
     vec2 q = kaleido(p * (0.95 + 0.20*sin(t*0.12)), blades);
 
     float m = field(q, t, k);
 
-    // convert field into crisp bands/lines (this is what you were missing)
     float bandFreq = 46.0; // increase for tighter geometry
     float bands = sin(m * bandFreq + t * (0.8 + 1.6*k));
     float lines = smoothstep(0.55, 0.98, abs(bands));   // bright thin-ish lines
     float geo = clamp(lines, 0.0, 1.0);
 
-    // richer multi-band palette
     float u = m + 0.20*sin(t*0.35) + 0.08*sin(q.x*3.0 - q.y*2.0);
     vec3 pal = vec3(
         0.5 + 0.5*sin(6.2831853*(u*1.00 + t*0.06)),
         0.5 + 0.5*sin(6.2831853*(u*1.23 + t*0.05 + 0.33)),
         0.5 + 0.5*sin(6.2831853*(u*1.47 + t*0.04 + 0.67))
     );
-    // push saturation hard but clamp
+
     pal = sat(pal, 1.35 + 0.55*k);
 
-    // keep center calmer for aiming/navigation
     float center = 1.0 - smoothstep(0.0, 0.55, length(p));
     float calm = mix(1.0, 0.55, center);
 
@@ -98,16 +91,11 @@ void main() {
 
     vec3 col = scene;
 
-    // subtle wash so it feels “colorful everywhere”
     col = mix(col, pal, overlayWash);
 
-    // strong line overlay so geometry stays obvious
     col = mix(col, pal, overlayLines);
 
-    // glow on lines
     col += pal * (0.08 + 0.28*k) * geo * calm;
-
-    // small saturation + hue drift for “trip” feel
     col = sat(col, mix(1.0, SatBoost, k));
     col = hueRotate(col, t * HueSpeed * (0.20 + 1.05*k));
 

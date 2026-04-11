@@ -11,7 +11,7 @@ void main() {
     vec2 px = vec2(1.0 / InSize.x, 0.0);
     float r = Radius;
 
-    // 7-tap gaussian-ish
+
     vec4 sum = vec4(0.0);
     sum += texture(DiffuseSampler, texCoord + px * (-3.0 * r)) * 0.070;
     sum += texture(DiffuseSampler, texCoord + px * (-2.0 * r)) * 0.131;

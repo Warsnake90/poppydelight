@@ -29,7 +29,6 @@ vec2 rot(vec2 p, float a) {
     return mat2(c, -s, s, c) * p;
 }
 
-// gentle fold: no fract repeat (repeat is what makes huge jumps)
 vec2 foldSpace(vec2 uv, float amount) {
     vec2 p = uv * 2.0 - 1.0;
     p = rot(p, 0.2 * sin(Time * 0.7));
@@ -42,24 +41,19 @@ void main() {
 
     float amp = WarpAmp * Intensity;
 
-    // multi-warp domain distortion (bounded)
     vec2 w1 = noise2(uv * 2.0 + Time * 0.15) * amp;
     vec2 w2 = noise2((uv + w1) * 6.0 - Time * 0.23) * (amp * 0.6);
 
     vec2 warped = uv + (w1 + w2);
 
-    // cap warp so it can't fling UVs to oblivion
     warped = uv + clamp(warped - uv, vec2(-0.012), vec2(0.012));
 
-    // optional gentle fold (keep small)
     float f = clamp(Fold, 0.0, 0.35);
     vec2 folded = mix(warped, foldSpace(warped, f), f);
 
-    // sample scene (clamped)
     vec2 suv = safeUV(folded);
     vec3 col = texture(DiffuseSampler, suv).rgb;
 
-    // mild chroma split driven by warp direction (adds “reality shear”)
     vec2 d = clamp((w1 + w2) * 10.0, vec2(-0.01), vec2(0.01));
     float r = texture(DiffuseSampler, safeUV(suv + d * 0.08)).r;
     float b = texture(DiffuseSampler, safeUV(suv - d * 0.08)).b;

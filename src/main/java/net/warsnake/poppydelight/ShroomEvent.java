@@ -67,6 +67,14 @@ public class ShroomEvent {
         Player player = event.player;
         UUID id = player.getUUID();
 
+        if (player.level().isClientSide) {
+            if (player.hasEffect(ModEffects.SHROOMHIGH.get()) ||
+                    player.hasEffect(ModEffects.BADSHROOMHIGH.get())) {
+                vtick(player);
+            }
+            return;
+        }
+
         if (!shroomStartTimes.containsKey(id)) return;
 
         long elapsed = player.level().getGameTime() - shroomStartTimes.get(id);
@@ -113,7 +121,7 @@ public class ShroomEvent {
             else applybad3MinuteEffects(player);
         }
 
-        vtick(player);
+
     }
 
     private static void apply3MinuteEffects(Player p) {
@@ -186,6 +194,12 @@ public class ShroomEvent {
     private static void vtick(Player player) {
         UUID id = player.getUUID();
         int ticks = hallucinationTicks.getOrDefault(id, 0) + 1;
+
+        if (!player.hasEffect(ModEffects.SHROOMHIGH.get()) &&
+                !player.hasEffect(ModEffects.BADSHROOMHIGH.get())) {
+            hallucinationTicks.remove(player.getUUID());
+            return;
+        }
 
         if (ticks >= 200) {
             ticks = 0;

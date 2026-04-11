@@ -11,7 +11,6 @@ uniform float Morphiness;
 in vec2 texCoord;
 out vec4 fragColor;
 
-// ---- helpers ----
 vec2 safeUV(vec2 uv) { return clamp(uv, vec2(0.001), vec2(0.999)); }
 
 float hash21(vec2 p) {
@@ -43,52 +42,40 @@ vec2 grad(vec2 p) {
 void main() {
     vec2 uv = texCoord;
 
-    // base samples (always clamped)
     vec3 cur = texture(DiffuseSampler, safeUV(uv)).rgb;
 
-    // time + field
     float t = Time * 0.6;
 
-    // warp the previous frame sample a bit, but cap it hard
     vec2 g = grad(uv * (2.0 + 2.0 * Morphiness) + vec2(t, -t));
     vec2 duv = g * (0.008 + 0.012 * Morphiness) * Intensity;
     duv = clamp(duv, vec2(-0.006), vec2(0.006));
 
     vec3 prev = texture(PrevSampler, safeUV(uv + duv)).rgb;
 
-    // motion (computed first)
     vec3 diff = abs(prev - cur);
     float motion = clamp((diff.r + diff.g + diff.b) * 2.0, 0.0, 1.0);
     motion = smoothstep(0.10, 0.35, motion);
 
-    // morph field (noise), but only allowed where motion exists
     float f = noise(uv * (3.0 + 5.0 * Morphiness) + vec2(t * 0.4, t * 0.2));
     float k = 0.45 + 0.25 * sin(Time * 0.9);
     float edge = smoothstep(k - 0.12, k + 0.12, f);
 
-    // lock morph to motion so static areas stay sharp
     float morphAmt = edge * motion;
 
-    // morphed now cannot blur static areas
     vec3 morphed = mix(cur, prev, morphAmt);
 
-    // feedback (also motion gated)
     float fbLocal = clamp(FeedbackAmount, 0.0, 0.20) * motion;
     vec3 outc = morphed + (prev - morphed) * fbLocal;
 
-    // controlled glow
     outc += diff * (0.12 * Morphiness) * motion * Intensity;
 
-    // soft compress
     outc = outc / (1.0 + outc);
 
     fragColor = vec4(clamp(outc, 0.0, 1.0), 1.0);
     outc = clamp(outc, 0.0, 1.0);
 
-    // keep some “unexplainable glow” without blowing out
     outc += diff * (0.20 * Morphiness) * Intensity;
 
-    // soft compress highlights (helps stability)
     outc = outc / (1.0 + outc);
 
     fragColor = vec4(clamp(outc, 0.0, 1.0), 1.0);

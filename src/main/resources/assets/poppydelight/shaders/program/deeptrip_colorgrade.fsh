@@ -40,20 +40,16 @@ void main() {
     vec4 src = texture(DiffuseSampler, texCoord);
     vec3 rgb = src.rgb;
 
-    // HSV hue shift + sat
     vec3 hsv = rgb2hsv(rgb);
     float h = HueShift + Time * HueDriftSpeed;
     hsv.x = fract(hsv.x + h);
     hsv.y = clamp(hsv.y * Saturation, 0.0, 1.0);
     rgb = hsv2rgb(hsv);
 
-    // exposure
     rgb *= Exposure;
 
-    // contrast around mid-gray
     rgb = (rgb - 0.5) * Contrast + 0.5;
 
-    // vignette
     float vm = vignetteMask(texCoord);
     rgb *= mix(1.0, vm, clamp(Vignette, 0.0, 1.0));
 

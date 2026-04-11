@@ -15,7 +15,6 @@ void main() {
 
     float k = clamp(Intensity, 0.0, 1.0);
 
-    // small swim so trails feel alive, not smeary
     vec2 wob = vec2(
         sin(Time * 1.15 + texCoord.y * 22.0),
         cos(Time * 0.95 + texCoord.x * 22.0)

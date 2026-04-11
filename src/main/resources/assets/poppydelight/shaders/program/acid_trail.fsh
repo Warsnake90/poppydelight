@@ -13,7 +13,6 @@ out vec4 fragColor;
 void main() {
     vec4 cur = texture(DiffuseSampler, texCoord);
 
-    // tiny wobble so trails "swim"
     float s = max(Intensity, 0.0);
     vec2 wob = vec2(
         sin(Time * 1.7 + texCoord.y * 30.0),

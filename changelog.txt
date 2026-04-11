@@ -1,6 +1,13 @@
-**0.6 GLSL update**
+**0.6.1 Minor tweaks
+- Fixed Shroom Audio halucinations not playing
+- Fixed Opium being messed up
+- tweaked some shader effects
+- Fixed High Opium recipe paper being in the middle rather than at the end (not functional change except it just calms my OCD)
+- Updated version number 0.6.0 -> 0.6.1
 
--Removed create recipe dependency
+**0.6.0 GLSL update**
+
+- Removed create recipe dependency
 - Changed witherdust recipe
 - added Witherdust to dusts datatag
 - Removed broken sounds
@@ -20,3 +27,4 @@ MAJOR CHANGES
 - Added GLSL shaders for every substance bar absinthe
 - Reworked all 4 effect renderers
 - Updated Opium to take a bit to "kick in"
+

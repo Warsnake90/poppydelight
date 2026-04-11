@@ -12,7 +12,6 @@ uniform float SatBoost;
 in vec2 texCoord;
 out vec4 fragColor;
 
-// Hue rotation (fast + good enough)
 vec3 hueRotate(vec3 c, float a) {
     float s = sin(a), co = cos(a);
     mat3 m = mat3(
@@ -31,7 +30,6 @@ vec3 sat(vec3 c, float s) {
 void main() {
     float s = clamp(Intensity, 0.0, 1.0);
 
-    // chromatic aberration
     float a = Aberration * (0.6 + 0.4 * sin(Time * AberrationSpeed)) * (0.6 + 1.2*s);
     vec2 dir = normalize(vec2(0.7, 0.4));
     vec2 off = dir * a;
@@ -42,7 +40,6 @@ void main() {
 
     vec3 base = vec3(r, g, b);
 
-    // Fantastical “oil slick” rainbow overlay
     float lum = dot(base, vec3(0.2126, 0.7152, 0.0722));
 
     float field =
@@ -53,7 +50,6 @@ void main() {
 
     vec3 pal = 0.5 + 0.5 * cos(6.28318 * (vec3(0.00, 0.33, 0.67) + k + Time * (0.03 + 0.10*s)));
 
-    // only push palette hard on highlights to keep things readable
     float highlight = smoothstep(0.55, 0.95, lum);
     float palAmt = (0.10 + 0.35*s) * (0.35 + 0.65*highlight);
 

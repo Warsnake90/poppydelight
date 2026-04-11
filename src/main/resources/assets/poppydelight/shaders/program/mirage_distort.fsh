@@ -26,7 +26,6 @@ void main() {
     float d = texture(DepthSampler, uv).r;
     float df = depthFactor(d);
 
-    // Heat-haze style distortion that ramps with distance
     float t = Time;
     float s = Scale;
 
@@ -37,7 +36,6 @@ void main() {
 
     vec2 offset = wave * (Strength * (0.25 + 1.75 * df) * k);
 
-    // Chromatic aberration (also stronger with distance)
     float c = Chromatic * df * k;
 
     vec3 baseCol = texture(DiffuseSampler, clamp(uv + offset, 0.0, 1.0)).rgb;
@@ -49,7 +47,6 @@ void main() {
 
     vec3 col = mix(baseCol, splitCol, 0.75);
 
-    // Gentle fade breathing so it’s not constantly blasting the player
     float breathe = 0.55 + 0.45 * sin(t * 0.18);
     float amt = clamp(Fade, 0.0, 1.0) * breathe * k;
 

@@ -14,7 +14,6 @@ void main() {
 
     vec4 sum = vec4(0.0);
 
-    // 7-tap gaussian style blur (horizontal)
     sum += texture(DiffuseSampler, texCoord + px * (-3.0 * r)) * 0.070;
     sum += texture(DiffuseSampler, texCoord + px * (-2.0 * r)) * 0.131;
     sum += texture(DiffuseSampler, texCoord + px * (-1.0 * r)) * 0.190;
