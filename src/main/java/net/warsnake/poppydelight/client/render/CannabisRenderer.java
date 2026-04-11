@@ -1,5 +1,6 @@
 package net.warsnake.poppydelight.client.render;
 
+import net.minecraft.core.BlockPos;
 import net.minecraftforge.client.event.InputEvent;
 import net.warsnake.poppydelight.effect.ModEffects;
 import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
@@ -28,13 +29,12 @@ import java.util.concurrent.TimeUnit;
 
 public class CannabisRenderer {
 
-
+    public boolean effectActiveLastTick = false;
+    public Set<BlockPos> uncoveredBlocks = new HashSet<>();
     public static final ResourceLocation CANNABIS_SHADER =
-            new ResourceLocation("poppydelight", "shaders/post/cannabis.json");
+            new ResourceLocation("poppydelight", "shaders/post/weed.json");
     public static final ResourceLocation CANNABIS_TEXTURE =
             new ResourceLocation("poppydelight", "textures/overlay/cannabis.png");
-
-    public boolean effectActiveLastTick = false;
 
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event) {
@@ -43,6 +43,11 @@ public class CannabisRenderer {
 
             onEffectTick(event);
 
+        }
+
+        if (event.player.level().isClientSide
+                && event.player == Minecraft.getInstance().player) {
+            this.onEffectTick(event);
         }
     }
 
@@ -140,5 +145,26 @@ public class CannabisRenderer {
                 renderer.shutdownEffect();
             });
         }
+
+        MobEffectInstance effect2 = event.player.getEffect((MobEffect) ModEffects.POTHIGH.get());
+        int duration2 = effect2 == null ? 0 : effect.getDuration();
+
+        if (duration2 > 1) {
+            if (!this.effectActiveLastTick) {
+                this.effectActiveLastTick = true;
+
+                Minecraft.getInstance().execute(() -> {
+                    Minecraft.getInstance().gameRenderer.loadEffect(CANNABIS_SHADER);
+                });
+            }
+        } else if (this.effectActiveLastTick) {
+            this.effectActiveLastTick = false;
+            Minecraft.getInstance().execute(() -> {
+                Minecraft.getInstance().gameRenderer.shutdownEffect();
+            });
+        }
     }
-}
+
+    }
+
+

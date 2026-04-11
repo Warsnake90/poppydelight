@@ -138,10 +138,6 @@ public class ModItems {
                     () -> new RecordItem(1, ModSounds.TOXIC,new Item.Properties().stacksTo(1), 2160 ));
     public static final RegistryObject<Item> STICKERBRUSH = ITEMS.register("stickerbrush_music_disc",
                     () -> new RecordItem(1, ModSounds.STICKERBRUSH,new Item.Properties().stacksTo(1), 5360 ));
-    public static final RegistryObject<Item> ENDS = ITEMS.register("ends_music_disc",
-                    () -> new RecordItem(1, ModSounds.ENDS,new Item.Properties().stacksTo(1), 2980 ));
-    public static final RegistryObject<Item> STARS = ITEMS.register("stars_music_disc",
-                    () -> new RecordItem(1, ModSounds.STARS,new Item.Properties().stacksTo(1), 1460 ));
 
     // disc crafting
     public static final RegistryObject<Item> DISC0 = ITEMS.register("unfinished_disc", () -> new Item(new Item.Properties()));

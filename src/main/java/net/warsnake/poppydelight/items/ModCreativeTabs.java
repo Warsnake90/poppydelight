@@ -62,10 +62,11 @@ public class ModCreativeTabs {
                         output.accept(ModItems.WORMWOODLEAF.get());
                         output.accept(ModItems.ABSINTHE.get());
 
-                        // hemp
+                        // weed
 
                         output.accept(ModItems.HEMPSEED.get());
                         output.accept(ModItems.HEMPLEAF.get());
+                        output.accept(ModItems.DRYHEMPLEAF.get());
                         output.accept(ModItems.WETROLLINGPAPER.get());
                         output.accept(ModItems.ROLLINGPAPER.get());
                         output.accept(ModItems.JOINT.get());
@@ -90,8 +91,7 @@ public class ModCreativeTabs {
                       //output.accept(ModItems.TOXIC.get());
                         //output.accept(ModItems.LIGHT.get());
                         //output.accept(ModItems.STICKERBRUSH.get());
-                       // output.accept(ModItems.STARS.get());
-                        //output.accept(ModItems.ENDS.get());
+
 
                     })
                     .build()

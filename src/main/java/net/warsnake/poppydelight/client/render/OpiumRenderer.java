@@ -44,6 +44,12 @@ public class OpiumRenderer {
                 onEffectTick(event);
 
         }
+
+        if (event.player.level().isClientSide
+                && event.player == Minecraft.getInstance().player) {
+            this.onEffectTick(event);
+        }
+
     }
 
     public void renderOverlay(PoseStack poseStack) {
@@ -140,5 +146,23 @@ public class OpiumRenderer {
                 renderer.shutdownEffect();
             });
         }
+
+        MobEffectInstance effect2 = event.player.getEffect((MobEffect) ModEffects.OPIUMHIGH.get());
+        int duration2 = effect2 == null ? 0 : effect2.getDuration();
+
+        if (duration2 > 1) {
+            if (!this.effectActiveLastTick) {
+                this.effectActiveLastTick = true;
+                Minecraft.getInstance().execute(() -> {
+                    Minecraft.getInstance().gameRenderer.loadEffect(OPIUM_SHADER);
+                });
+            }
+        } else if (this.effectActiveLastTick) {
+            this.effectActiveLastTick = false;
+            Minecraft.getInstance().execute(() -> {
+                Minecraft.getInstance().gameRenderer.shutdownEffect();
+            });
+        }
     }
-}
+
+    }

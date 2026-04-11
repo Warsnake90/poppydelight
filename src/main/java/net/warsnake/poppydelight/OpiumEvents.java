@@ -42,6 +42,8 @@ public class OpiumEvents {
     private static final Map<UUID, Integer> opiumLevel = new HashMap<>();
     private static final Map<UUID, Long> lastDecreaseTime = new HashMap<>();
     private static final Map<UUID, Boolean> hadShaderLastTick = new HashMap<>();
+    private static final Map<UUID, Long> opiumConsumeTime = new HashMap<>();
+    private static final Map<UUID, Integer> pendingOpium = new HashMap<>();
 
     private static final Random rand = new Random();
 
@@ -85,13 +87,41 @@ public class OpiumEvents {
 
         lastDecreaseTime.putIfAbsent(uuid, player.level().getGameTime());
 
-        applyStageEffects(player, current);
+        opiumConsumeTime.put(uuid, player.level().getGameTime());
+        pendingOpium.merge(uuid, amount, Integer::sum);
 
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        if (event.player.level().isClientSide()) return;
+
+        Player player = event.player;
+        UUID uuid = player.getUUID();
+
+        if (!opiumConsumeTime.containsKey(uuid)) return;
+
+        long consumedAt = opiumConsumeTime.get(uuid);
+        long now = player.level().getGameTime();
+
+        if (now - consumedAt >= fifteentimer) {
+            int pending = pendingOpium.getOrDefault(uuid, 0);
+            if (pending > 0) {
+                int current = opiumLevel.getOrDefault(uuid, 0) + pending;
+                opiumLevel.put(uuid, current);
+                lastDecreaseTime.putIfAbsent(uuid, now);
+                applyStageEffects(player, current);
+            }
+            opiumConsumeTime.remove(uuid);
+            pendingOpium.remove(uuid);
+        }
     }
 
     // ughhhhhh ts is so overly complex
     @SubscribeEvent
     public static void onWorldTick( TickEvent.PlayerTickEvent event) {
+
         Player player = event.player;
         UUID uuid = player.getUUID();
 

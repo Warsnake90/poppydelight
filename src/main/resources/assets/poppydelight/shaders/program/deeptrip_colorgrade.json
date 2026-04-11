@@ -1,0 +1,16 @@
+{
+  "vertex": "poppydelight:deeptrip_colorgrade",
+  "fragment": "poppydelight:deeptrip_colorgrade",
+  "samplers": [
+    { "name": "DiffuseSampler" }
+  ],
+  "uniforms": [
+    { "name": "Time",          "type": "float", "count": 1, "values": [0.0] },
+    { "name": "HueShift",      "type": "float", "count": 1, "values": [0.0] },
+    { "name": "HueDriftSpeed", "type": "float", "count": 1, "values": [0.0] },
+    { "name": "Saturation",    "type": "float", "count": 1, "values": [1.0] },
+    { "name": "Contrast",      "type": "float", "count": 1, "values": [1.0] },
+    { "name": "Exposure",      "type": "float", "count": 1, "values": [1.0] },
+    { "name": "Vignette",      "type": "float", "count": 1, "values": [0.0] }
+  ]
+}

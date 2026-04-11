@@ -1,0 +1,13 @@
+{
+  "vertex": "poppydelight:acid_post",
+  "fragment": "poppydelight:fractal_composite",
+  "samplers": [{ "name": "DiffuseSampler" }],
+  "uniforms": [
+    { "name": "Time", "type": "float", "count": 1, "values": [0.0] },
+    { "name": "Intensity", "type": "float", "count": 1, "values": [0.0] },
+    { "name": "WarpStrength", "type": "float", "count": 1, "values": [0.0] },
+    { "name": "WarpScale", "type": "float", "count": 1, "values": [2.2] },
+    { "name": "HueSpeed", "type": "float", "count": 1, "values": [0.2] },
+    { "name": "SatBoost", "type": "float", "count": 1, "values": [1.2] }
+  ]
+}

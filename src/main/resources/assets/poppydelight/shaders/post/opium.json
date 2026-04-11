@@ -1,51 +1,63 @@
 {
   "targets": [
-    "0",
-    "1"
+    "swap",
+    "swap1",
+    "a"
   ],
   "passes": [
     {
-      "name": "blobs2",
+      "name": "outline_soft",
       "intarget": "minecraft:main",
-      "outtarget": "0"
+      "outtarget": "a"
     },
     {
-      "name": "outline_watercolor",
-      "intarget": "0",
-      "outtarget": "minecraft:main"
+      "name": "scan_pincushion",
+      "intarget": "a",
+      "outtarget": "swap1"
+    },
+    {
+      "name": "wobble",
+      "intarget": "swap1",
+      "outtarget": "swap"
     },
     {
       "name": "blur",
       "intarget": "minecraft:main",
-      "outtarget": "1",
+      "outtarget": "swap",
       "uniforms": [
-        { "name": "BlurDir", "values": [0.8, 0.0] },
-        { "name": "Radius", "values": [20.0] }
-      ]
-    },
-    {
-      "name": "blur",
-      "intarget": "1",
-      "outtarget": "minecraft:main",
-      "uniforms": [
-        { "name": "BlurDir", "values": [0.0, 0.8] },
-        { "name": "Radius", "values": [20.0] }
-      ]
-    },
-    {
-      "name": "outline_combine",
-      "intarget": "0",
-      "outtarget": "1",
-      "auxtargets": [
         {
-          "name": "OutlineSampler",
-          "id": "minecraft:main"
+          "name": "BlurDir",
+          "values": [ 1.0, 0.0 ]
+        },
+        {
+          "name": "Radius",
+          "values": [ 20.0 ]
         }
       ]
     },
     {
+      "name": "blur",
+      "intarget": "swap",
+      "outtarget": "minecraft:main",
+      "uniforms": [
+        {
+          "name": "BlurDir",
+          "values": [ 0.0, 1.0 ]
+        },
+        {
+          "name": "Radius",
+          "values": [ 20.0 ]
+        }
+      ]
+    },
+    {
+      "name": "outline_soft",
+      "intarget": "minecraft:main",
+      "outtarget": "swap"
+    },
+    {
       "name": "blit",
-      "intarget": "1",
+      "intarget": "swap",
       "outtarget": "minecraft:main"
     }
   ]

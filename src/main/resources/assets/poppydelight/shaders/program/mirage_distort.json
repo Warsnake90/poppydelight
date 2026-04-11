@@ -1,0 +1,18 @@
+{
+  "blend": { "func": "add", "srcrgb": "one", "dstrgb": "zero" },
+  "vertex": "poppydelight:acid_post",
+  "fragment": "poppydelight:mirage_distort",
+  "attributes": [ "Position", "UV0" ],
+  "samplers": [
+    { "name": "DiffuseSampler" },
+    { "name": "DepthSampler" }
+  ],
+  "uniforms": [
+    { "name": "Time",      "type": "float", "count": 1, "values": [ 0.0 ] },
+    { "name": "Intensity", "type": "float", "count": 1, "values": [ 0.0 ] },
+    { "name": "Strength",  "type": "float", "count": 1, "values": [ 0.0035 ] },
+    { "name": "Scale",     "type": "float", "count": 1, "values": [ 1.6 ] },
+    { "name": "Chromatic", "type": "float", "count": 1, "values": [ 0.0015 ] },
+    { "name": "Fade",      "type": "float", "count": 1, "values": [ 1.0 ] }
+  ]
+}

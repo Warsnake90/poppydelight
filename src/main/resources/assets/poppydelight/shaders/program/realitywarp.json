@@ -1,0 +1,11 @@
+{
+  "vertex": "poppydelight:acid_post",
+  "fragment": "poppydelight:realitywarp",
+  "samplers": [{ "name": "DiffuseSampler" }],
+  "uniforms": [
+    { "name": "Time",      "type": "float", "count": 1, "values": [0.0] },
+    { "name": "Intensity", "type": "float", "count": 1, "values": [1.0] },
+    { "name": "WarpAmp",   "type": "float", "count": 1, "values": [0.02] },
+    { "name": "Fold",      "type": "float", "count": 1, "values": [0.7] }
+  ]
+}

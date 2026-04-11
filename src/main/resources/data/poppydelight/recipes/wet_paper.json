@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:buckets/water"
+    },{
+      "item": "minecraft:paper"
+    },{
+      "item": "minecraft:paper"
+    },{
+      "item": "minecraft:paper"
+    },{
+      "item": "poppydelight:hempleaf"
+    },{
+      "item": "poppydelight:hempleaf"
+    }
+  ],
+  "result": {
+    "item": "poppydelight:wetrollingpaper",
+    "count": 6
+  }
+}

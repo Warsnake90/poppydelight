@@ -1,0 +1,41 @@
+{
+  "targets": [
+    "swap",
+    "previous",
+    "a",
+    "b"
+  ],
+  "passes": [
+    {
+      "name": "poppydelight:acid_warp",
+      "intarget": "minecraft:main",
+      "outtarget": "a"
+    },
+    {
+      "name": "poppydelight:acid_chromatic",
+      "intarget": "a",
+      "outtarget": "b"
+    },
+    {
+      "name": "poppydelight:acid_trail",
+      "intarget": "b",
+      "outtarget": "swap",
+      "auxtargets": [
+        {
+          "name": "PrevSampler",
+          "id": "previous"
+        }
+      ]
+    },
+    {
+      "name": "blit",
+      "intarget": "swap",
+      "outtarget": "previous"
+    },
+    {
+      "name": "blit",
+      "intarget": "swap",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

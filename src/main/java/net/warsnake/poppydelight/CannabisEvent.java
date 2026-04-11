@@ -101,7 +101,7 @@ public class CannabisEvent {
         int effectLevel = getEffectLevel(p);
         apply(p, 2399,
                 new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 2399, effectLevel),
-                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 2399, effectLevel),
+                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 2399, effectLevel - 2),
                 new MobEffectInstance(MobEffects.WEAKNESS, 2399, effectLevel),
                 new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2399, effectLevel),
                 new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 2399, effectLevel, false, true, true)
@@ -124,7 +124,7 @@ public class CannabisEvent {
         int effectLevel = getEffectLevel(p);
         apply(p, 5999,
                 new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 11999, effectLevel),
-                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 11999, effectLevel),
+                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 11999, effectLevel - 1),
                 new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 11999, 1),
                 new MobEffectInstance(ModEffects.POTHIGH.get(), 11999, 0),
                 new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 11999, effectLevel + 3, false, true, true)
@@ -134,7 +134,7 @@ public class CannabisEvent {
     private static void apply20MinuteEffects(Player p) {
         int effectLevel = getEffectLevel(p);
         apply(p, 11999,
-                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 5999, effectLevel + 1),
+                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 5999, effectLevel - 1),
                 new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 5999, effectLevel + 2, false, true, true)
         );
     }

@@ -1,3 +1,22 @@
-- Fixed Guiscale
-- Removed Gui scale warnings
-- Added Music disks
+**0.6 GLSL update**
+
+-Removed create recipe dependency
+- Changed witherdust recipe
+- added Witherdust to dusts datatag
+- Removed broken sounds
+- Updated en_us.json
+- changed cannabis visual effects
+- changed opium visual effects
+- changed shrooms visual effects
+- changed badshroomstrip visual effects
+- Updated Readme.md to reflect these tweaks
+- updated version number from 0.5.3 to 0.6.0
+- Deleted old broken GLSL starting sections
+- Tweaked most recipes
+- Changed joints to use Dried cannabis rather than raw leaves
+
+MAJOR CHANGES
+
+- Added GLSL shaders for every substance bar absinthe
+- Reworked all 4 effect renderers
+- Updated Opium to take a bit to "kick in"

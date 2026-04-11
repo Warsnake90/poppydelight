@@ -1,0 +1,13 @@
+{
+  "vertex": "poppydelight:acid_post",
+  "fragment": "poppydelight:acid_trail",
+  "samplers": [
+    { "name": "DiffuseSampler" },
+    { "name": "PrevSampler" }
+  ],
+  "uniforms": [
+    { "name": "Time", "type": "float", "count": 1, "values": [0.0] },
+    { "name": "Intensity", "type": "float", "count": 1, "values": [0.0] },
+    { "name": "TrailStrength", "type": "float", "count": 1, "values": [0.0] }
+  ]
+}

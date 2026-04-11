@@ -2,7 +2,11 @@ package net.warsnake.poppydelight.client.render;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
+import net.minecraft.client.renderer.PostChain;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.event.TickEvent;
 import net.warsnake.poppydelight.effect.ModEffects;
 import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
 import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
@@ -17,6 +21,8 @@ import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.glfw.GLFW;
 
+import java.lang.reflect.Field;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 public class BadTripRenderer {
 
     private static final ResourceLocation SHROOM_SHADER =
-            new ResourceLocation("poppydelight", "shaders/post/shrooms.json");
+            new ResourceLocation("poppydelight", "shaders/post/badshrooms.json");
 
     public boolean effectActiveLastTick = false;
 
@@ -36,6 +42,9 @@ public class BadTripRenderer {
     private int timer;
     ResourceLocation textureY;
     ResourceLocation textureX;
+    private static boolean activeLastTick = false;
+    private static float t = 0.0F;
+    private static float intensity = 0.0F;
 
     private boolean invertColors = false;
 
@@ -47,11 +56,13 @@ public class BadTripRenderer {
             onEffectTick(event);
 
             timer++;
-
-            if (tickCounter % 20 == 0) {
-                invertColors = random.nextInt(20) == 0;
-            }
         }
+
+        if (event.player.level().isClientSide
+                && event.player == Minecraft.getInstance().player) {
+            this.onEffectTick(event);
+        }
+
     }
 
     public void renderOverlay(PoseStack poseStack) {
@@ -261,25 +272,23 @@ public class BadTripRenderer {
             return;
         }
 
-        MobEffectInstance effect = event.player.getEffect(ModEffects.BADSHROOMHIGH.get());
+        MobEffectInstance effect = event.player.getEffect((MobEffect) ModEffects.BADSHROOMHIGH.get());
         int duration = effect == null ? 0 : effect.getDuration();
 
         if (duration > 1) {
-            if (!effectActiveLastTick) {
-                effectActiveLastTick = true;
-
+            if (!this.effectActiveLastTick) {
+                this.effectActiveLastTick = true;
                 Minecraft.getInstance().execute(() -> {
-                    GameRenderer renderer = Minecraft.getInstance().gameRenderer;
-                    renderer.loadEffect(SHROOM_SHADER);
+                    Minecraft.getInstance().gameRenderer.loadEffect(SHROOM_SHADER);
                 });
             }
-        } else if (effectActiveLastTick) {
-            effectActiveLastTick = false;
-
+        } else if (this.effectActiveLastTick) {
+            this.effectActiveLastTick = false;
             Minecraft.getInstance().execute(() -> {
-                GameRenderer renderer = Minecraft.getInstance().gameRenderer;
-                renderer.shutdownEffect();
+                Minecraft.getInstance().gameRenderer.shutdownEffect();
             });
         }
     }
+
+
 }

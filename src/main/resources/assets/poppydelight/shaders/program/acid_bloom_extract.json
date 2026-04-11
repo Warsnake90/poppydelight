@@ -1,0 +1,13 @@
+{
+  "vertex": "minecraft:post/post",
+  "fragment": "poppydelight:acid_bloom_extract",
+  "samplers": [
+    { "name": "DiffuseSampler" }
+  ],
+  "uniforms": [
+    { "name": "InSize", "type": "float", "count": 2, "values": [1.0, 1.0] },
+    { "name": "OutSize", "type": "float", "count": 2, "values": [1.0, 1.0] },
+    { "name": "Threshold", "type": "float", "count": 1, "values": [0.72] },
+    { "name": "Knee", "type": "float", "count": 1, "values": [0.2] }
+  ]
+}

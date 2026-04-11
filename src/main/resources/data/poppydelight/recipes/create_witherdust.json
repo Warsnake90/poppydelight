@@ -1,14 +1,25 @@
 {
-  "type": "create:crushing",
+  "type": "farmersdelight:cutting",
   "ingredients": [
     {
       "item": "minecraft:wither_skeleton_skull"
     }
   ],
-  "processingTime": 250,
-  "results": [
+  "tool": {
+    "tag": "forge:tools/pickaxes"
+  },
+  "result": [
     {
-      "item": "poppydelight:wither_dust"
+      "item": "poppydelight:wither_dust",
+      "count": 1
+    },
+    {
+      "item": "minecraft:black_dye",
+      "count": 2
+    },
+    {
+      "item": "minecraft:gunpowder",
+      "count": 1
     }
   ]
 }

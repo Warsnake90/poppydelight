@@ -1,0 +1,29 @@
+{
+  "targets": [
+    "swap",
+    "a",
+    "b"
+  ],
+  "passes": [
+    {
+      "name": "bits",
+      "intarget": "minecraft:main",
+      "outtarget": "a"
+    },
+    {
+      "name": "wobble",
+      "intarget": "a",
+      "outtarget": "b"
+    },
+    {
+      "name": "scan_pincushion",
+      "intarget": "b",
+      "outtarget": "swap"
+    },
+    {
+      "name": "blit",
+      "intarget": "swap",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

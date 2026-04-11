@@ -38,21 +38,5 @@
         "stream": true
       }
     ]
-  },
-  "ends": {
-    "sounds": [
-      {
-        "name": "poppydelight:ends",
-        "stream": true
-      }
-    ]
-  },
-  "stars": {
-    "sounds": [
-      {
-        "name": "poppydelight:stars",
-        "stream": true
-      }
-    ]
   }
 }

@@ -3,17 +3,17 @@ package net.warsnake.poppydelight.client.render;
 import com.mojang.blaze3d.shaders.Uniform;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.client.renderer.PostChain;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.TickEvent;
-import net.warsnake.poppydelight.PsychedelicShaderHandler;
 import net.warsnake.poppydelight.effect.ModEffects;
 import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
 import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.VertexFormat.Mode;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -22,6 +22,7 @@ import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.glfw.GLFW;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -30,9 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class ShroomsRenderer {
 
     private static final ResourceLocation SHROOM_SHADER =
-            new ResourceLocation("poppydelight", "shaders/post/shrooms.json");
-
-
+            new ResourceLocation("poppydelight", "shaders/post/psychedelic.json");
 
     public boolean effectActiveLastTick = false;
 
@@ -42,7 +41,9 @@ public class ShroomsRenderer {
     private int y = random.nextInt(5) + 1;
     private int w = 1;
     private int timer;
-
+    private static boolean activeLastTick = false;
+    private static float t = 0.0F;
+    private static float intensity = 0.0F;
 
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event) {
@@ -53,6 +54,62 @@ public class ShroomsRenderer {
 
             timer++;
         }
+
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player != null) {
+            if (event.player.level().isClientSide) {
+                if (event.player == mc.player) {
+                    if (event.phase == TickEvent.Phase.END) {
+                        MobEffectInstance eff = mc.player.getEffect((MobEffect) ModEffects.SHROOMHIGH.get());
+                        int dur = eff == null ? 0 : eff.getDuration();
+                        int amp = eff == null ? 0 : eff.getAmplifier();
+                        boolean shouldBeActive = dur > 1;
+                        float target = shouldBeActive ? 1.0F : 0.0F;
+                        float lerpSpeed = shouldBeActive ? 0.12F : 0.18F;
+                        intensity = Mth.lerp(lerpSpeed, intensity, target);
+                        if (intensity > 0.001F) {
+                            t += 0.05F;
+                        }
+
+                        if (shouldBeActive && !activeLastTick) {
+                            activeLastTick = true;
+                            mc.execute(() -> {
+                                mc.gameRenderer.loadEffect(SHROOM_SHADER);
+                            });
+                        } else if (!shouldBeActive && activeLastTick && intensity < 0.01F) {
+                            activeLastTick = false;
+                            mc.execute(() -> {
+                                mc.gameRenderer.shutdownEffect();
+                            });
+                        }
+
+                        if (activeLastTick) {
+                            PostChain chain = getPostChain(mc.gameRenderer);
+                            if (chain != null) {
+                                float ampBoost = 1.0F + (float) amp * 0.25F;
+                                setUniformEveryPass(chain, "Time", t);
+                                setUniformEveryPass(chain, "Intensity", intensity);
+                                float breathe = 0.55F + 0.45F * Mth.sin(t * 0.2F);
+                                float baseWarp = 0.0065F * intensity * ampBoost;
+                                setUniformEveryPass(chain, "WarpStrength", baseWarp * breathe);
+                                setUniformEveryPass(chain, "WarpScale", 2.2F);
+                                setUniformEveryPass(chain, "BreathSpeed", 0.6F * ampBoost);
+                                setUniformEveryPass(chain, "Aberration", 0.0015F + 0.002F * intensity);
+                                setUniformEveryPass(chain, "AberrationSpeed", 0.9F * ampBoost);
+                                setUniformEveryPass(chain, "HueSpeed", 0.1F + 0.35F * intensity);
+                                setUniformEveryPass(chain, "SatBoost", 1.15F + 0.35F * intensity);
+                                setUniformEveryPass(chain, "Threshold", 0.72F);
+                                setUniformEveryPass(chain, "Knee", 0.2F);
+                                setUniformEveryPass(chain, "BloomStrength", 0.55F * intensity);
+                                setUniformEveryPass(chain, "Radius", 6.0F);
+                                setUniformEveryPass(chain, "TrailStrength", 0.62F + 0.16F * intensity);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     private static boolean HUD_EFFECTS_ENABLED = true;
@@ -129,9 +186,8 @@ public class ShroomsRenderer {
 
             Minecraft minecraft = Minecraft.getInstance();
             GameRenderer renderer = minecraft.gameRenderer;
-            renderer.loadEffect(SHROOM_SHADER);
+          renderer.loadEffect(SHROOM_SHADER);
 
-            //PsychedelicShaderHandler.enable();
         }
     }
 
@@ -143,12 +199,12 @@ public class ShroomsRenderer {
 
         if (effect != null && effect.getDuration() > 1 && !effectActiveLastTick) {
             effectActiveLastTick = true;
-            minecraft.execute(() -> minecraft.gameRenderer.loadEffect(SHROOM_SHADER));
-           // PsychedelicShaderHandler.enable();
+           minecraft.execute(() -> minecraft.gameRenderer.loadEffect(SHROOM_SHADER));
+
         } else if ((effect == null || effect.getDuration() <= 1) && effectActiveLastTick) {
             effectActiveLastTick = false;
             minecraft.execute(() -> minecraft.gameRenderer.shutdownEffect());
-            //PsychedelicShaderHandler.disable();
+
         }
 
         if (effect == null) return;
@@ -246,8 +302,8 @@ public class ShroomsRenderer {
 
                 Minecraft.getInstance().execute(() -> {
                     GameRenderer renderer = Minecraft.getInstance().gameRenderer;
-                    renderer.loadEffect(SHROOM_SHADER);
-                    //PsychedelicShaderHandler.enable();
+                  renderer.loadEffect(SHROOM_SHADER);
+
                 });
             }
         } else if (effectActiveLastTick) {
@@ -256,10 +312,39 @@ public class ShroomsRenderer {
             Minecraft.getInstance().execute(() -> {
                 GameRenderer renderer = Minecraft.getInstance().gameRenderer;
                 renderer.shutdownEffect();
-                //PsychedelicShaderHandler.disable();
+
             });
         }
     }
 
+        private static PostChain getPostChain(GameRenderer renderer) {
+            try {
+                Field f = GameRenderer.class.getDeclaredField("postEffect");
+                f.setAccessible(true);
+                return (PostChain) f.get(renderer);
+            } catch (Throwable e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
 
-}
+        private static void setUniformEveryPass(PostChain chain, String name, float v) {
+            try {
+                Field passesField = PostChain.class.getDeclaredField("passes");
+                passesField.setAccessible(true);
+                List<?> passes = (List<?>) passesField.get(chain);
+
+                for (Object passObj : passes) {
+                    Field effectField = passObj.getClass().getDeclaredField("effect");
+                    effectField.setAccessible(true);
+                    Object effect = effectField.get(passObj);
+                    Object uniform = effect.getClass().getMethod("getUniform", String.class).invoke(effect, name);
+                    if (uniform != null) {
+                        uniform.getClass().getMethod("set", Float.TYPE).invoke(uniform, v);
+                    }
+                }
+            } catch (Throwable e) {
+                e.printStackTrace();
+            }
+        }
+    }

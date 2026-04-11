@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:buckets/water"
+    },{
+      "item": "poppydelight:opium"
+    },{
+      "item": "poppydelight:opium"
+    },{
+      "item": "poppydelight:opium"
+    },{
+      "item": "minecraft:paper"
+    },{
+      "item": "poppydelight:opium"
+    },{
+      "item": "poppydelight:opium"
+    },{
+      "item": "poppydelight:opium"
+    }
+  ],
+  "result": {
+    "item": "poppydelight:highquality",
+    "count": 1
+  }
+}

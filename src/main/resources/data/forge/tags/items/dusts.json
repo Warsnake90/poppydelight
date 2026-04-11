@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "poppydelight:dust"
+    "poppydelight:dust",
+    "poppydelight:wither_dust"
   ]
 }

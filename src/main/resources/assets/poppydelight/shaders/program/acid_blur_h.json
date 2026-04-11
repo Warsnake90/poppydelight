@@ -1,0 +1,12 @@
+{
+  "vertex": "minecraft:post/post",
+  "fragment": "poppydelight:acid_blur_h",
+  "samplers": [
+    { "name": "DiffuseSampler" }
+  ],
+  "uniforms": [
+    { "name": "InSize", "type": "float", "count": 2, "values": [1.0, 1.0] },
+    { "name": "OutSize", "type": "float", "count": 2, "values": [1.0, 1.0] },
+    { "name": "Radius", "type": "float", "count": 1, "values": [6.0] }
+  ]
+}
