@@ -22,6 +22,7 @@ public class ClientOverlaySetup {
         MinecraftForge.EVENT_BUS.register(PoppyDelight.SHROOM_EFFECT_RENDERER);
         MinecraftForge.EVENT_BUS.register(PoppyDelight.BAD_SHROOM_EFFECT_RENDERER);
         MinecraftForge.EVENT_BUS.register(PoppyDelight.POT_EFFECT_RENDERER);
+        MinecraftForge.EVENT_BUS.register(PoppyDelight.TUNNEL_VISION_RENDERER);
     }
 
     @SubscribeEvent
@@ -48,6 +49,12 @@ public class ClientOverlaySetup {
             if (PoppyDelight.POT_EFFECT_RENDERER.effectActiveLastTick) {
                 gui.setupOverlayRenderState(true, false);
                 PoppyDelight.POT_EFFECT_RENDERER.renderOverlay(guiGraphics.pose());
+            }
+        });
+        event.registerAboveAll("tunnelvision", (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
+            if (PoppyDelight.TUNNEL_VISION_RENDERER.effectActiveLastTick) {
+                gui.setupOverlayRenderState(true, false);
+                PoppyDelight.TUNNEL_VISION_RENDERER.renderOverlay(guiGraphics.pose());
             }
         });
 

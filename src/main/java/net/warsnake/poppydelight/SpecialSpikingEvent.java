@@ -39,7 +39,7 @@ public class SpecialSpikingEvent {
         int potcount = offhand.getCount();
 
 
-        if (offhand.is(ModItems.HEMPLEAF.get()) && potcount > 2) {
+        if (offhand.is(ModItems.DRYHEMPLEAF.get()) && potcount > 2) {
             PotItem.getOrCreateTag().putBoolean("pot", true);
         }
 

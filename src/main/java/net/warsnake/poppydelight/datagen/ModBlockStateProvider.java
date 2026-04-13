@@ -1,5 +1,6 @@
 package net.warsnake.poppydelight.datagen;
 
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.warsnake.poppydelight.PoppyDelight;
 import net.warsnake.poppydelight.blocks.HempCropBlock;
 import net.warsnake.poppydelight.blocks.ModBlocks;
@@ -27,6 +28,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         makePoppyCrop(ModBlocks.POPPY_CROP.get(), "poppy_crop_stage", "poppy_crop_stage");
         makeHempCrop(ModBlocks.HEMP_CROP.get(), "hemp_crop_stage", "hemp_crop_stage");
         makeShroomCrop(ModBlocks.SHROOM_CROP.get(), "shroom_crop_stage", "shroom_crop_stage");
+
+        simpleBlockWithItem(ModBlocks.DRYING_TABLE.get(),
+        new ModelFile.UncheckedModelFile(modLoc("block/dryingtable")));
     }
 
     public void makePoppyCrop(PoppyCropBlock block, String modelName, String textureName) {
@@ -70,5 +74,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         return models;
     }
+
+
 
 }

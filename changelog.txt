@@ -1,3 +1,21 @@
+**0.6.2 semi-Major improvements**
+
+ - - - Minor stuff - - -
+- Removed campfire recipes for drying
+- Fixed typo on TDX poisoning stage
+- tweaked Hemp loottable
+- Changed
+- Added tunnel vision renderer & overlay
+- Added Block entity support gizmos
+- Version number 0.6.1 -> 0.6.2
+- Tweaked some status effects during stages of being high
+- Removed createmod from Build.gradle
+
+- - - semi Major stuff - - -
+- Added Drying rack (MAJOR WIP with model specificly, right now its temp model)
+- Added Tunel vission effects to Overdose and poisoning
+- Added message "slurring" with varying effects depending on the substance your on
+
 **0.6.1 Minor tweaks
 - Fixed Shroom Audio halucinations not playing
 - Fixed Opium being messed up

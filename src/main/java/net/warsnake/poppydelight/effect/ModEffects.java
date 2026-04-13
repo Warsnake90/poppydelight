@@ -13,6 +13,7 @@ public class ModEffects {
     public static final RegistryObject<MobEffect> SHROOMHIGH;
     public static final RegistryObject<MobEffect> BADSHROOMHIGH;
     public static final RegistryObject<MobEffect> POTHIGH;
+    public static final RegistryObject<MobEffect> TUNNELVISION;
 
 
     public static void register(IEventBus eventBus) {
@@ -35,6 +36,10 @@ public class ModEffects {
 
         POTHIGH = MOB_EFFECTS.register("pot", () -> {
             return new PotEffect(MobEffectCategory.NEUTRAL, 0x00000000);
+        });
+
+        TUNNELVISION = MOB_EFFECTS.register("tunnel", () -> {
+            return new TunnelVisionEffect(MobEffectCategory.NEUTRAL, 0x00000000);
         });
     }
 }

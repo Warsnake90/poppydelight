@@ -17,116 +17,91 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, PoppyDelight.MODID);
 
     public static final RegistryObject<Item> DEBUGITEM =
-            ITEMS.register("debugitem",
-                    () -> new Item(new Item.Properties().stacksTo(1)));
+            ITEMS.register("debugitem", () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> TDXVIAL =
-            ITEMS.register("tdxvial",
-                    () -> new FinalTdxItem(new Item.Properties()));
+            ITEMS.register("tdxvial", () -> new FinalTdxItem(new Item.Properties()));
 
     public static final RegistryObject<Item> TDXGLAND =
-            ITEMS.register("tdxgland",
-                    () -> new TdxItem(new Item.Properties().stacksTo(1)));
+            ITEMS.register("tdxgland", () -> new TdxItem(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> TDXAGENT =
-            ITEMS.register("tdxagent",
-                    () -> new TdxItem(new Item.Properties().stacksTo(1)));
+            ITEMS.register("tdxagent", () -> new TdxItem(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> DUST =
-            ITEMS.register("dust",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("dust", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> RAWOPIUM =
-            ITEMS.register("rawopium",
-                    () -> new Item(new Item.Properties().stacksTo(64)));
+            ITEMS.register("rawopium", () -> new Item(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> LOWQUALITY =
-            ITEMS.register("lowquality",
-                    () -> new LowOpiumItem(new Item.Properties().stacksTo(64)));
+            ITEMS.register("lowquality", () -> new LowOpiumItem(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> OPIUM =
-            ITEMS.register("opium",
-                    () -> new MedOpiumItem(new Item.Properties().stacksTo(64)));
+            ITEMS.register("opium", () -> new MedOpiumItem(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> HIGHQUALITY =
-            ITEMS.register("highquality",
-                    () -> new HighOpiumItem(new Item.Properties().stacksTo(64)));
+            ITEMS.register("highquality", () -> new HighOpiumItem(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> POPPYSEED =
-            ITEMS.register("poppyseed",
-                    () -> new ItemNameBlockItem(ModBlocks.POPPY_CROP.get(), new Item.Properties()));
+            ITEMS.register("poppyseed", () -> new ItemNameBlockItem(ModBlocks.POPPY_CROP.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> WITHERDUST =
-            ITEMS.register("wither_dust",
-                    () -> new WitherItem(new Item.Properties().stacksTo(64)));
+            ITEMS.register("wither_dust", () -> new WitherItem(new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> CRYINGPOD =
-            ITEMS.register("cryingpod",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("cryingpod", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> HIGHPACKAGE =
-            ITEMS.register("highpackage",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("highpackage", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> PACKAGE =
-            ITEMS.register("package",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("package", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> LOWPACKAGE =
-            ITEMS.register("lowpackage",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("lowpackage", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> ABSINTHE =
-            ITEMS.register("absinthe",
-                    () -> new AbsintheDrinkItem());
+            ITEMS.register("absinthe", () -> new AbsintheDrinkItem());
 
     public static final RegistryObject<Item> WORMWOODLEAF =
-            ITEMS.register("wormwoodleaf",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("wormwoodleaf", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> HEMPLEAF =
-            ITEMS.register("hempleaf",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("hempleaf", () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> CANNABISBUD =
+            ITEMS.register("cannabisbud", () -> new CannabisItem(new Item.Properties()));
 
     public static final RegistryObject<Item> DRYHEMPLEAF =
-            ITEMS.register("dryhempleaf",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("dryhempleaf", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> JOINT =
-            ITEMS.register("joint",
-                    () -> new JointItem(new Item.Properties().stacksTo(1)));
+            ITEMS.register("joint", () -> new JointItem(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> HEMPPACKAGE =
-            ITEMS.register("hemppackage",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("hemppackage", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> HEMPSEED =
-            ITEMS.register("hempseed",
-                    () -> new ItemNameBlockItem(ModBlocks.HEMP_CROP.get(), new Item.Properties()));
+            ITEMS.register("hempseed", () -> new ItemNameBlockItem(ModBlocks.HEMP_CROP.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> ROLLINGPAPER =
-            ITEMS.register("rollingpaper",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("rollingpaper", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> WETROLLINGPAPER =
-            ITEMS.register("wetrollingpaper",
-                    () -> new Item(new Item.Properties()));
+            ITEMS.register("wetrollingpaper", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> LITERALPOT =
-            ITEMS.register("literalpot",
-                    () -> new LiteralPotItem(new Item.Properties()));
+            ITEMS.register("literalpot", () -> new LiteralPotItem(new Item.Properties()));
 
     public static final RegistryObject<Item> SHROOMS1 =
-            ITEMS.register("void_psilocybe",
-                    () -> new ShroomItem(new Item.Properties()));
+            ITEMS.register("void_psilocybe", () -> new ShroomItem(new Item.Properties()));
 
     public static final RegistryObject<Item> SHROOMS2 =
-            ITEMS.register("brown_psilocybe",
-                    () -> new ShroomItem(new Item.Properties()));
+            ITEMS.register("brown_psilocybe", () -> new ShroomItem(new Item.Properties()));
 
     public static final RegistryObject<Item> PSILOCYBE_SPAWN =
-            ITEMS.register("psilocybe_spawn",
-                    () -> new ItemNameBlockItem(ModBlocks.SHROOM_CROP.get() ,new Item.Properties()));
+            ITEMS.register("psilocybe_spawn", () -> new ItemNameBlockItem(ModBlocks.SHROOM_CROP.get() ,new Item.Properties()));
 
     public static final RegistryObject<Item> WALTUH = ITEMS.register("waltuh_musicdisc",
                     () -> new RecordItem(1, ModSounds.WALTUH,new Item.Properties().stacksTo(1), 1500 ));

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FGF",
+    "FTF",
+    "FSF"
+  ],
+  "key": {
+    "F": { "tag": "forge:fences/wooden" },
+    "G": { "tag": "forge:fence_gates/wooden" },
+    "T": { "tag": "forge:string" },
+    "S": { "tag": "forge:rods/wooden" }
+  },
+  "result": {
+    "item": "poppydelight:dryingtable",
+    "count": 1
+  }
+}

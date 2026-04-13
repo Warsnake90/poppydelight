@@ -18,7 +18,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "poppydelight:hempseed"
+          "name": "poppydelight:hempleaf"
         },
         {
           "type": "minecraft:item",
@@ -28,7 +28,39 @@
               "condition": "minecraft:random_chance"
             }
           ],
-          "name": "poppydelight:hempseed"
+          "name": "poppydelight:hempleaf"
+        }
+      ],
+      "rolls": 3.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "poppydelight:hemp_crop",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "7"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "poppydelight:cannabisbud"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.5,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "name": "poppydelight:cannabisbud"
         }
       ],
       "rolls": 1.0

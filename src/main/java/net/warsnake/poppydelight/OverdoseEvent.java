@@ -13,6 +13,7 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.warsnake.poppydelight.effect.ModEffects;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -124,6 +125,7 @@ public class OverdoseEvent {
         player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 60, 0));
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 1));
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 0));
+        player.addEffect(new MobEffectInstance(ModEffects.TUNNELVISION.get(), 100, 0));
 
         if (player.level().getGameTime() % 40 == 0) {
             player.playSound(
@@ -140,6 +142,7 @@ public class OverdoseEvent {
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80, 1));
         player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 150, 1));
         player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 80, 1));
+        player.addEffect(new MobEffectInstance(ModEffects.TUNNELVISION.get(), 100, 0));
 
         if (player.level().getGameTime() % 20 == 0) {
             player.playSound(
@@ -156,6 +159,7 @@ public class OverdoseEvent {
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 1));
         player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 100, 1));
         player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100, 1));
+        player.addEffect(new MobEffectInstance(ModEffects.TUNNELVISION.get(), 100, 0));
 
         if (player.level().getGameTime() % 10 == 0) {
             player.playSound(

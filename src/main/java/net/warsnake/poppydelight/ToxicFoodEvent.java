@@ -15,6 +15,7 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.warsnake.poppydelight.effect.ModEffects;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,7 +64,7 @@ public class ToxicFoodEvent {
         if (elapsed >= TICKS_20_MIN) {
             if (stageSent.get(id) < 4) {
                 stageSent.put(id, 4);
-                player.sendSystemMessage(Component.literal("§4§lYou feel as if your about to die..."));
+                player.sendSystemMessage(Component.literal("§4§lYou feel as if you're about to die..."));
             }
 
             apply20MinuteEffects(player);
@@ -144,6 +145,7 @@ public class ToxicFoodEvent {
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 1));
         player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 60, 1));
         player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 60, 1));
+        player.addEffect(new MobEffectInstance(ModEffects.TUNNELVISION.get(), 100, 0));
 
         if (player.level().getGameTime() % 20 == 0) {
             player.playSound(
@@ -171,6 +173,7 @@ public class ToxicFoodEvent {
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 1));
         player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 100, 1));
         player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100, 1));
+        player.addEffect(new MobEffectInstance(ModEffects.TUNNELVISION.get(), 100, 0));
 
         if (player.level().getGameTime() % 10 == 0) {
             player.playSound(
@@ -180,7 +183,6 @@ public class ToxicFoodEvent {
             );
         }
     }
-
 
     @SubscribeEvent
     public static void onPlayerDeath(LivingDeathEvent event) {

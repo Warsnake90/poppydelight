@@ -89,7 +89,7 @@ public class JointItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.literal("This will be good.")
+        tooltip.add(Component.literal("Light one up, pass it around!")
                 .withStyle(ChatFormatting.BLUE));
         applyJointTag(stack);
     }

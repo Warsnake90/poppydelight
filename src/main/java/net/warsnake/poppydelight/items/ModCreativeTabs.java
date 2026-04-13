@@ -11,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.warsnake.poppydelight.PoppyDelight;
+import net.warsnake.poppydelight.blocks.ModBlocks;
 
 public class ModCreativeTabs {
 
@@ -66,6 +67,7 @@ public class ModCreativeTabs {
 
                         output.accept(ModItems.HEMPSEED.get());
                         output.accept(ModItems.HEMPLEAF.get());
+                        output.accept(ModItems.CANNABISBUD.get());
                         output.accept(ModItems.DRYHEMPLEAF.get());
                         output.accept(ModItems.WETROLLINGPAPER.get());
                         output.accept(ModItems.ROLLINGPAPER.get());
@@ -83,6 +85,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.DUST.get());
                         output.accept(ModItems.WITHERDUST.get());
                         output.accept(ModItems.LITERALPOT.get());
+                        output.accept(ModBlocks.DRYING_TABLE.get());
 
                         // secret items
 

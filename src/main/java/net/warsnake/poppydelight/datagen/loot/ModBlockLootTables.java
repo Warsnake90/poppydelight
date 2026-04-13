@@ -72,13 +72,25 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                         .withPool(applyExplosionCondition(block,
                                 LootPool.lootPool()
                                         .when(hempFullyGrown)
-                                        .setRolls(ConstantValue.exactly(1))
+                                        .setRolls(ConstantValue.exactly(3))
 
-                                        .add(LootItem.lootTableItem(ModItems.HEMPSEED.get()))
+                                        .add(LootItem.lootTableItem(ModItems.HEMPLEAF.get()))
 
-                                        .add(LootItem.lootTableItem(ModItems.HEMPSEED.get())
+                                        .add(LootItem.lootTableItem(ModItems.HEMPLEAF.get())
                                                 .when(LootItemRandomChanceCondition.randomChance(0.5f)))
                         ))
+
+                        .withPool(applyExplosionCondition(block,
+                                LootPool.lootPool()
+                                        .when(hempFullyGrown)
+                                        .setRolls(ConstantValue.exactly(1))
+
+                                        .add(LootItem.lootTableItem(ModItems.CANNABISBUD.get()))
+
+                                        .add(LootItem.lootTableItem(ModItems.CANNABISBUD.get())
+                                                .when(LootItemRandomChanceCondition.randomChance(0.5f)))
+                        ))
+
                         .withPool(applyExplosionCondition(block,
                                 LootPool.lootPool()
                                         .when(hempFullyGrown)
@@ -128,6 +140,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
                         ))
         );
+
+        this.dropSelf(ModBlocks.DRYING_TABLE.get());
     }
 
     @Override
