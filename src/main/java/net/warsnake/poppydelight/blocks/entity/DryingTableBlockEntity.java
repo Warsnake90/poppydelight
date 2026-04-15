@@ -178,5 +178,11 @@ public class DryingTableBlockEntity extends BlockEntity implements MenuProvider 
                 <= this.itemHandler.getStackInSlot(outputSlot).getMaxStackSize();
     }
 
-
+    public ItemStack getPriorityStack() {
+        for (int i = 0; i < 6; i++) {
+            ItemStack stack = itemHandler.getStackInSlot(i);
+            if (!stack.isEmpty()) return stack;
+        }
+        return ItemStack.EMPTY;
+    }
 }

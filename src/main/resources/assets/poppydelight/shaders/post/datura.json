@@ -1,0 +1,89 @@
+{
+  "targets": [
+    "swap",
+    "previous",
+    "a",
+    "b",
+    "c",
+    "d"
+  ],
+  "passes": [
+    {
+      "name": "poppydelight:realitywarp",
+      "intarget": "minecraft:main",
+      "outtarget": "a",
+      "uniforms": [
+        { "name": "Intensity", "values": [ 1.5 ] },
+        { "name": "WarpAmp",   "values": [ 0.007 ] },
+        { "name": "Fold",      "values": [ 0.10 ] }
+      ]
+    },
+    {
+      "name": "poppydelight:realityfeedback",
+      "intarget": "a",
+      "outtarget": "b",
+      "auxtargets": [
+        { "name": "PrevSampler", "id": "previous" }
+      ],
+      "uniforms": [
+        { "name": "Intensity",      "values": [ 0.90 ] },
+        { "name": "FeedbackAmount", "values": [ 0.03 ] },
+        { "name": "Morphiness",     "values": [ 0.75 ] }
+      ]
+    },
+    {
+      "name": "color_convolve",
+      "intarget": "b",
+      "outtarget": "c",
+      "uniforms": [
+        {
+          "name": "Saturation",
+          "values": [ 0.2 ]
+        }
+      ]
+    },
+    {
+      "name": "bumpy",
+      "intarget": "c",
+      "outtarget": "d"
+    },
+    {
+      "name": "phosphor",
+      "intarget": "d",
+      "outtarget": "a",
+      "auxtargets": [
+        { "name": "PrevSampler", "id": "previous" }
+      ],
+      "uniforms": [
+        {
+          "name": "Phosphor",
+          "values": [ 0.98, 0.98, 0.98 ]
+        }
+      ]
+    },
+    {
+      "name": "phosphor",
+      "intarget": "a",
+      "outtarget": "swap",
+      "auxtargets": [
+        { "name": "PrevSampler", "id": "previous" }
+      ],
+      "uniforms": [
+        {
+          "name": "Phosphor",
+          "values": [ 0.85, 0.85, 0.80 ]
+        }
+      ]
+    },
+    {
+      "name": "blit",
+      "intarget": "swap",
+      "outtarget": "previous"
+    },
+    {
+      "name": "blit",
+      "intarget": "swap",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

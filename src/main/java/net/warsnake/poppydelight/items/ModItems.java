@@ -91,14 +91,26 @@ public class ModItems {
     public static final RegistryObject<Item> WETROLLINGPAPER =
             ITEMS.register("wetrollingpaper", () -> new Item(new Item.Properties()));
 
+  public static final RegistryObject<Item> DATURASEED =
+            ITEMS.register("wetrollingpaper", () -> new DaturaItem(new Item.Properties()));
+
+  public static final RegistryObject<Item> DATURAFLOWER =
+            ITEMS.register("wetrollingpaper", () -> new DaturaItem(new Item.Properties()));
+
     public static final RegistryObject<Item> LITERALPOT =
             ITEMS.register("literalpot", () -> new LiteralPotItem(new Item.Properties()));
 
     public static final RegistryObject<Item> SHROOMS1 =
             ITEMS.register("void_psilocybe", () -> new ShroomItem(new Item.Properties()));
 
+    public static final RegistryObject<Item> DRYSHROOMS1 =
+            ITEMS.register("dry_void_psilocybe", () -> new ShroomItem(new Item.Properties()));
+
     public static final RegistryObject<Item> SHROOMS2 =
             ITEMS.register("brown_psilocybe", () -> new ShroomItem(new Item.Properties()));
+
+    public static final RegistryObject<Item> DRYSHROOMS2 =
+            ITEMS.register("dry_brown_psilocybe", () -> new ShroomItem(new Item.Properties()));
 
     public static final RegistryObject<Item> PSILOCYBE_SPAWN =
             ITEMS.register("psilocybe_spawn", () -> new ItemNameBlockItem(ModBlocks.SHROOM_CROP.get() ,new Item.Properties()));

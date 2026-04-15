@@ -33,7 +33,8 @@ public class MessageGarblerEvent {
                 || player.hasEffect((MobEffect) ModEffects.POTHIGH.get())
                 || player.hasEffect((MobEffect) ModEffects.BADSHROOMHIGH.get())
                 || player.hasEffect((MobEffect) ModEffects.OPIUMHIGH.get())
-                || player.hasEffect((MobEffect) ModEffects.TUNNELVISION.get());
+                || player.hasEffect((MobEffect) ModEffects.TUNNELVISION.get())
+                || player.hasEffect((MobEffect) ModEffects.DATURA.get());
     }
 
     private String slur(String input, Player player) {
@@ -46,6 +47,7 @@ public class MessageGarblerEvent {
         boolean isBadShroom = player.hasEffect((MobEffect) ModEffects.BADSHROOMHIGH.get());
         boolean isTunnel    = player.hasEffect((MobEffect) ModEffects.TUNNELVISION.get());
         boolean isPot       = player.hasEffect((MobEffect) ModEffects.POTHIGH.get());
+        boolean isDatura       = player.hasEffect((MobEffect) ModEffects.DATURA.get());
 
         if (random.nextFloat() < intensity) result = result.replaceAll("(?i)th", random.nextBoolean() ? "d" : "f");
         if (random.nextFloat() < intensity) result = result.replaceAll("(?i)\\br", "w");
@@ -119,7 +121,6 @@ public class MessageGarblerEvent {
                 result = result + " " + tangents[random.nextInt(tangents.length)];
             }
 
-            // Word scrambling (incoherent)
             if (random.nextFloat() < 0.5f) {
                 String[] words = result.split(" ");
                 StringBuilder sb = new StringBuilder();
@@ -280,9 +281,6 @@ public class MessageGarblerEvent {
             }
         }
 
-        // ========================
-        // POT — baseline filler/munchies brain
-        // ========================
         if (isPot) {
             String[] fillers = {"uh", "um", "like", "uhhh", "wait", "no uh", "i mean", "bro", "dude", "ok so"};
             if (random.nextFloat() < 0.5f) {
@@ -307,6 +305,128 @@ public class MessageGarblerEvent {
             // Extra spaces (sloppy typing)
             if (random.nextFloat() < 0.3f) {
                 result = result.replace(" ", random.nextBoolean() ? "  " : " ");
+            }
+        }
+
+        if (isDatura) {
+            // ========================
+            // DATURA — coherent but wrong reality
+            // ========================
+
+            // Phantom words
+            String[] phantomWords = {
+                    "someone", "behind", "its", "fine", "they said", "dont move",
+                    "he told me", "its watching", "you dropped it", "wait here",
+                    "its still there", "not yet", "you missed it"
+            };
+            if (random.nextFloat() < 0.6f) {
+                String[] words = result.split(" ");
+                if (words.length > 1) {
+                    int insertAt = random.nextInt(words.length);
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < words.length; i++) {
+                        sb.append(words[i]).append(" ");
+                        if (i == insertAt) {
+                            sb.append(phantomWords[random.nextInt(phantomWords.length)]).append(" ");
+                        }
+                    }
+                    result = sb.toString().trim();
+                }
+            }
+
+            // Thought derailment (losing track mid-sentence)
+            String[] derail = {
+                    "wait", "what was i doing", "no thats not it",
+                    "hold on", "i need to check something", "why is that there"
+            };
+            if (random.nextFloat() < 0.5f && result.length() > 10) {
+                int cut = 3 + random.nextInt(result.length() / 2);
+                result = result.substring(0, cut) + " ... " + derail[random.nextInt(derail.length)];
+            }
+
+            // Second-person intrusion
+            String[] intrusion = {
+                    "you can see it right",
+                    "dont look behind you",
+                    "you hear that",
+                    "its next to you",
+                    "you left it there",
+                    "why didnt you move"
+            };
+            if (random.nextFloat() < 0.5f) {
+                result = result + " " + intrusion[random.nextInt(intrusion.length)];
+            }
+
+            // Confidently wrong substitutions (reality distortion)
+            if (random.nextFloat() < 0.5f) {
+                result = result.replaceAll("(?i)\\bdoor\\b", "window");
+                result = result.replaceAll("(?i)\\bwindow\\b", "door");
+                result = result.replaceAll("(?i)\\bfriend\\b", "man");
+                result = result.replaceAll("(?i)\\bhome\\b", "here");
+                result = result.replaceAll("(?i)\\bhere\\b", "there");
+                result = result.replaceAll("(?i)\\bthere\\b", "here");
+            }
+
+            // Verb swapping (common verbs replaced with plausible wrong ones)
+            if (random.nextFloat() < 0.6f) {
+                String[][] verbs = {
+                        {"go", "stay"},
+                        {"stay", "leave"},
+                        {"leave", "wait"},
+                        {"look", "touch"},
+                        {"take", "drop"},
+                        {"drop", "take"},
+                        {"open", "close"},
+                        {"close", "open"},
+                        {"run", "walk"},
+                        {"walk", "stop"},
+                        {"stop", "keep going"},
+                        {"keep", "lose"},
+                        {"lose", "keep"}
+                };
+
+                for (String[] pair : verbs) {
+                    if (random.nextFloat() < 0.3f) {
+                        result = result.replaceAll("(?i)\\b" + pair[0] + "\\b", pair[1]);
+                    }
+                }
+            }
+
+            // False reply (responding to something that never existed)
+            String[] falseReplies = {
+                    "yeah i see it",
+                    "no i didnt touch it",
+                    "stop",
+                    "i already moved it",
+                    "its not there anymore",
+                    "i told you already"
+            };
+            if (random.nextFloat() < 0.45f) {
+                result = result + " " + falseReplies[random.nextInt(falseReplies.length)];
+            }
+
+            // Duplicate sentence (false memory loop, subtle)
+            if (random.nextFloat() < 0.25f) {
+                result = result + " " + result;
+            }
+
+            // Full override (loss of intent)
+            String[] overrides = {
+                    "its fine",
+                    "im not here",
+                    "dont worry about it",
+                    "i already did",
+                    "its gone now",
+                    "nothing happened",
+                    "youre fine"
+            };
+            if (random.nextFloat() < 0.25f) {
+                result = overrides[random.nextInt(overrides.length)];
+            }
+
+            // Slight normalization (datura is less "stylized")
+            if (random.nextFloat() < 0.5f) {
+                result = result.toLowerCase();
             }
         }
 

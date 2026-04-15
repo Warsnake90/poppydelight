@@ -8,6 +8,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.warsnake.poppydelight.blocks.entity.ModBlockEntities;
+import net.warsnake.poppydelight.client.render.DryingRackBlockEntityRenderer;
 
 
 @EventBusSubscriber(
@@ -23,6 +25,7 @@ public class ClientOverlaySetup {
         MinecraftForge.EVENT_BUS.register(PoppyDelight.BAD_SHROOM_EFFECT_RENDERER);
         MinecraftForge.EVENT_BUS.register(PoppyDelight.POT_EFFECT_RENDERER);
         MinecraftForge.EVENT_BUS.register(PoppyDelight.TUNNEL_VISION_RENDERER);
+        MinecraftForge.EVENT_BUS.register(PoppyDelight.DATURA_RENDERER);
     }
 
     @SubscribeEvent
@@ -55,6 +58,12 @@ public class ClientOverlaySetup {
             if (PoppyDelight.TUNNEL_VISION_RENDERER.effectActiveLastTick) {
                 gui.setupOverlayRenderState(true, false);
                 PoppyDelight.TUNNEL_VISION_RENDERER.renderOverlay(guiGraphics.pose());
+            }
+        });
+        event.registerAboveAll("datura", (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
+            if (PoppyDelight.DATURA_RENDERER.effectActiveLastTick) {
+                gui.setupOverlayRenderState(true, false);
+                PoppyDelight.DATURA_RENDERER.renderOverlay(guiGraphics.pose());
             }
         });
 

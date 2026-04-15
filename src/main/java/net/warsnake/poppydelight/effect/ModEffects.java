@@ -14,6 +14,7 @@ public class ModEffects {
     public static final RegistryObject<MobEffect> BADSHROOMHIGH;
     public static final RegistryObject<MobEffect> POTHIGH;
     public static final RegistryObject<MobEffect> TUNNELVISION;
+    public static final RegistryObject<MobEffect> DATURA;
 
 
     public static void register(IEventBus eventBus) {
@@ -40,6 +41,10 @@ public class ModEffects {
 
         TUNNELVISION = MOB_EFFECTS.register("tunnel", () -> {
             return new TunnelVisionEffect(MobEffectCategory.NEUTRAL, 0x00000000);
+        });
+
+        DATURA = MOB_EFFECTS.register("datura", () -> {
+            return new DaturaEffect(MobEffectCategory.NEUTRAL, 0x00000000);
         });
     }
 }

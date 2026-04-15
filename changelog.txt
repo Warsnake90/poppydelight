@@ -1,3 +1,17 @@
+**0.6.3 Datura mainly**
+
+ - - - Major stuff - - -
+- Added Datura Flowers
+- Added Datura Seeds
+- Added Datura effect
+- Added Datura Shader
+- finished Chat distortions
+- Datura visual effects are extreme (look at them ingame)
+
+- - - Minor stuff - - -
+- Version number 0.6.2 -> 0.6.3
+- Minor bug and typo fixes
+
 **0.6.2 semi-Major improvements**
 
  - - - Minor stuff - - -
@@ -12,12 +26,12 @@
 - Removed createmod from Build.gradle
 
 - - - semi Major stuff - - -
-- Added Drying rack (MAJOR WIP with model specificly, right now its temp model)
-- Added Tunel vission effects to Overdose and poisoning
+- Added Drying rack (MAJOR WIP with model specifically, right now its temp model)
+- Added Tunnel vision effects to Overdose and poisoning
 - Added message "slurring" with varying effects depending on the substance your on
 
 **0.6.1 Minor tweaks
-- Fixed Shroom Audio halucinations not playing
+- Fixed Shroom Audio hallucinations not playing
 - Fixed Opium being messed up
 - tweaked some shader effects
 - Fixed High Opium recipe paper being in the middle rather than at the end (not functional change except it just calms my OCD)

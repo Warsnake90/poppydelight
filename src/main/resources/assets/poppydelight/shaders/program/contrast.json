@@ -1,0 +1,10 @@
+{
+  "vertex": "minecraft:shaders/post/fullscreen.vsh",
+  "fragment": "poppydelight:shaders/post/contrast.fsh",
+  "samplers": [
+    { "name": "DiffuseSampler" }
+  ],
+  "uniforms": [
+    { "name": "Contrast", "type": "float", "count": 1, "values": [1.0] }
+  ]
+}

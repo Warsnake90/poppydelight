@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.warsnake.poppydelight.blocks.ModBlocks;
 import net.warsnake.poppydelight.blocks.entity.ModBlockEntities;
 import net.warsnake.poppydelight.client.render.*;
+import net.warsnake.poppydelight.effect.DaturaEffect;
 import net.warsnake.poppydelight.effect.ModEffects;
 import net.warsnake.poppydelight.effect.TunnelVisionEffect;
 import net.warsnake.poppydelight.items.ModCreativeTabs;
@@ -35,6 +37,7 @@ public class PoppyDelight {
     public static final BadTripRenderer BAD_SHROOM_EFFECT_RENDERER = new BadTripRenderer();
     public static final CannabisRenderer POT_EFFECT_RENDERER = new CannabisRenderer();
     public static final TunnelVisionRenderer TUNNEL_VISION_RENDERER = new TunnelVisionRenderer();
+    public static final DaturaRenderer DATURA_RENDERER = new DaturaRenderer();
 
     public PoppyDelight(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
@@ -74,6 +77,12 @@ public class PoppyDelight {
             MenuScreens.register(ModMenuTypes.DRYINGTABLE_MENU.get(), DryingTableScreen::new);
             MinecraftForge.EVENT_BUS.register(new MessageGarblerEvent());
         }
+
+        @SubscribeEvent
+        public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(ModBlockEntities.DRYINGTABLE_BE.get(), DryingRackBlockEntityRenderer::new);
+        }
     }
+
 
 }

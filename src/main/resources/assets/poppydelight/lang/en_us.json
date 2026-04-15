@@ -1,5 +1,4 @@
 {
-  "creativetab.poppydelight.main": "Poppy Delight",
   "item.poppydelight.debugitem": "Debug Item",
   "item.poppydelight.tdxvial": "Maritox Vial",
   "item.poppydelight.tdxagent": "Maritox Agent",
@@ -31,10 +30,16 @@
 
   "block.poppydelight.dryingtable": "Drying Rack",
 
-  "effect.poppydelight.shrooms": "Shroom High",
-  "effect.poppydelight.badshrooms": "Shroom High",
-  "effect.poppydelight.opium": "Opium High",
-  "effect.poppydelight.pot": "Cannabis High",
+  "creativetab.poppydelight.main": "Poppy Delight",
+
+  "itemGroup.poppydelight.main": "Poppy Delight",
+
+  "effect.poppydelight.shrooms": "Tripping",
+  "effect.poppydelight.badshrooms": "Tripping",
+  "effect.poppydelight.opium": "Sedated",
+  "effect.poppydelight.pot": "Stoned",
+  "effect.poppydelight.tunnel": "Anxious",
+  "effect.poppydelight.datura": "Delirium",
 
   "item.poppydelight.waltuh_musicdisc": "Half-Measures",
   "item.poppydelight.waltuh_musicdisc.desc": "Dave Porter - Breaking Bad Theme song",
@@ -50,8 +55,6 @@
   "item.poppydelight.ends_music_disc.desc": "Marzuku - At Ends",
   "item.poppydelight.stars_music_disc": "Colliding Stars ",
   "item.poppydelight.stars_music_disc.desc": "Marzuku - Colliding stars",
-
-  "itemGroup.poppydelight.main": "Poppy Delight",
 
   "death.attack.toxic_food": "%1$s had their nervous system shut down by Maritox.",
   "death.attack.overdose": "%1$s Overdosed on opium."

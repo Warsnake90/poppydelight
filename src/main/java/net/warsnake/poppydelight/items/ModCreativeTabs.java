@@ -79,6 +79,10 @@ public class ModCreativeTabs {
                         output.accept(ModItems.SHROOMS2.get());
                         output.accept(ModItems.PSILOCYBE_SPAWN.get());
 
+                        // Datura
+
+                        output.accept(ModItems.DATURAFLOWER.get());
+                        output.accept(ModItems.DATURASEED.get());
 
                         // misc
 
