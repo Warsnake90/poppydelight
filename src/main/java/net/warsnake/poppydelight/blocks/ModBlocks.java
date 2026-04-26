@@ -11,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.warsnake.poppydelight.PoppyDelight;
+import net.warsnake.poppydelight.blocks.entity.DaturaCropBlock;
 import net.warsnake.poppydelight.items.ModItems;
 
 import java.util.function.Supplier;
@@ -44,6 +45,16 @@ public class ModBlocks {
 
     public static final RegistryObject<ShroomCropBlock> SHROOM_CROP = BLOCKS.register("shroom_crop", () ->
             new ShroomCropBlock(
+                    Block.Properties.copy(Blocks.WHEAT)
+                            .noCollission()
+                            .randomTicks()
+                            .instabreak()
+                            .sound(SoundType.CROP)
+            )
+    );
+
+    public static final RegistryObject<DaturaCropBlock> DATURA_CROP = BLOCKS.register("datura_crop", () ->
+            new DaturaCropBlock(
                     Block.Properties.copy(Blocks.WHEAT)
                             .noCollission()
                             .randomTicks()

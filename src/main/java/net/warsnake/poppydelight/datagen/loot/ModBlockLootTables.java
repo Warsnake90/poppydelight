@@ -18,6 +18,7 @@ import net.warsnake.poppydelight.blocks.HempCropBlock;
 import net.warsnake.poppydelight.blocks.ModBlocks;
 import net.warsnake.poppydelight.blocks.PoppyCropBlock;
 import net.warsnake.poppydelight.blocks.ShroomCropBlock;
+import net.warsnake.poppydelight.blocks.entity.DaturaCropBlock;
 import net.warsnake.poppydelight.items.ModItems;
 
 import java.util.Set;
@@ -112,7 +113,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 LootItemBlockStatePropertyCondition
                         .hasBlockStateProperties(ModBlocks.SHROOM_CROP.get())
                         .setProperties(StatePropertiesPredicate.Builder.properties()
-                                .hasProperty(ShroomCropBlock.AGE, 7));
+                                .hasProperty(DaturaCropBlock.AGE, 7));
 
         this.add(ModBlocks.SHROOM_CROP.get(),
                 block -> LootTable.lootTable()
@@ -138,6 +139,53 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                                         .add(LootItem.lootTableItem(Items.BROWN_MUSHROOM)
                                                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(3))))
 
+                        ))
+        );
+
+        LootItemCondition.Builder daturaFullyGrown =
+                LootItemBlockStatePropertyCondition
+                        .hasBlockStateProperties(ModBlocks.DATURA_CROP.get())
+                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                .hasProperty(DaturaCropBlock.AGE, 5));
+
+        this.add(ModBlocks.DATURA_CROP.get(),
+                block -> LootTable.lootTable()
+                        .withPool(applyExplosionCondition(block,
+                                LootPool.lootPool()
+                                        .when(daturaFullyGrown)
+                                        .setRolls(ConstantValue.exactly(3))
+
+                                        .add(LootItem.lootTableItem(ModItems.DATURASEED.get()))
+
+                                        .add(LootItem.lootTableItem(ModItems.DATURASEED.get())
+                                                .when(LootItemRandomChanceCondition.randomChance(0.5f)))
+                        ))
+
+                        .withPool(applyExplosionCondition(block,
+                                LootPool.lootPool()
+                                        .when(daturaFullyGrown)
+                                        .setRolls(ConstantValue.exactly(1))
+
+                                        .add(LootItem.lootTableItem(ModItems.DATURASEED.get()))
+
+                                        .add(LootItem.lootTableItem(ModItems.DATURASEED.get())
+                                                .when(LootItemRandomChanceCondition.randomChance(0.5f)))
+                        ))
+
+                        .withPool(applyExplosionCondition(block,
+                                LootPool.lootPool()
+                                        .when(daturaFullyGrown)
+                                        .setRolls(ConstantValue.exactly(1))
+
+                                        .add(LootItem.lootTableItem(ModItems.DATURAFLOWER.get()))
+
+                                        .add(LootItem.lootTableItem(ModItems.DATURAFLOWER.get())
+                                                .when(LootItemRandomChanceCondition.randomChance(0.5f)))
+                        ))
+                        .withPool(applyExplosionCondition(block,
+                                LootPool.lootPool()
+                                        .when(daturaFullyGrown.invert())
+                                        .add(LootItem.lootTableItem(ModItems.DATURASEED.get()))
                         ))
         );
 

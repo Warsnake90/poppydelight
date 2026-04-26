@@ -26,7 +26,7 @@ public class DaturaItem extends Item {
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
 
-        return UseAnim.DRINK;
+        return UseAnim.EAT;
     }
 
     private void applyToxicTag(ItemStack stack) {

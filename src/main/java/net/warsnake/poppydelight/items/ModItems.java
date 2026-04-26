@@ -92,10 +92,10 @@ public class ModItems {
             ITEMS.register("wetrollingpaper", () -> new Item(new Item.Properties()));
 
   public static final RegistryObject<Item> DATURASEED =
-            ITEMS.register("wetrollingpaper", () -> new DaturaItem(new Item.Properties()));
+            ITEMS.register("daturaseed", () -> new DaturaItem(new Item.Properties()));
 
   public static final RegistryObject<Item> DATURAFLOWER =
-            ITEMS.register("wetrollingpaper", () -> new DaturaItem(new Item.Properties()));
+            ITEMS.register("daturaflower", () -> new DaturaItem(new Item.Properties()));
 
     public static final RegistryObject<Item> LITERALPOT =
             ITEMS.register("literalpot", () -> new LiteralPotItem(new Item.Properties()));

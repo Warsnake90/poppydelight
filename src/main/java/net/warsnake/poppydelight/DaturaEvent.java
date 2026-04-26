@@ -26,9 +26,9 @@ public class DaturaEvent {
 
     private static final long TICKS_3_MIN = 3 * 60 * 20;
     private static final long TICKS_5_MIN = 5 * 60 * 20;
-    private static final long TICKS_10_MIN = 10 * 60 * 20;
-    private static final long TICKS_20_MIN = 25 * 60 * 20;
-    private static final long TICKS_25_MIN = 30 * 60 * 20;
+    private static final long TICKS_10_MIN = 15 * 60 * 20;
+    private static final long TICKS_20_MIN = 30 * 60 * 20;
+    private static final long TICKS_25_MIN = 45 * 60 * 20;
 
     private static final Map<UUID, Long> shroomStartTimes = new HashMap<>();
     private static final Map<UUID, Integer> stageSent = new HashMap<>();
@@ -92,7 +92,7 @@ public class DaturaEvent {
         if (elapsed >= TICKS_20_MIN && stageSent.get(id) < 4) {
             stageSent.put(id, 4);
             apply20MinuteEffects(player);
-            player.sendSystemMessage(Component.literal("§ayou ask yourself 'What day is it?'. Then you remember days aren't real"));
+            player.sendSystemMessage(Component.literal("§ayou ask yourself 'What day is it?'. Then you remember its november 30th"));
         } else if (elapsed >= TICKS_10_MIN && stageSent.get(id) < 3) {
             stageSent.put(id, 3);
             apply10MinuteEffects(player);
@@ -111,12 +111,11 @@ public class DaturaEvent {
     private static void apply3MinuteEffects(Player p) {
         int effectLevel = getEffectLevel(p);
         apply(p, 2399,
-                new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 2399, effectLevel),
-                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 2399, effectLevel - 2),
-                new MobEffectInstance(MobEffects.WEAKNESS, 2399, effectLevel),
-                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2399, effectLevel),
-                new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 2399, effectLevel, false, true, true)
-
+                new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 12399, effectLevel),
+                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 12399, effectLevel - 2),
+                new MobEffectInstance(MobEffects.WEAKNESS, 12399, effectLevel),
+                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 12399, effectLevel),
+                new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 12399, effectLevel, false, true, true)
 
         );
     }
@@ -124,30 +123,30 @@ public class DaturaEvent {
     private static void apply5MinuteEffects(Player p) {
         int effectLevel = getEffectLevel(p);
         apply(p, 5999,
-                new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5999, effectLevel),
-                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 5999, effectLevel - 1),
-                new MobEffectInstance(MobEffects.WEAKNESS, 5999, effectLevel),
-                new MobEffectInstance(ModEffects.DATURA.get(), 5999, 0),
-                new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 5999, effectLevel + 1, false, true, true)
+                new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 15999, effectLevel),
+                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 15999, effectLevel - 1),
+                new MobEffectInstance(MobEffects.WEAKNESS, 15999, effectLevel),
+                new MobEffectInstance(ModEffects.DATURA.get(), 15999, 0),
+                new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 15999, effectLevel + 1, false, true, true)
         );
     }
 
     private static void apply10MinuteEffects(Player p) {
         int effectLevel = getEffectLevel(p);
         apply(p, 5999,
-                new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 11999, effectLevel),
-                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 11999, effectLevel - 1),
-                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 11999, 0),
-                new MobEffectInstance(ModEffects.DATURA.get(), 11999, 0),
-                new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 11999, effectLevel + 3, false, true, true)
+                new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 15999, effectLevel),
+                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 15999, effectLevel - 1),
+                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 15999, 0),
+                new MobEffectInstance(ModEffects.DATURA.get(), 15999, 0),
+                new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 15999, effectLevel + 3, false, true, true)
         );
     }
 
     private static void apply20MinuteEffects(Player p) {
         int effectLevel = getEffectLevel(p);
         apply(p, 11999,
-                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 5999, effectLevel - 1),
-                new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 5999, effectLevel + 2, false, true, true)
+                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 15999, effectLevel - 1),
+                new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), 15999, effectLevel + 2, false, true, true)
         );
     }
 

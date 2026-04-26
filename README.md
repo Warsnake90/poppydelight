@@ -84,8 +84,10 @@ Mojang - duh
 
 SnowierPuppet - Did alot of textures and assets
 
-diggydwarff - Helped me figure out GLSL shaders (check out his mod its much better than mine, https://www.curseforge.com/minecraft/mc-mods/herbalist)
+diggydwarff - Helped me figure out GLSL shaders (check out his mod it's much better than mine, https://www.curseforge.com/minecraft/mc-mods/herbalist)
 
 HBM - I used some minor assets (tell me if you want them removed, https://github.com/HbmMods/Hbm-s-Nuclear-Tech-GIT)
 
 me - I did most of the coding for this
+
+echo1097 - Potentially making a 1.21.1 port, god bless his soul

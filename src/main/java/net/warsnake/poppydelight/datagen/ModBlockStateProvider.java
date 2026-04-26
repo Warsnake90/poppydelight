@@ -14,6 +14,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import net.warsnake.poppydelight.blocks.ShroomCropBlock;
+import net.warsnake.poppydelight.blocks.entity.DaturaCropBlock;
 
 import java.util.function.Function;
 
@@ -28,6 +29,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         makePoppyCrop(ModBlocks.POPPY_CROP.get(), "poppy_crop_stage", "poppy_crop_stage");
         makeHempCrop(ModBlocks.HEMP_CROP.get(), "hemp_crop_stage", "hemp_crop_stage");
         makeShroomCrop(ModBlocks.SHROOM_CROP.get(), "shroom_crop_stage", "shroom_crop_stage");
+        makeDaturaCrop(ModBlocks.DATURA_CROP.get(), "datura_crop_stage", "datura_crop_stage");
 
         simpleBlockWithItem(ModBlocks.DRYING_TABLE.get(),
         new ModelFile.UncheckedModelFile(modLoc("block/dryingtable")));
@@ -68,6 +70,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private ConfiguredModel[] ShroomStates(BlockState state, ShroomCropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(block.getAgeProperty()),
+                new ResourceLocation(PoppyDelight.MODID, "block/" + textureName + state.getValue(block.getAgeProperty()))).renderType("cutout"));
+
+        return models;
+    }
+
+public void makeDaturaCrop(DaturaCropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> DaturaStates(state, block, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
+    }
+
+    private ConfiguredModel[] DaturaStates(BlockState state, DaturaCropBlock block, String modelName, String textureName) {
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(block.getAgeProperty()),
                 new ResourceLocation(PoppyDelight.MODID, "block/" + textureName + state.getValue(block.getAgeProperty()))).renderType("cutout"));

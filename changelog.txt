@@ -1,3 +1,20 @@
+**0.6.4 Fixes and asset updates**
+
+ - - - minor stuff - - -
+ - Updated Readme to reflect present features
+ - Fixed double registration crash
+ - Updated version number 0.6.3 -> 0.6.4
+ - Added lang entries for daturaseed,daturaflower, and Cannabis bud
+ - Added models for daturaseed and daturaflower
+ - Changed timing of Datura effects
+ - Added Datura plant
+
+  - - - Major stuff - - -
+  -Added DaturaEvent logic
+  -Added Datura spikeing
+
+ - fixed a bug that caused a size two pot to be unfindable
+
 **0.6.3 Datura mainly**
 
  - - - Major stuff - - -
@@ -11,6 +28,8 @@
 - - - Minor stuff - - -
 - Version number 0.6.2 -> 0.6.3
 - Minor bug and typo fixes
+- Updated Effect names
+- fixed a bug that caused a size two pot to not spawn
 
 **0.6.2 semi-Major improvements**
 
@@ -24,20 +43,27 @@
 - Version number 0.6.1 -> 0.6.2
 - Tweaked some status effects during stages of being high
 - Removed createmod from Build.gradle
+- fixed a bug that caused a size two pot to not spawn
 
 - - - semi Major stuff - - -
 - Added Drying rack (MAJOR WIP with model specifically, right now its temp model)
 - Added Tunnel vision effects to Overdose and poisoning
 - Added message "slurring" with varying effects depending on the substance your on
 
-**0.6.1 Minor tweaks
+**0.6.1 Minor tweaks***
+
+ - - - Minor stuff - - -
+
 - Fixed Shroom Audio hallucinations not playing
 - Fixed Opium being messed up
 - tweaked some shader effects
 - Fixed High Opium recipe paper being in the middle rather than at the end (not functional change except it just calms my OCD)
 - Updated version number 0.6.0 -> 0.6.1
+- fixed a bug that caused a size two pot to not spawn
 
 **0.6.0 GLSL update**
+
+- - - Minor changes - - -
 
 - Removed create recipe dependency
 - Changed witherdust recipe
@@ -53,8 +79,9 @@
 - Deleted old broken GLSL starting sections
 - Tweaked most recipes
 - Changed joints to use Dried cannabis rather than raw leaves
+- fixed a bug that caused a size two pot to not spawn
 
-MAJOR CHANGES
+ - - - MAJOR CHANGES - - -
 
 - Added GLSL shaders for every substance bar absinthe
 - Reworked all 4 effect renderers

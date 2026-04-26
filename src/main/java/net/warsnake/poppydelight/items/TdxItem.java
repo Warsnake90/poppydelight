@@ -26,7 +26,6 @@ public class TdxItem extends Item {
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
 
-        // probably should let this change based on the item but im too lazy to add that... note to add it later
         return UseAnim.DRINK;
     }
 
