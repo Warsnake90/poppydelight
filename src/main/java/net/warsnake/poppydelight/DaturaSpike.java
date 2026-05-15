@@ -36,11 +36,11 @@ public class DaturaSpike {
         if (!main.is(FOODS_TAG)) return;
         if (!offhand.is(DATURA_TAG)) return;
 
-        if (main.hasTag() && main.getOrCreateTag().getBoolean("datura")) return;
+        if (main.hasTag() && main.getOrCreateTag().getBoolean("Datura")) return;
 
         ItemStack toxicItem = main.copy();
         toxicItem.setCount(1);
-        toxicItem.getOrCreateTag().putBoolean("datura", true);
+        toxicItem.getOrCreateTag().putBoolean("Datura", true);
 
         main.shrink(1);
         offhand.shrink(1);

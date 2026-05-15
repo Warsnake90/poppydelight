@@ -31,8 +31,8 @@ public class DaturaItem extends Item {
 
     private void applyToxicTag(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
-        if (!tag.getBoolean("datura")) {
-            tag.putBoolean("datura", true);
+        if (!tag.getBoolean("Datura")) {
+            tag.putBoolean("Datura", true);
         }
     }
 

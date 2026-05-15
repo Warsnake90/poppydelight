@@ -79,7 +79,7 @@ public class DaturaRenderer {
     @SubscribeEvent
     public void onKeyPress(InputEvent.Key event) {
         if (event.getKey() == GLFW.GLFW_KEY_F5 || event.getKey() == GLFW.GLFW_KEY_F11) {
-            Executors.newSingleThreadScheduledExecutor().schedule(() -> forgebs = 1, 50, TimeUnit.MILLISECONDS);
+            Executors.newSingleThreadScheduledExecutor().schedule(() -> forgebs = 1, 5, TimeUnit.MILLISECONDS);
         }
     }
 

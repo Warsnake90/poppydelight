@@ -2,7 +2,7 @@
   "type": "farmersdelight:cutting",
   "ingredients": [
     {
-      "item": "poppydelight:hemppackage"
+      "item": "minecraft:hempleaf"
     }
   ],
   "tool": {
@@ -10,8 +10,12 @@
   },
   "result": [
     {
-      "item": "poppydelight:dryhempleaf",
-      "count": 5
+      "item": "minecraft:string",
+      "count": 3
+    },
+    {
+      "item": "farmersdelight:straw",
+      "count": 1
     }
   ]
 }

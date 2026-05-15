@@ -174,7 +174,7 @@ public class ShroomsRenderer {
 
                 forgebs = 1;
 
-            }, 50, TimeUnit.MILLISECONDS);
+            }, 5, TimeUnit.MILLISECONDS);
         }
     }
 

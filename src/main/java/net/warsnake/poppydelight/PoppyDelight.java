@@ -15,14 +15,13 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.warsnake.poppydelight.blocks.ModBlocks;
 import net.warsnake.poppydelight.blocks.entity.ModBlockEntities;
 import net.warsnake.poppydelight.client.render.*;
-import net.warsnake.poppydelight.effect.DaturaEffect;
 import net.warsnake.poppydelight.effect.ModEffects;
-import net.warsnake.poppydelight.effect.TunnelVisionEffect;
 import net.warsnake.poppydelight.items.ModCreativeTabs;
 import net.warsnake.poppydelight.items.ModItems;
 import net.warsnake.poppydelight.screen.DryingTableScreen;
 import net.warsnake.poppydelight.screen.ModMenuTypes;
 import net.warsnake.poppydelight.sounds.ModSounds;
+import net.warsnake.poppydelight.villager.ModVillagers;
 import org.slf4j.Logger;
 
 @Mod(PoppyDelight.MODID)
@@ -45,11 +44,12 @@ public class PoppyDelight {
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModCreativeTabs.TABS.register(modEventBus);
-        ModFluids.FLUIDS.register(modEventBus);
         ModMenuTypes.MENUS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModEffects.register(modEventBus);
         ModSounds.register(modEventBus);
+        ModVillagers.register(modEventBus);
+
 
         modEventBus.addListener(this::commonSetup);
        // modEventBus.addListener(this::addCreative);
@@ -57,7 +57,9 @@ public class PoppyDelight {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void commonSetup(FMLCommonSetupEvent event) {}
+    private void commonSetup(FMLCommonSetupEvent event) {
+
+    }
 
     private void addCreative(net.minecraftforge.event.BuildCreativeModeTabContentsEvent event) {
        // ModCreativeTabs.fillTabs(event);

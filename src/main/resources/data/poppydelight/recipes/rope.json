@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "OPO",
+    " P "
+  ],
+  "key": {
+    "P": { "item": "poppydelight:hempleaf" },
+    "O": { "item": "minecraft:string" }
+  },
+  "result": {
+    "item": "farmersdelight:rope",
+    "count": 3
+  }
+}

@@ -26,21 +26,6 @@ public class TradesEvent {
         if(event.getType() == VillagerProfession.FARMER) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
-            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 32),
-                    new ItemStack(ModItems.HEMPPACKAGE.get(), 1),
-                    2, 8, 0.02f));
-
-            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 7),
-                    new ItemStack(ModItems.HEMPLEAF.get(), 6),
-                    5, 9, 0.035f));
-
-
-            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 64),
-                    new ItemStack(ModItems.HEMPSEED.get(), 2),
-                    2, 12, 0.075f));
         }
     }
 
@@ -50,13 +35,23 @@ public class TradesEvent {
         List<VillagerTrades.ItemListing> rareTrades = event.getRareTrades();
 
         genericTrades.add((pTrader, pRandom) -> new MerchantOffer(
-                new ItemStack(Items.EMERALD, 48),
-                new ItemStack(ModItems.HEMPSEED.get(), 2),
+                new ItemStack(Items.EMERALD, 32),
+                new ItemStack(ModItems.HEMPSEED.get(), 3),
                 3, 2, 0.2f));
 
         rareTrades.add((pTrader, pRandom) -> new MerchantOffer(
                 new ItemStack(Items.EMERALD, 48),
                 new ItemStack(ModItems.OPIUM.get(), 1),
                 2, 12, 0.15f));
+
+        rareTrades.add((pTrader, pRandom) -> new MerchantOffer(
+                new ItemStack(Items.EMERALD, 48),
+                new ItemStack(ModItems.DATURAFLOWER.get(), 2),
+                1, 12, 0.15f));
+
+        rareTrades.add((pTrader, pRandom) -> new MerchantOffer(
+                new ItemStack(Items.EMERALD, 48),
+                new ItemStack(ModItems.DATURASEED.get(), 1),
+                1, 12, 0.15f));
     }
 }

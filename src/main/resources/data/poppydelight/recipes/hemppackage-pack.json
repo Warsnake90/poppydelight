@@ -7,7 +7,7 @@
   ],
   "key": {
     "P": { "item": "minecraft:paper" },
-    "O": { "item": "poppydelight:hempleaf" }
+    "O": { "item": "poppydelight:dryhempleaf" }
   },
   "result": {
     "item": "poppydelight:hemppackage",

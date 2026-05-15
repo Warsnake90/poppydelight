@@ -50,7 +50,7 @@ public class DaturaEvent {
         if (shroomStartTimes.containsKey(id)) return;
 
         ItemStack stack = event.getItem();
-        if (stack.hasTag() && stack.getTag().getBoolean("datura")) {
+        if (stack.hasTag() && stack.getTag().getBoolean("Datura")) {
             Random rand = new Random();
             int randomlevel = rand.nextInt(2);
             randomlevel++;

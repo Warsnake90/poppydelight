@@ -36,6 +36,9 @@ public class DryingRackBlockEntityRenderer implements BlockEntityRenderer<Drying
     }
 
     private ResourceLocation getModelForItem(ItemStack stack) {
+
+         /*
+         models will be added to this as they finish being made 
         if (stack.is(ModItems.CANNABISBUD.get()))
             return new ResourceLocation("modid", "block/dryingtable_wetcan");
         if (stack.is(ModItems.DRYHEMPLEAF.get()))
@@ -51,6 +54,8 @@ public class DryingRackBlockEntityRenderer implements BlockEntityRenderer<Drying
 
         if (stack.is(ModItems.DRYSHROOMS2.get()))
             return new ResourceLocation("modid", "block/dryingtable_dryshroom");
+
+          */
 
         return new ResourceLocation("modid", "block/dryingtable");
     }

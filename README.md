@@ -1,6 +1,6 @@
 **!!! If you are sensitive to epileptic seizures DO NOT use this mod, It contains MAJOR visual effects that are potentially triggering !!!**
 
-Forge 1.20.1 Mod that adds narcotics, and lacing of foods, and visual effects for them all.
+Forge 1.20.1 (Main), or Neoforge 1.21.1 (Ported) Mod that adds narcotics, and lacing of foods, and visual effects for them all.
 
 - IMPORTANT DISCLAIMERS ----------------------------------------------------------------
 
@@ -30,13 +30,15 @@ Q2: Why not change version/modloader
 
 A2: I'm lazy and don't want to learn Fabric or quilt. (insert xkcd comic about standards)
 
-Q3: How do I get hemp, shroom or poppy seeds? 
+A2 Edit: A friend (echo1097) is porting to neoforge 1.21.1
 
-A3: Wandering traders and Farmer villagers sell Hemp seeds, you get poppy seeds from poppies, and you get shroom spores from mycelium and some other stuff.
+Q3: How do I get seeds? 
+
+A3: Depends on the substance, though seeds may be sold by some shady villagers when they have a drying table nearby and its night out.
 
 Q4: What substances are currently added?
 
-A4: Cannabis, absinthe, Opium, psychedelic Mushrooms, and a TDX poison.
+A4: Cannabis, absinthe, Opium, psychedelic Mushrooms, Datura and a TDX poison.
 
 Q5: Why is my screen black when I take something?!
 
@@ -54,19 +56,10 @@ Q8: Can I use this in a modpack/fork this?
 
 A8: Go wild, just credit the GitHub page.
 
-Q9: I had a seizure while playing this, How do I sue you?
+Q9: How accurate is this to real effects?
 
-Q10: Ask your lawyer.
+A9: I've never done opium or datura, so I can't attest to those but the rest is super exaggerated and not very realistic. I might redo the shaders someday to be more accurate.
 
-<details>
-  <summary>Spoiler warning for an effect of TDX</summary>
-
-
-  Q10: "It tastes awfully bitter" when eating food?
-
-  A10: You have been poisoned... There is no antidote... You have 20 minutes for a revenge arc...
-
-</details>
 
  - Dependencies ----------------------------------------------------------------
 

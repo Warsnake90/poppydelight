@@ -1,3 +1,23 @@
+**0.6.5 code cleanup and lots of fixes**
+
+ - - - Minor stuff - - -
+ - Commented drying rack model switcher until models are made for them
+ - fixed datura seeds not actually working as seeds
+ - Updated version number - 0.6.4 -> 0.6.5
+ - Deleted old broken Absinth recipes
+ - Deleted old ModFluids for absinthe
+ - Deleted old Tobaconist tag tie in for drying paper
+ - Added both dryshrooms variants to the creative inventory
+ - Fixed Daturaflowers not actually doing anything when eaten
+ - Fixed secret music discs not working
+ - Fixed slight stutter when full screening the game
+ - deleted old villager trades
+ - Changed Hemppackage to instead use buds instead of the outdated leaves
+ - Added recipe to turn hemp leaves into string & straw
+ - Added recipe to turn hemp leaves into rope
+ - Added custom Black market villager
+- fixed a bug that caused a size two pot to be unfindable
+
 **0.6.4 Fixes and asset updates**
 
  - - - minor stuff - - -
@@ -8,12 +28,12 @@
  - Added models for daturaseed and daturaflower
  - Changed timing of Datura effects
  - Added Datura plant
+ - fixed a bug that caused a size two pot to be unfindable
 
   - - - Major stuff - - -
   -Added DaturaEvent logic
-  -Added Datura spikeing
+  -Added Datura spiking
 
- - fixed a bug that caused a size two pot to be unfindable
 
 **0.6.3 Datura mainly**
 
