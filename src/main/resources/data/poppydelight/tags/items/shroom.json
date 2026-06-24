@@ -2,7 +2,8 @@
   "replace": false,
   "values": [
     "poppydelight:void_psilocybe",
-    "poppydelight:brown_psilocybe"
-
+    "poppydelight:brown_psilocybe",
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom"
   ]
 }

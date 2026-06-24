@@ -162,7 +162,7 @@ public class DryingTableBlockEntity extends BlockEntity implements MenuProvider 
     }
 
     private boolean hasRecipe(int inputSlot, int outputSlot) {
-        boolean hasCraftingItem = this.itemHandler.getStackInSlot(inputSlot).getItem() == ModItems.HEMPLEAF.get();
+        boolean hasCraftingItem = this.itemHandler.getStackInSlot(inputSlot).getItem() == ModItems.CANNABISBUD.get();
         ItemStack result = new ItemStack(ModItems.DRYHEMPLEAF.get());
         return hasCraftingItem && canInsertAmountIntoOutputSlot(result.getCount(), outputSlot)
                 && canInsertItemIntoOutputSlot(result.getItem(), outputSlot);

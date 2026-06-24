@@ -6,9 +6,12 @@ Forge 1.20.1 (Main), or Neoforge 1.21.1 (Ported) Mod that adds narcotics, and la
 
 -please do not expect requests to be met or updates to newer versions. you will be disappointed if I don't like the idea.
 
--I'm not to judge what you do in your free time, but some drugs can be really bad, while Cannabis and Shrooms aren't bad, Opioids/other hard drugs they can ruin your life so easily.
+-I'm not to judge what you do in your free time, but some drugs can be absolutely horrible, while Cannabis and most psychedelics aren't, some drugs can ruin your life so easily.
 
 -This mod is about drugs and has OD mechanics, so if you're sensitive to that stuff don't use it.
+
+-This mod is unlikely to run well on integrated graphics due to the large amount of post-processing shaders used on certain effects.
+It is perfectly fine on my lower end dedicated gpu, however when using the iGPU I get massive performance hit.
 
 - Bug reports ----------------------------------------------------------------
 
@@ -18,7 +21,7 @@ Use issues for bugs you find. Provide instructions and logs. (if applicable)
 
 If you wish to build a nightly version yourself, just put this into your IDE and build it yourself. If you don't know how watch a yt tutorial or something idk.
 
-Then after you have the .jar install forge for minecraft 1.20.1 and drag and drop dependencies, plus this mod into your "mods" folder. IT MUST BE INSTALLED BOTH SERVER AND CLIENT!
+Then after you have the .jar install forge for minecraft 1.20.1 (or 1.21.1) and drag and drop dependencies, plus this mod into your "mods" folder. IT MUST BE INSTALLED BOTH SERVER AND CLIENT!
 
 - FAQ ----------------------------------------------------------------
 
@@ -34,7 +37,7 @@ A2 Edit: A friend (echo1097) is porting to neoforge 1.21.1
 
 Q3: How do I get seeds? 
 
-A3: Depends on the substance, though seeds may be sold by some shady villagers when they have a drying table nearby and its night out.
+A3: Depends on the substance, though seeds may be sold by some ~~shady villagers~~ (Entities are too hard, it exists but is command only atm) Just buy them from farmers.
 
 Q4: What substances are currently added?
 
@@ -58,7 +61,7 @@ A8: Go wild, just credit the GitHub page.
 
 Q9: How accurate is this to real effects?
 
-A9: I've never done opium or datura, so I can't attest to those but the rest is super exaggerated and not very realistic. I might redo the shaders someday to be more accurate.
+A9: I've never done opium (recreationally) or datura, so I can't attest to those but the rest is exaggerated and not very realistic. Aswell, Most effects of psychedelics are mental and not possible to recreate.
 
 
  - Dependencies ----------------------------------------------------------------
@@ -83,4 +86,4 @@ HBM - I used some minor assets (tell me if you want them removed, https://github
 
 me - I did most of the coding for this
 
-echo1097 - Potentially making a 1.21.1 port, god bless his soul
+echo1097 - 1.21.1 port

@@ -1,5 +1,5 @@
 {
-  "vertex": "minecraft:post/post",
+  "vertex": "poppydelight:acid_post",
   "fragment": "poppydelight:acid_hue",
   "samplers": [
     { "name": "DiffuseSampler" }

@@ -27,7 +27,11 @@ public class ShroomItem extends Item {
 
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.EAT;
+        if(this.equals(ModItems.SHROOMTEA.get())) {
+            return UseAnim.EAT;
+        }else {
+            return UseAnim.DRINK;
+        }
     }
 
     private void applyShroomTag(ItemStack stack) {
@@ -39,9 +43,16 @@ public class ShroomItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.literal("This will be fun at parties.")
-                .withStyle(ChatFormatting.BLUE));
-        applyShroomTag(stack);
+
+        if(this.equals(ModItems.SHROOMTEA.get())) {
+            tooltip.add(Component.literal("It still tastes like shit.")
+                    .withStyle(ChatFormatting.BLUE));
+            applyShroomTag(stack);
+        }else {
+            tooltip.add(Component.literal("This will be fun at parties.")
+                    .withStyle(ChatFormatting.BLUE));
+            applyShroomTag(stack);
+        }
     }
 
     @Override

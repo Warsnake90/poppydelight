@@ -112,6 +112,9 @@ public class ModItems {
     public static final RegistryObject<Item> DRYSHROOMS2 =
             ITEMS.register("dry_brown_psilocybe", () -> new ShroomItem(new Item.Properties()));
 
+    public static final RegistryObject<Item> SHROOMTEA =
+            ITEMS.register("shroomtea", () -> new ShroomItem(new Item.Properties()));
+
     public static final RegistryObject<Item> PSILOCYBE_SPAWN =
             ITEMS.register("psilocybe_spawn", () -> new ItemNameBlockItem(ModBlocks.SHROOM_CROP.get() ,new Item.Properties()));
 

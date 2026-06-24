@@ -81,9 +81,6 @@ public class DealerTrades {
         return list;
     }
 
-    // =========================
-    //  VIP TRADES (UNLOCKED VIA DEMAND)
-    // =========================
     public static List<TradeTemplate> getVipTrades(int level, Map<String, Integer> demand) {
 
         List<TradeTemplate> vip = new ArrayList<>();

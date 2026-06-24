@@ -20,13 +20,14 @@ public class ModVillagers {
     public static final DeferredRegister<VillagerProfession> PROFESSIONS =
             DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, PoppyDelight.MODID);
 
-    public static final RegistryObject<PoiType> DRYING_POI = POI_TYPES.register("drying_table_poi",
+    public static final RegistryObject<PoiType> DEALER_POI = POI_TYPES.register("dealer_poi",
             () -> new PoiType(ImmutableSet.copyOf(ModBlocks.TATAMI.get().getStateDefinition().getPossibleStates()),
                     1, 3));
 
     public static final RegistryObject<VillagerProfession> DEALER =
             PROFESSIONS.register("dealer", () -> new VillagerProfession("dealer",
-                    holder -> holder.get() == DRYING_POI.get(), holder -> holder.get() == DRYING_POI.get(),
+                    holder -> holder.is(DEALER_POI.getKey()),
+                    holder -> holder.is(DEALER_POI.getKey()),
                     ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CLERIC));
 
 

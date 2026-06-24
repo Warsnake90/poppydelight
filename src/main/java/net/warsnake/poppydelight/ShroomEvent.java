@@ -39,7 +39,7 @@ public class ShroomEvent {
     private static final long TICKS_30_MIN = 30 * 60 * 20;
     private static final long TICKS_35_MIN = 35 * 60 * 20;
 
-    // completly rewritten because old system is super inefficient... It probably(?) doesn't matter for the other 2
+    // completly rewritten because old system is super inefficient...
 
     @SubscribeEvent
     public static void onFoodEaten(LivingEntityUseItemEvent.Finish event) {

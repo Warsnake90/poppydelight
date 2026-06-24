@@ -1,3 +1,16 @@
+**0.6.6 Shader update and fixes**
+ - Updated Shader effects on Shrooms
+ - Updated Shader effects on BadShrooms
+ - Updated OpiumEvents because it was super laggy and annoying
+ - Drying tables now take cannabis buds not leaves
+ - Added shroom datatag for recipes that use any type of mushroom
+ - Shroom spawn can now use all types of mushrooms in poppydelight:shroom tag
+ - Added shroom tea
+ - Updated version number - 0.6.5 -> 0.6.6
+ - Added assets for new items
+
+ - fixed a bug that caused a size two pot to be unfindable
+
 **0.6.5 code cleanup and lots of fixes**
 
  - - - Minor stuff - - -
@@ -16,7 +29,7 @@
  - Added recipe to turn hemp leaves into string & straw
  - Added recipe to turn hemp leaves into rope
  - Added custom Black market villager
-- fixed a bug that caused a size two pot to be unfindable
+ - fixed a bug that caused a size two pot to be unfindable
 
 **0.6.4 Fixes and asset updates**
 

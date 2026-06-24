@@ -8,7 +8,7 @@
     },{
       "item": "minecraft:mycelium"
     },{
-      "item": "minecraft:brown_mushroom"
+      "tag": "poppydelight:shroom"
     }
   ],
   "result": {

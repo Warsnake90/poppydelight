@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.warsnake.poppydelight.blocks.entity.ModBlockEntities;
-import net.warsnake.poppydelight.client.render.DryingRackBlockEntityRenderer;
+//import net.warsnake.poppydelight.client.render.DryingRackBlockEntityRenderer;
 
 
 @EventBusSubscriber(

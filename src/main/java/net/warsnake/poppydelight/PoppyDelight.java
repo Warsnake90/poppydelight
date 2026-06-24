@@ -82,7 +82,7 @@ public class PoppyDelight {
 
         @SubscribeEvent
         public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerBlockEntityRenderer(ModBlockEntities.DRYINGTABLE_BE.get(), DryingRackBlockEntityRenderer::new);
+            //event.registerBlockEntityRenderer(ModBlockEntities.DRYINGTABLE_BE.get(), DryingRackBlockEntityRenderer::new);
         }
     }
 

@@ -3,7 +3,8 @@
     "swap",
     "previous",
     "a",
-    "b"
+    "b",
+    "c"
   ],
   "passes": [
     {
@@ -17,8 +18,13 @@
       "outtarget": "b"
     },
     {
-      "name": "poppydelight:acid_trail",
+      "name": "poppydelight:acid_hue",
       "intarget": "b",
+      "outtarget": "c"
+    },
+    {
+      "name": "poppydelight:acid_trail",
+      "intarget": "c",
       "outtarget": "swap",
       "auxtargets": [
         {

@@ -1,299 +1,203 @@
 package net.warsnake.poppydelight;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
-import net.warsnake.poppydelight.OverdoseEvent;
 import net.warsnake.poppydelight.effect.ModEffects;
-import net.warsnake.poppydelight.items.ModItems;
-import umpaz.brewinandchewin.common.registry.BnCEffects;
-
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import umpaz.brewinandchewin.common.registry.BnCEffects;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.Random;
+import java.util.UUID;
 
 @Mod.EventBusSubscriber
 public class OpiumEvents {
 
-
-    private static final Map<UUID, Integer> opiumLevel = new HashMap<>();
-    private static final Map<UUID, Long> lastDecreaseTime = new HashMap<>();
-    private static final Map<UUID, Boolean> hadShaderLastTick = new HashMap<>();
-    private static final Map<UUID, Long> opiumConsumeTime = new HashMap<>();
-    private static final Map<UUID, Integer> pendingOpium = new HashMap<>();
-
     private static final Random rand = new Random();
 
-    private static final long fifteentimer = 5 * 1200;
+    private static final Map<UUID, Integer> opiumLevel       = new HashMap<>();
+    private static final Map<UUID, Long>    lastDecreaseTick = new HashMap<>();
+
+    private static final long DECREASE_INTERVAL = 5 * 60 * 20L; // 5 minutes
+
 
     @SubscribeEvent
     public static void onFoodEaten(LivingEntityUseItemEvent.Finish event) {
         if (!(event.getEntity() instanceof Player player)) return;
-
         if (player.level().isClientSide) return;
 
         ItemStack stack = event.getItem();
+        if (!stack.hasTag() || !stack.getTag().getBoolean("opium")) return;
+
+        int amount = rollAmount(stack);
+        if (amount == 0) return;
+
         UUID uuid = player.getUUID();
+        int newLevel = opiumLevel.getOrDefault(uuid, 0) + amount;
+        opiumLevel.put(uuid, newLevel);
 
-        if (!stack.hasTag() || !stack.getTag().getBoolean("opium"))
-            return;
+        // Only set the decrease timer if this is their first dose
+        lastDecreaseTick.putIfAbsent(uuid, player.level().getGameTime());
 
-        int amount = 0;
-
-        if (stack.getTag().getBoolean("lowopium")) {
-            amount = 1 + (rand.nextFloat() < 0.5f ? 1 : 0);
-        }
-
-        else if (stack.getTag().getBoolean("medopium")) {
-            float r = rand.nextFloat();
-            if (r < 0.10f) amount = 6;
-            else if (r < 0.60f) amount = 5;
-            else amount = 4;
-        }
-
-        else if (stack.getTag().getBoolean("highopium")) {
-            float r = rand.nextFloat();
-            if (r < 0.25f) amount = 10;
-            else if (r < 0.75f) amount = 9;
-            else amount = 8;
-        }
-
-        int current = opiumLevel.getOrDefault(uuid, 0);
-        current += amount;
-        opiumLevel.put(uuid, current);
-
-        lastDecreaseTime.putIfAbsent(uuid, player.level().getGameTime());
-
-        opiumConsumeTime.put(uuid, player.level().getGameTime());
-        pendingOpium.merge(uuid, amount, Integer::sum);
-
+        applyStageEffects(player, newLevel);
     }
+
+    private static int rollAmount(ItemStack stack) {
+        if (stack.getTag().getBoolean("lowopium")) {
+            return 1 + (rand.nextFloat() < 0.5f ? 1 : 0);
+        } else if (stack.getTag().getBoolean("medopium")) {
+            float r = rand.nextFloat();
+            return r < 0.10f ? 6 : r < 0.60f ? 5 : 4;
+        } else if (stack.getTag().getBoolean("highopium")) {
+            float r = rand.nextFloat();
+            return r < 0.25f ? 10 : r < 0.75f ? 9 : 8;
+        }
+        return 0;
+    }
+
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
-        if (event.player.level().isClientSide()) return;
 
         Player player = event.player;
         UUID uuid = player.getUUID();
 
-        if (!opiumConsumeTime.containsKey(uuid)) return;
+        if (player.level().isClientSide) return;
+        if (!opiumLevel.containsKey(uuid)) return;
 
-        long consumedAt = opiumConsumeTime.get(uuid);
-        long now = player.level().getGameTime();
+        long now  = player.level().getGameTime();
+        long last = lastDecreaseTick.getOrDefault(uuid, now);
 
-        if (now - consumedAt >= fifteentimer) {
-            int pending = pendingOpium.getOrDefault(uuid, 0);
-            if (pending > 0) {
-                int current = opiumLevel.getOrDefault(uuid, 0) + pending;
-                opiumLevel.put(uuid, current);
-                lastDecreaseTime.putIfAbsent(uuid, now);
-                applyStageEffects(player, current);
-            }
-            opiumConsumeTime.remove(uuid);
-            pendingOpium.remove(uuid);
-        }
-    }
+        if (now - last < DECREASE_INTERVAL) return;
 
-    // ughhhhhh ts is so overly complex
-    @SubscribeEvent
-    public static void onWorldTick( TickEvent.PlayerTickEvent event) {
+        lastDecreaseTick.put(uuid, now);
 
-        Player player = event.player;
-        UUID uuid = player.getUUID();
-
-        if (!opiumLevel.containsKey(uuid))
-            return;
-
-        long last = lastDecreaseTime.getOrDefault(uuid, 0L);
-        long now = player.level().getGameTime();
-
-        if (now - last >= fifteentimer) {
-            int lvl = opiumLevel.get(uuid);
-
-            if (lvl > 0) {
-                lvl--;
-                opiumLevel.put(uuid, lvl);
-                applyStageEffects(player, lvl);
-            }else {
-              //  new ControlDelay().clearDelay(uuid);
-            }
-            lastDecreaseTime.put(uuid, now);
-        }
-    }
-
-    private static void applyStageEffects(Player player, int level) {
+        int level = opiumLevel.get(uuid) - 1;
 
         if (level <= 0) {
+            cleanup(uuid);
             return;
         }
 
-        switch (level) {
-            case 0 -> { System.out.println("OpiumDelight - switch 'applystageeffects' case 0 when expected is ≥1"); return; } // if this somehow happens ill be very confused, but its good as a fallback ig
-            case 1,2,3,4,5,6,7,8,9,10 -> apply1Effects(player);
-            case 11,12,13,14,15,16,17,18,19,20 -> apply2Effects(player);
-             case 21,22,23,24,25 -> apply3Effects(player);
-           case 26,27,28,29 -> apply4Effects(player);
-            default -> apply5Effects(player);
-        }
+        opiumLevel.put(uuid, level);
+        applyStageEffects(player, level);
+    }
+
+
+    private static void applyStageEffects(Player player, int level) {
+        if      (level <= 10) apply1Effects(player);
+        else if (level <= 20) apply2Effects(player);
+        else if (level <= 25) apply3Effects(player);
+        else if (level <= 29) apply4Effects(player);
+        else                  apply5Effects(player);
     }
 
     private static void apply1Effects(Player player) {
-        int duration = 12000;
-        int potency = 2;
-
+        int d = 12000;
         player.sendSystemMessage(Component.literal("§eMan you feel good..."));
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 1));
-        player.addEffect(new MobEffectInstance(MobEffects.HUNGER, duration, 1));
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, duration, 1));
-        player.addEffect(new MobEffectInstance(
-                (MobEffect) BnCEffects.TIPSY.get(),
-                duration, potency, false, true, true));
-
-        player.addEffect(new MobEffectInstance(ModEffects.OPIUMHIGH.get(), duration *2, 0));
-
-        UUID id = player.getUUID();
-       // new ControlDelay().setTargetPlayer(id);
-
-
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, d, 1));
+        player.addEffect(new MobEffectInstance(MobEffects.HUNGER,            d, 1));
+        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, d, 1));
+        player.addEffect(new MobEffectInstance(ModEffects.OPIUMHIGH.get(),   d * 2, 0));
+        player.addEffect(new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), d, 2, false, true, true));
     }
 
     private static void apply2Effects(Player player) {
-        int duration = 12000;
-        int potency = 3;
-
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 1));
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, duration, 2));
-        player.sendSystemMessage(Component.literal("§cYou feel Really good..."));
-        player.addEffect(new MobEffectInstance(
-                (MobEffect) BnCEffects.TIPSY.get(),
-                duration, potency, false, true, true));
-
+        int d = 12000;
+        player.sendSystemMessage(Component.literal("§cYou feel really good..."));
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, d, 1));
+        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, d, 2));
+        player.addEffect(new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), d, 3, false, true, true));
     }
+
     private static void apply3Effects(Player player) {
-        int duration = 12000;
-        int potency = 4;
-
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 2));
+        int d = 12000;
         player.sendSystemMessage(Component.literal("§cYou feel like you could fly..."));
-        player.addEffect(new MobEffectInstance(
-                (MobEffect) BnCEffects.TIPSY.get(),
-                duration, potency, false, true, true));
-
-        if (player.level().getGameTime() % 25 == 0) {
-            player.playSound(
-                    SoundEvents.WARDEN_HEARTBEAT, 1.0F, 1.0F
-            );
-        }
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, d, 2));
+        player.addEffect(new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), d, 4, false, true, true));
+        if (player.level().getGameTime() % 25 == 0)
+            player.playSound(SoundEvents.WARDEN_HEARTBEAT, 1.0F, 1.0F);
     }
+
     private static void apply4Effects(Player player) {
-        int duration = 12000;
-        int potency = 7;
-
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 2));
-        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, duration, 3));
-        player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, duration, 1));
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, duration, 2));
+        int d = 12000;
         player.sendSystemMessage(Component.literal("§cHow much further does this ride go?"));
-        player.addEffect(new MobEffectInstance(
-                (MobEffect) BnCEffects.TIPSY.get(),
-                duration, potency, false, true, true));
-
-        if (player.level().getGameTime() % 20 == 0) {
-            player.playSound(
-                    SoundEvents.WARDEN_HEARTBEAT, 1.0F, 1.0F
-            );
-        }
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, d, 2));
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN,      d, 3));
+        player.addEffect(new MobEffectInstance(MobEffects.CONFUSION,         d, 1));
+        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST,      d, 2));
+        player.addEffect(new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), d, 7, false, true, true));
+        if (player.level().getGameTime() % 20 == 0)
+            player.playSound(SoundEvents.WARDEN_HEARTBEAT, 1.0F, 1.0F);
     }
 
     private static void apply5Effects(Player player) {
-        int duration = 12000;
-        int potency = 10;
-
+        int d = 12000;
         player.sendSystemMessage(Component.literal("§c§lYour body aches... but who cares when you feel this good"));
-
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 2));
-        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, duration, 3));
-        player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, duration, 1));
-        player.addEffect(new MobEffectInstance(
-                (MobEffect) BnCEffects.TIPSY.get(),
-                duration, potency, false, true, true));
-
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, d, 2));
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN,      d, 3));
+        player.addEffect(new MobEffectInstance(MobEffects.CONFUSION,         d, 1));
+        player.addEffect(new MobEffectInstance((MobEffect) BnCEffects.TIPSY.get(), d, 10, false, true, true));
         OverdoseEvent.startOverdoseForPlayer(player);
+        if (player.level().getGameTime() % 20 == 0)
+            player.playSound(SoundEvents.WARDEN_HEARTBEAT, 1.0F, 1.0F);
+    }
 
-        if (player.level().getGameTime() % 20 == 0) {
-            player.playSound(
-                    SoundEvents.WARDEN_HEARTBEAT, 1.0F, 1.0F
-            );
-        }
+
+    private static void cleanup(UUID uuid) {
+        opiumLevel.remove(uuid);
+        lastDecreaseTick.remove(uuid);
     }
 
     @SubscribeEvent
     public static void onPlayerDeath(LivingDeathEvent event) {
-        if (!(event.getEntity() instanceof Player player)) return;
-        UUID id = player.getUUID();
-        opiumLevel.remove(id);
-
-        lastDecreaseTime.remove(id);
-
-
+        if (event.getEntity() instanceof Player player)
+            cleanup(player.getUUID());
     }
+
 
     public static void sendOpiumLevelToPlayer(Player player) {
         if (player.level().isClientSide) return;
-
-        UUID uuid = player.getUUID();
-        int level = opiumLevel.getOrDefault(uuid, 0);
-
-        player.sendSystemMessage(
-                Component.literal("§eYour current opium level is: " + level)
-        );
+        int level = opiumLevel.getOrDefault(player.getUUID(), 0);
+        player.sendSystemMessage(Component.literal("§eYour current opium level is: " + level));
     }
 
     @Mod.EventBusSubscriber
     public class OpiumCommand {
-
         @SubscribeEvent
         public static void onRegisterCommands(RegisterCommandsEvent event) {
-
             event.getDispatcher().register(
                     LiteralArgumentBuilder.<CommandSourceStack>literal("opium")
-                            .requires(source -> source.hasPermission(1))
+                            .requires(src -> src.hasPermission(1))
                             .then(Commands.argument("player", EntityArgument.player())
                                     .executes(ctx -> {
                                         ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
-                                        OpiumEvents.sendOpiumLevelToPlayer(target);
-                                        ctx.getSource().sendSuccess(() -> net.minecraft.network.chat.Component.literal("Poppydelight: Opium level checked for " + target.getName().getString()), false
+                                        sendOpiumLevelToPlayer(target);
+                                        ctx.getSource().sendSuccess(
+                                                () -> Component.literal("Poppydelight: Opium level checked for " + target.getName().getString()),
+                                                false
                                         );
                                         return 1;
                                     }))
             );
         }
     }
-
 }
-
-
