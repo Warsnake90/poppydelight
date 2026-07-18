@@ -23,6 +23,21 @@ float edgeStrength(sampler2D tex, vec2 uv, float radius) {
     return clamp(d * 1.8, 0.0, 1.0);
 }
 
+vec3 rgb2hsv(vec3 c) {
+    vec4 K = vec4(0.0, -1.0/3.0, 2.0/3.0, -1.0);
+    vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+    vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+    float d = q.x - min(q.w, q.y);
+    float e = 1.0e-10;
+    return vec3(abs(q.z + (q.w - q.y) / (6.0*d + e)), d / (q.x + e), q.x);
+}
+
+vec3 hsv2rgb(vec3 c) {
+    vec4 K = vec4(1.0, 2.0/3.0, 1.0/3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
 void main() {
     float t = GameTime * 1200.0;
 
@@ -37,15 +52,10 @@ void main() {
 
     // -----------------------------------------------------------------------
     // ACTUAL EDGE CHROMATIC ABERRATION
-    // On LSD, colour fringing specifically appears at high-contrast edges —
-    // a red/orange fringe on one side, blue/violet on the other — like
-    // looking through a glass prism pressed against the eye.
-    // This pass concentrates the effect exactly on those edges.
     // -----------------------------------------------------------------------
 
     float edge = edgeStrength(DiffuseSampler, uv, 0.002);
 
-    // Direction of the colour split: perpendicular to edge gradient
     vec3 gradX = texture(DiffuseSampler, uv + vec2(0.002, 0)).rgb
                - texture(DiffuseSampler, uv - vec2(0.002, 0)).rgb;
     vec3 gradY = texture(DiffuseSampler, uv + vec2(0, 0.002)).rgb
@@ -55,18 +65,14 @@ void main() {
         dot(gradY, vec3(0.299, 0.587, 0.114))
     ));
 
-    // Spread grows with breath and has a slow random sway
     float baseSplit = 0.0035 + breath * 0.007;
     float timeSway  = noise1(t * 0.00019) * 0.004;
     float spread    = (baseSplit + timeSway) * (0.3 + edge * 0.7);
 
-    // Sample three spectral bands: warm, neutral, cool
-    // (more sophisticated multi-band is in acid_hue)
     vec2 uvR = clamp(uv + gradDir *  spread, 0.0, 1.0);
-    vec2 uvG = uv; // green channel stays
+    vec2 uvG = uv;
     vec2 uvB = clamp(uv - gradDir *  spread, 0.0, 1.0);
 
-    // Additional micro-split for orange and violet channels
     vec2 uvO = clamp(uv + gradDir * (spread * 0.55), 0.0, 1.0);
     vec2 uvV = clamp(uv - gradDir * (spread * 0.55), 0.0, 1.0);
 
@@ -74,29 +80,22 @@ void main() {
     float g = texture(DiffuseSampler, uvG).g;
     float b = texture(DiffuseSampler, uvB).b;
 
-    // Blend in extra orange warmth on the warm side
     float rO = texture(DiffuseSampler, uvO).r;
     float bV = texture(DiffuseSampler, uvV).b;
 
     r = mix(r, mix(r, rO, 0.5), edge);
     b = mix(b, mix(b, bV, 0.5), edge);
 
-    // Slight yellow-green luminosity boost at edges (retinal overstimulation)
     float lumBoost = 1.0 + edge * breath * 0.18;
     g *= lumBoost;
 
     // -----------------------------------------------------------------------
     // CONTOUR GLOW
-    // A soft coloured halo radiates slightly beyond each edge.
-    // We approximate by sampling with a larger offset and mixing a tinted
-    // version with low weight — it reads as the "glowing outline" that is
-    // one of the most commonly reported LSD visual phenomena.
     // -----------------------------------------------------------------------
     float glowSpread = spread * 2.5;
     vec3 glowSample  = texture(DiffuseSampler,
                          clamp(uv + gradDir * glowSpread, 0.0, 1.0)).rgb;
 
-    // Tint the glow toward cyan-magenta (complementary to warm edges)
     float glowHue  = fract(t * 0.000072 + dist * 0.4);
     float gh6 = glowHue * 6.0;
     vec3 glowTint = vec3(
@@ -111,8 +110,7 @@ void main() {
     vec3 result = mix(base, base + glowSample * glowStr, glowStr);
 
     // -----------------------------------------------------------------------
-    // SURFACE IRIDESCENCE (thin oil-slick sheen on everything)
-    // Even non-edge areas get a very faint prismatic shimmer.
+    // SURFACE IRIDESCENCE
     // -----------------------------------------------------------------------
     vec3 original = texture(DiffuseSampler, uv).rgb;
     float lum     = dot(original, vec3(0.299, 0.587, 0.114));
@@ -124,7 +122,40 @@ void main() {
         clamp(2.0 - abs(ih6 - 4.0), 0.0, 1.0)
     );
     float iriStr = 0.03 + breath * 0.05;
-    result = mix(result, iriCol, iriStr * (1.0 - edge)); // less on edges (already coloured)
+    result = mix(result, iriCol, iriStr * (1.0 - edge));
+
+    // -----------------------------------------------------------------------
+    // CONTINUOUS COLOR WARP WAVES
+    // Multiple overlapping travelling waves, each with its own spatial
+    // frequency/direction/speed, so different regions of the screen warp
+    // through hue-space independently rather than uniformly. Saturation
+    // and value are pushed up wherever the warp is strongest so the warped
+    // colour always reads as bright/vivid rather than dull or dark.
+    // -----------------------------------------------------------------------
+    vec3 hsvW = rgb2hsv(result);
+
+    float wave1 = sin(uv.x * 6.0  + uv.y * 2.0  + t * 0.00045);
+    float wave2 = sin(uv.x * 2.5  - uv.y * 5.0  + t * 0.00071 + 2.0);
+    float wave3 = sin(uv.x * 9.0  + uv.y * 9.0  + t * 0.00029 - 1.5);
+    float wave4 = sin((uv.x + uv.y) * 4.0 - t * 0.00058 + dist * 3.0);
+
+    float waveSum   = (wave1 + wave2 + wave3 + wave4) * 0.25;
+    float waveLocal = wave1 * 0.5 + wave3 * 0.5; // higher-frequency local variation
+
+    // Hue rotates continuously, amount varies per-pixel via the waves
+    float warpHue = waveSum * 0.5 + waveLocal * 0.25;
+    hsvW.x = fract(hsvW.x + warpHue);
+
+    // Strength of warp also varies spatially/temporally (0..1)
+    float warpStrength = smoothstep(-1.0, 1.0, waveSum) * 0.6
+                        + smoothstep(-1.0, 1.0, waveLocal) * 0.4;
+
+    // Keep colours bright/vivid wherever the warp kicks in:
+    // push saturation up and floor the value so nothing goes dark/dull.
+    hsvW.y = clamp(mix(hsvW.y, max(hsvW.y, 0.65), warpStrength), 0.0, 1.0);
+    hsvW.z = clamp(max(hsvW.z, 0.55 + 0.25 * warpStrength), 0.0, 1.0);
+
+    result = hsv2rgb(hsvW);
 
     fragColor = vec4(clamp(result, 0.0, 1.0), 1.0);
 }

@@ -8,7 +8,7 @@ in vec2 texCoord;
 out vec4 fragColor;
 
 float hash(float n) { return fract(sin(n) * 43758.5453); }
-float noise1(float x) {
+float hashNoise1(float x) {
     float i = floor(x); float f = fract(x);
     return mix(hash(i), hash(i+1.0), f*f*(3.0-2.0*f));
 }
@@ -18,7 +18,7 @@ vec2 hash2(vec2 p) {
     return fract(sin(p) * 43758.5453);
 }
 
-float noise2(vec2 p) {
+float hashNoise2(vec2 p) {
     vec2 i = floor(p); vec2 f = fract(p);
     vec2 u = f*f*(3.0-2.0*f);
     float a = dot(hash2(i),           f);
@@ -65,8 +65,8 @@ void main() {
 
     // Additional noise-driven micro-drift — makes trails "swim" organically
     float driftT  = t * 0.000097;
-    float driftX  = noise2(uv * 4.0 + vec2(driftT, 0.0)) - 0.5;
-    float driftY  = noise2(uv * 4.0 + vec2(0.0, driftT + 3.7)) - 0.5;
+    float driftX  = hashNoise2(uv * 4.0 + vec2(driftT, 0.0)) - 0.5;
+    float driftY  = hashNoise2(uv * 4.0 + vec2(0.0, driftT + 3.7)) - 0.5;
     lagOffset    += vec2(driftX, driftY) * 0.003 * breath;
 
     vec2 prevUV = clamp(uv + lagOffset, 0.0, 1.0);

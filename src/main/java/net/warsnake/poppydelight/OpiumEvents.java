@@ -61,15 +61,27 @@ public class OpiumEvents {
 
     private static int rollAmount(ItemStack stack) {
         if (stack.getTag().getBoolean("lowopium")) {
-            return 1 + (rand.nextFloat() < 0.5f ? 1 : 0);
+            return rollDose(2, 1, 4);   // centered ~2 range 1-4
         } else if (stack.getTag().getBoolean("medopium")) {
-            float r = rand.nextFloat();
-            return r < 0.10f ? 6 : r < 0.60f ? 5 : 4;
+            return rollDose(5, 3, 9);   // centered ~5 range 3-9
         } else if (stack.getTag().getBoolean("highopium")) {
-            float r = rand.nextFloat();
-            return r < 0.25f ? 10 : r < 0.75f ? 9 : 8;
+            return rollDose(10, 6, 18); // centered ~10 range 6-18, fat tail upward
         }
         return 0;
+    }
+
+    private static int rollDose(int center, int min, int max) {
+        float r1 = rand.nextFloat();
+        float r2 = rand.nextFloat();
+        float avg = (r1 + r2) / 2f;
+
+        if (rand.nextFloat() < 0.06f) {
+            avg = rand.nextFloat();
+        }
+
+        int range = max - min;
+        int rolled = min + Math.round(avg * range);
+        return Math.max(min, Math.min(max, rolled));
     }
 
 

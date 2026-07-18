@@ -21,7 +21,7 @@ import java.util.UUID;
 
 @Mod.EventBusSubscriber
 public class OverdoseEvent {
-
+    //opium od btw, ill combine the two classes soon
     private static final Map<UUID, Long> OverdoseStartTimes = new HashMap<>();
     private static final Map<UUID, Integer> OverdoseStageSent = new HashMap<>();
 

@@ -58,8 +58,8 @@ void main() {
     float castT = t * 0.000062;
     float castA = noise1(castT);
     float castB = noise1(castT + 7.3);
-    float cast  = mix(castA, castB, 0.5) * 0.06 - 0.03;
-    hueShift += cast;
+    float colorCast = mix(castA, castB, 0.5) * 0.06 - 0.03;
+        hueShift += colorCast;
 
     hsv.x = fract(hsv.x + hueShift);
 
